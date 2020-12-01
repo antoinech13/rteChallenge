@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fichiers sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Fichiers de ressources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Fichiers sources\parser">
+      <UniqueIdentifier>{6c58b21a-6e62-426f-9fdb-2dcc49c40169}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\parser">
+      <UniqueIdentifier>{cd3ff351-517d-4346-a216-e5e2159b9510}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\solver">
+      <UniqueIdentifier>{2ec63904-885c-4eb8-b1c9-71af59596a57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\solver">
+      <UniqueIdentifier>{d45058d5-c901-485f-91e2-16f1a44f6358}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Exclusions.cpp">
+      <Filter>Fichiers sources\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="dataCollector.cpp">
+      <Filter>Fichiers sources\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Intervention.cpp">
+      <Filter>Fichiers sources\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Parser.cpp">
+      <Filter>Fichiers sources\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Resources.cpp">
+      <Filter>Fichiers sources\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Seasons.cpp">
+      <Filter>Fichiers sources\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Solver.cpp">
+      <Filter>Fichiers sources\solver</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="dataCollector.h">
+      <Filter>Fichiers d%27en-tête\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Exclusions.h">
+      <Filter>Fichiers d%27en-tête\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Intervention.h">
+      <Filter>Fichiers d%27en-tête\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser%28old%29.h">
+      <Filter>Fichiers d%27en-tête\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser.h">
+      <Filter>Fichiers d%27en-tête\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources.h">
+      <Filter>Fichiers d%27en-tête\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Seasons.h">
+      <Filter>Fichiers d%27en-tête\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Solver.h">
+      <Filter>Fichiers d%27en-tête\solver</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
