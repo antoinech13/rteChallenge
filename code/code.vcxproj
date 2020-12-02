@@ -148,6 +148,7 @@
     <ClCompile Include="Seasons.cpp" />
     <ClCompile Include="Solver.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="WorkloadCheck.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dataCollector.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Resources.h" />
     <ClInclude Include="Seasons.h" />
     <ClInclude Include="Solver.h" />
+    <ClInclude Include="WorkloadCheck.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

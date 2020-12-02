@@ -20,7 +20,7 @@ public:
 	float getQuantile();
 	float getAlpha();
 	vector<Intervention> getInterventions();
-	vector<pair<string, map<string, vector<int>>>> getResources();
+	vector<pair<int, map<string, vector<int>>>> getResources();
 	vector<pair<string, vector<int>>> getExclusions();
 	map<string, vector<int>> getSeasons();
 
@@ -35,7 +35,7 @@ private:
 	float alpha;
 	vector<Intervention> interventions;
 	vector<Intervention>  buildInterventions(string vFile);
-	vector<pair<string, map<string, vector<int>>>> resources;
+	vector<pair<int, map<string, vector<int>>>> resources;
 	vector<pair<string, vector<int>>> exclusions;
 	map<string, vector<int>> seasons;
 

@@ -26,7 +26,7 @@ vector<Intervention> dataCollector::getInterventions() {
 	return this->interventions;
 }
 
-vector<pair<string, map<string, vector<int>>>> dataCollector::getResources() {
+vector<pair<int, map<string, vector<int>>>> dataCollector::getResources() {
 	return this->resources;
 }
 

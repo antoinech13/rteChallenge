@@ -51,6 +51,9 @@
     <ClCompile Include="Source.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="WorkloadCheck.cpp">
+      <Filter>Fichiers sources\solver</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dataCollector.h">
@@ -75,6 +78,9 @@
       <Filter>Fichiers d%27en-tête\parser</Filter>
     </ClInclude>
     <ClInclude Include="Solver.h">
+      <Filter>Fichiers d%27en-tête\solver</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkloadCheck.h">
       <Filter>Fichiers d%27en-tête\solver</Filter>
     </ClInclude>
   </ItemGroup>
