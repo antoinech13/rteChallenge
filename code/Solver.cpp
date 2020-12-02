@@ -29,11 +29,12 @@ map<int, vector<int>> Solver::violatExclusions(vector<int> interventionPosition)
 	map<string, vector<int>> seasons = this->data.getSeasons();
 	vector<Intervention> interventions = this->data.getInterventions();
 	
-	vector<int> exclusion;
+	vector<int> exclusion, val, tInSeasons;
 	string season;
 	vector<pair<int, int>> tDt;
-	vector<int> tInSeasons;
 	vector<bool> interIsInSeason;
+	
+	map<int, vector<int>> result;
 	
 
     // chack every exclusions rules
@@ -45,17 +46,30 @@ map<int, vector<int>> Solver::violatExclusions(vector<int> interventionPosition)
 		tInSeasons = seasons[season];
 		interIsInSeason = testIfInSeason(tInSeasons, tDt);
 
-
-
+		for (int j = 0; j < exclusion.size(); j++) {
+			if (interIsInSeason[i]) {
+				val = getConflic(interIsInSeason, tDt, tDt[i], j);
+			}
+			if (val.size() != 0) {
+				if (result.find(j) == result.end())
+					result[j] = val;
+			}
+			result[j].insert(result[j].end(), val.begin(), val.end());
+		}
 	}
 
+	return result;
 }
 
-vector<int> Solver::getConflic(vector<bool> interIsInSeason, vector<int> exclusion, vector<pair<int, int>>  tDts, pair<int, int> tDt) {
-	for (int i = 0; i < exclusion.size(); i++) {
-		if(interIsInSeason[i] && tDt.first < tDts.first)
-
+vector<int> Solver::getConflic(vector<bool> interIsInSeason, vector<pair<int, int>>  tDts, pair<int, int> tDt, int j) {
+	vector<int> result;
+	for (int i = 0; i < interIsInSeason.size(); i++) {
+		if (interIsInSeason[i] && i != j && ((tDt.first < tDts[i].first && tDt.first + tDt.second > tDts[i].first) || (tDt.first > tDts[i].first && tDts[i].second + tDts[i].first > tDt.first))) {
+			result.push_back(i);
+		}
 	}
+	
+	return result;
 }
 	
 vector<bool> Solver::testIfInSeason(vector<int> tInSeasons, vector<pair<int, int>> tDt) {
