@@ -35,12 +35,12 @@ int main() {
     Solver s(D);
 
 
-    /*
+    
     cout << D.getAlpha() << '\n';
 
 
     */
-    //coucou
+
 }
 
 
