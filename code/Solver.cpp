@@ -49,6 +49,27 @@ map<string, vector<string>> Solver::violatExclusion(map<string, int> interventio
 		}
 
 	}
+
+	//méthode getTps from randInitialisation
+
+	int Solver ::getTps(Intervention intervention, int i){
+	vector<vector<int>> value = this -> data.randInitialisation();
+	return 
+	}
+
+	// checker pour t (t + Delta(i,t) =< T + 1 )
+
+    boolean Solver :: checkt(){
+	int tps = this -> data.getTps();
+	int T = this -> data.getT();
+	int Delta = this -> data.getDelta();
+
+	if(tps + Delta > T +1)
+	    return false;
+	return true;
+	
+	
+	} 
 	
 
 }*/
