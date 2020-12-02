@@ -22,7 +22,7 @@ public:
 	vector<Intervention> getInterventions();
 	vector<pair<string, map<string, vector<int>>>> getResources();
 	vector<pair<string, vector<int>>> getExclusions();
-	vector<pair<string, vector<int>>> getSeasons();
+	map<string, vector<int>> getSeasons();
 
 	dataCollector();
 	dataCollector(FILE * I);
@@ -37,6 +37,6 @@ private:
 	vector<Intervention>  buildInterventions(string vFile);
 	vector<pair<string, map<string, vector<int>>>> resources;
 	vector<pair<string, vector<int>>> exclusions;
-	vector<pair<string, vector<int>>> seasons;
+	map<string, vector<int>> seasons;
 
 };

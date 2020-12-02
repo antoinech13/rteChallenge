@@ -22,7 +22,7 @@ vector<pair<string, vector<int>>> Exclusions::extractData(string vFile) {
 		tab = Parser::toStringTable(values[i]);
 		p.first = tab[tab.size()-1];
 		tab.pop_back();
-		p.second = { 1 }; //Parser::strTabToIntTabWithoutFirstCharacther(tab);
+		p.second = Parser::strTabToIntTabWithoutFirstCharacther(tab);
 		val.push_back(p);
 	}
 

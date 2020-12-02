@@ -6,7 +6,7 @@
 #include "Resources.h"
 #include "Parser.h"
 
-vector < pair<string, map<string, vector<int>>>> Resources::getData() {
+vector < pair<int, map<string, vector<int>>>> Resources::getData() {
 	return this->data;
 }
 
@@ -14,15 +14,15 @@ Resources::Resources(string vFile) {
 	this->data = extractData(vFile);	
 }
 
-vector<pair<string, map<string, vector<int>>>> Resources::extractData(string vFile) {
+vector<pair<int, map<string, vector<int>>>> Resources::extractData(string vFile) {
 	Parser I(vFile);
 	vector<string> main = I.getMain();
 	vector<string> values = I.getValues();
-	pair<string, map<string, vector<int>>> p;
-	vector<pair<string, map<string, vector<int>>>> val;
+	pair<int, map<string, vector<int>>> p;
+	vector<pair<int, map<string, vector<int>>>> val;
 
 	for (int i = 0; i < values.size(); i++) {
-		p.first = main[i];
+		p.first = stoi(main[i].erase(0,1))-1;
 		p.second = extractMap(values[i]);
 		val.push_back(p);
 	}
