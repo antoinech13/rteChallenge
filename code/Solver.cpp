@@ -83,7 +83,7 @@ vector<pair<int, int>> Solver::getTDt(vector<int> interTime, vector<int> tabInte
 }
 
 //méthode getTps from randInitialisation
-
+  
 int Solver::getTps(Intervention intervention, int i) {
 	vector<vector<int>> value = this->data.randInitialisation();
 	return
