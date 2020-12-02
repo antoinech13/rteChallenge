@@ -51,7 +51,12 @@ map<int, vector<int>> Solver::violatExclusions(vector<int> interventionPosition)
 
 }
 
-vector<int> Solver::getConflic(vector<bool> interIsInSeason, vector<int> exclusion, )
+vector<int> Solver::getConflic(vector<bool> interIsInSeason, vector<int> exclusion,  , pair<int, int> tDt) {
+	for (int i = 0; i < exclusion.size(); i++) {
+		if(interIsInSeason[i] && tDt.first < exclusion[i])
+
+	}
+}
 	
 vector<bool> Solver::testIfInSeason(vector<int> tInSeasons, vector<pair<int, int>> tDt) {
 	vector<bool> in;
