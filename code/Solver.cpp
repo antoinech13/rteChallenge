@@ -22,7 +22,7 @@ vector<int> Solver::randInitialisation() {
 	return value;
 }
 
-
+ 
 map<int, vector<int>> Solver::violatExclusions(vector<int> interventionPosition) {
 
 	vector<pair<string, vector<int>>> exclusions = this->data.getExclusions();
