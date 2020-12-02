@@ -21,7 +21,7 @@ public:
 	float getAlpha();
 	vector<Intervention> getInterventions();
 	vector<pair<string, map<string, vector<int>>>> getResources();
-	vector<pair<string, vector<string>>> getExclusions();
+	vector<pair<string, vector<int>>> getExclusions();
 	vector<pair<string, vector<int>>> getSeasons();
 
 	dataCollector();

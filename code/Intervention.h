@@ -19,7 +19,7 @@ private:
 	vector<int> Delta;
 
 	vector<vector<vector<pair<int, int>>>> workload;
-	vector<vector<vector<pair<int, int>>>> extractWorkLoad(string vFile);
+	vector<pair<int, vector<vector<pair<int, int>>>>> extractWorkLoad(string vFile);
 	vector<vector<pair<int, int>>> extractC(string vFile);
 	vector<pair<int, int>> extractTstep(string vFile);
 	

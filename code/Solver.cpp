@@ -1,6 +1,6 @@
 #include "Solver.h"
 #include "Intervention.h"
-#include<time.h>
+#include <time.h>
 #include <map>
 #include <string>
 
@@ -11,13 +11,13 @@ Solver::Solver(dataCollector data){
 	map<string, int> nik = randInitialisation();
 }
 
-map<string, int> Solver::randInitialisation() {
-	map<string, int> value;
-	map<string, Intervention> interventions = this->data.getInterventions();
+vector<int> Solver::randInitialisation() {
+	vector<vector<int>> value;
+	vector<Intervention> interventions = this->data.getInterventions();
 	srand(time(0));
 
-	for (map<string, Intervention>::iterator it = interventions.begin(); it != interventions.end(); ++it) {
-		value[it->first] = rand() % it->second.getTmax() + 1;
+	for (int i = 0; i < interventions.size(); i++) {
+		value[interventions[i]] = rand() % it->second.getTmax() + 1;
 		cout << it -> first << " " << it -> second.getTmax() << " " << value[it -> first] << '\n';
 	}
 	return value;
@@ -28,7 +28,7 @@ map<string, vector<string>> Solver::violatExclusion(map<string, int> interventio
 
 	vector<pair<string, vector<string>>> exclusions = this->data.getExclusions();
 	vector<pair<string, vector<int>>> saisons = this->data.getSeasons();
-	map<string, Intervention> interventions = this->data.getInterventions();
+	vector<Intervention> interventions = this->data.getInterventions();
 	
 	vector<string> exclusion;
 	string season;

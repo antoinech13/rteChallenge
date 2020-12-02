@@ -32,7 +32,7 @@ int main() {
     
 
     dataCollector D(exemple1);
-    Solver s(D);
+    //Solver s(D);
 
 
     cout << D.getAlpha();
