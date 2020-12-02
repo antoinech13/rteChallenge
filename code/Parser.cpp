@@ -213,6 +213,14 @@ vector<string> Parser::toStringTable(string tab) {
     }
 }
 
+vector<int> Parser::strTabToIntTabWithoutFirstCharacther(vector<string> tab) {
+    vector<int> result;
+    for (int i = 0; i < tab.size(); i++) {
+        result.push_back(stoi(tab[i].erase(0)));
+    }
+    return result;
+}
+
 string Parser::toString(vector<int> vFile) {
     string val;
     for (int i = 0; i < vFile.size(); i++) {

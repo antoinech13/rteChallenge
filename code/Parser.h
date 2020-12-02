@@ -34,6 +34,7 @@ public:
     static vector<int> stringToInt(string source);
     static vector<int> toIntTable(string tab);
     static vector<string> toStringTable(string tab);
+    static vector<int> strTabToIntTabWithoutFirstCharacther(vector<string> tab);
     static vector<string> mainSequence(string vFile);
     vector<string> mainSequence();
     static vector<string> divideSection(string vFile);

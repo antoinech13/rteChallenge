@@ -16,7 +16,7 @@ vector<int> Intervention::getDelta() {
 	return this->Delta;
 }
 
-vector<vector<vector<pair<int, int>>>> Intervention::getWorkload() {
+vector<pair<int, vector<vector<pair<int, int>>>>> Intervention::getWorkload() {
 	return this->workload;
 }
 
@@ -66,16 +66,16 @@ vector<pair<int, vector<int>>> Intervention::extractTr(string vFile) {
 }
 
 
-vector<vector<vector<pair<int, int>>>> Intervention::extractWorkLoad(string vFile) {
+vector<pair<int, vector<vector<pair<int, int>>>>> Intervention::extractWorkLoad(string vFile) {
 	Parser I(vFile);
 	vector<string> main = I.getMain();
 	vector<string> value = I.getValues();
 	vector<vector<pair<int, int>>> p;
-	vector<vector<vector<pair<int, int>>>> val;
+	vector<pair<int, vector<vector<pair<int, int>>>>> val;
 
 	for (int i = 0; i < value.size(); i++) {
 		p = extractC(value[i]);
-		val.push_back(p);
+		val.push_back(make_pair(stoi(main[i].erase(0))-1,p));
 	}
 
 	return val;

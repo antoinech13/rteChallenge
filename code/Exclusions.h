@@ -9,12 +9,12 @@ using namespace std;
 class Exclusions
 {
 public:
-	vector<pair<string, vector<string>>> getData();
+	vector<pair<string, vector<int>>> getData();
 	Exclusions(string vFile);
 
 private:
-	vector<pair<string, vector<string>>> data; 
-	vector<pair<string, vector<string>>> extractData(string vFile);
+	vector<pair<string, vector<int>>> data; 
+	vector<pair<string, vector<int>>> extractData(string vFile);
 
 };
 
