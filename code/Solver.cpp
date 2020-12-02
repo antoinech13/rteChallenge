@@ -86,7 +86,7 @@ int Solver::getTps(Intervention intervention, int i) {
 
 // checker pour t (t + Delta(i,t) =< T + 1 )
 
-boolean Solver::checkt() {
+bool Solver::checkt() {
 	int tps = this->data.getTps();
 	int T = this->data.getT();
 	int Delta = this->data.getDelta();
