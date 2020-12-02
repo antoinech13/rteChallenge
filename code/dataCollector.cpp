@@ -34,7 +34,7 @@ vector<pair<string, vector<int>>> dataCollector::getExclusions() {
 	return this->exclusions;
 }
 
-vector<pair<string, vector<int>>> dataCollector::getSeasons() {
+map<string, vector<int>> dataCollector::getSeasons() {
 	return this->seasons;
 }
 
