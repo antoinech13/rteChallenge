@@ -36,7 +36,7 @@ int main() {
 
 
     
-    cout << D.getAlpha() << '\n';
+    //cout << D.getAlpha() << '\n';
 
 
     
