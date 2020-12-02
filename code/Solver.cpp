@@ -51,9 +51,9 @@ map<int, vector<int>> Solver::violatExclusions(vector<int> interventionPosition)
 
 }
 
-vector<int> Solver::getConflic(vector<bool> interIsInSeason, vector<int> exclusion,  , pair<int, int> tDt) {
+vector<int> Solver::getConflic(vector<bool> interIsInSeason, vector<int> exclusion, vector<pair<int, int>>  tDts, pair<int, int> tDt) {
 	for (int i = 0; i < exclusion.size(); i++) {
-		if(interIsInSeason[i] && tDt.first < exclusion[i])
+		if(interIsInSeason[i] && tDt.first < tDts.first)
 
 	}
 }
@@ -91,7 +91,7 @@ int Solver::getTps(Intervention intervention, int i) {
 
 // checker pour t (t + Delta(i,t) =< T + 1 )
 
-boolean Solver::checkt() {
+bool Solver::checkt() {
 	int tps = this->data.getTps();
 	int T = this->data.getT();
 	int Delta = this->data.getDelta();

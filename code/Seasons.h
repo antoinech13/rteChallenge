@@ -8,11 +8,11 @@ using namespace std;
 class Seasons
 {
 public:
-	vector<pair<string, vector<int>>>  getData();
+	map<string, vector<int>>  getData();
 	Seasons(string vFile);
 
 private:
-	vector<pair<string, vector<int>>>  data;
-	vector<pair<string, vector<int>>>  extractData(string vFile);
+	map<string, vector<int>>  data;
+	map<string, vector<int>>  extractData(string vFile);
 };
 
