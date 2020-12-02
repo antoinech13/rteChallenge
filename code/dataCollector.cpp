@@ -22,7 +22,7 @@ vector<int> dataCollector::getScenarioNumber() {
 	return this->scenariosNumber;
 }
 
-vector<pair<string, Intervention>> dataCollector::getInterventions() {
+vector<Intervention> dataCollector::getInterventions() {
 	return this->interventions;
 }
 
@@ -57,15 +57,15 @@ dataCollector::dataCollector(FILE* vFile) {
 
 dataCollector::dataCollector() {};
 
-vector<pair<string, Intervention>> dataCollector::buildInterventions(string vFile) {
+vector<Intervention> dataCollector::buildInterventions(string vFile) {
 	Parser I(vFile);
 	vector<string> main = I.getMain();
 	vector<string> values = I.getValues();
-	vector<pair<string, Intervention>> val;
+	vector<Intervention> val;
 
 	for (int i = 0; i < values.size(); i++) {
 		Intervention it(values[i]);
-		val.push_back(make_pair(main[i], it));
+		val.push_back(it);
 	}
 	return val;
 

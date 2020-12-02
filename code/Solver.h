@@ -13,6 +13,6 @@ public:
 private:
 	dataCollector data;
 	map<string, int> randInitialisation();
-
+	map<string, vector<string>> violatExclusion(map<string, int> interventions);
 };
 

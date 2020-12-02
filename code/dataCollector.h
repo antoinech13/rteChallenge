@@ -19,7 +19,7 @@ public:
 	vector<int> getScenarioNumber();
 	float getQuantile();
 	float getAlpha();
-	vector<pair<string, Intervention>> getInterventions();
+	vector<Intervention> getInterventions();
 	vector<pair<string, map<string, vector<int>>>> getResources();
 	vector<pair<string, vector<string>>> getExclusions();
 	vector<pair<string, vector<int>>> getSeasons();
@@ -33,8 +33,8 @@ private:
 	vector<int> scenariosNumber;
 	float quantile;
 	float alpha;
-	vector<pair<string,Intervention>> interventions;
-	vector<pair<string, Intervention>>  buildInterventions(string vFile);
+	vector<Intervention> interventions;
+	vector<Intervention>  buildInterventions(string vFile);
 	vector<pair<string, map<string, vector<int>>>> resources;
 	vector<pair<string, vector<string>>> exclusions;
 	vector<pair<string, vector<int>>> seasons;
