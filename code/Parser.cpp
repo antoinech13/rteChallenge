@@ -216,7 +216,7 @@ vector<string> Parser::toStringTable(string tab) {
 vector<int> Parser::strTabToIntTabWithoutFirstCharacther(vector<string> tab) {
     vector<int> result;
     for (int i = 0; i < tab.size(); i++) {
-        result.push_back(stoi(tab[i].erase(0)));
+        result.push_back(stoi(tab[i].erase(0)) - 1);
     }
     return result;
 }

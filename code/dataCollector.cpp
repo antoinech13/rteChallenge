@@ -30,7 +30,7 @@ vector<pair<string, map<string, vector<int>>>> dataCollector::getResources() {
 	return this->resources;
 }
 
-vector<pair<string, vector<string>>> dataCollector::getExclusions() {
+vector<pair<string, vector<int>>> dataCollector::getExclusions() {
 	return this->exclusions;
 }
 

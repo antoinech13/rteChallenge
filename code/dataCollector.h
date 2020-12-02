@@ -36,7 +36,7 @@ private:
 	vector<Intervention> interventions;
 	vector<Intervention>  buildInterventions(string vFile);
 	vector<pair<string, map<string, vector<int>>>> resources;
-	vector<pair<string, vector<string>>> exclusions;
+	vector<pair<string, vector<int>>> exclusions;
 	vector<pair<string, vector<int>>> seasons;
 
 };

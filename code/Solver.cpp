@@ -5,7 +5,7 @@
 #include <string>
 
 
-
+/*
 Solver::Solver(dataCollector data){
 	this->data = data;
 	map<string, int> nik = randInitialisation();
@@ -51,4 +51,4 @@ map<string, vector<string>> Solver::violatExclusion(map<string, int> interventio
 	}
 	
 
-}
+}*/

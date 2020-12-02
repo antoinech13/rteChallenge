@@ -75,7 +75,7 @@ vector<pair<int, vector<vector<pair<int, int>>>>> Intervention::extractWorkLoad(
 
 	for (int i = 0; i < value.size(); i++) {
 		p = extractC(value[i]);
-		val.push_back(make_pair(stoi(main[i].erase(0))-1,p));
+		val.push_back(make_pair(stoi(main[i].erase(0, 1))-1,p));
 	}
 
 	return val;
