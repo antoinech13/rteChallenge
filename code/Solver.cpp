@@ -23,7 +23,7 @@ vector<int> Solver::randInitialisation() {
 	return value;
 }
 
-
+ 
 map<int, vector<int>> Solver::violatExclusions(vector<int> interventionPosition) {
 
 	vector<pair<string, vector<int>>> exclusions = this->data.getExclusions();
@@ -100,7 +100,7 @@ vector<pair<int, int>> Solver::getTDt(vector<int> interTime, vector<int> exclusi
 }
 /*
 //méthode getTps from randInitialisation
-
+  
 int Solver::getTps(Intervention intervention, int i) {
 	vector<int> value = randInitialisation();
 	return

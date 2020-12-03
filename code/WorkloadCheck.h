@@ -8,9 +8,13 @@ class WorkloadCheck
 public:
 	WorkloadCheck(dataCollector data);
 	int workloadCheck(vector<int> soluce);
+	int workloadCheckMax(vector<int> soluce);
+	int workloadCheckMin(int score);
 
 private:
 	vector<vector<int>>arrayWorkload;
-	vector<pair<string, map<string, vector<int>>>> ressouces;
+	vector<pair<int, map<string, vector<int>>>> ressouces;
 	vector<Intervention> interventions;
+	vector<int> interventionBad;
+	vector<vector<int>>timeBad;
 };
