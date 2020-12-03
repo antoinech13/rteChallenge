@@ -22,7 +22,7 @@ vector<pair<int, map<string, vector<int>>>> Resources::extractData(string vFile)
 	vector<pair<int, map<string, vector<int>>>> val;
 
 	for (int i = 0; i < values.size(); i++) {
-		p.first = stoi(main[i].erase(0,1))-1;
+		p.first = stoi(main[i].erase(0, 1)) - 1;
 		p.second = extractMap(values[i]);
 		val.push_back(p);
 	}

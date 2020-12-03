@@ -8,7 +8,8 @@
 
 Solver::Solver(dataCollector data){
 	this->data = data;
-	vector<int> nik = randInitialisation();
+	this->nik = randInitialisation();
+	this->a = violatExclusions(nik);
 }
 
 vector<int> Solver::randInitialisation() {
@@ -48,27 +49,29 @@ map<int, vector<int>> Solver::violatExclusions(vector<int> interventionPosition)
 
 		for (int j = 0; j < exclusion.size(); j++) {
 			if (interIsInSeason[i]) {
-				val = getConflic(interIsInSeason, tDt, tDt[i], j);
+				val = getConflic(exclusion, interIsInSeason, tDt, tDt[j], j);
 			}
 			if (val.size() != 0) {
-				if (result.find(j) == result.end())
-					result[j] = val;
+				if (result.find(j) == result.end()) 
+					result[exclusion[j]] = val;
+				else
+					result[exclusion[j]].insert(result[exclusion[j]].end(), val.begin(), val.end());
+				
 			}
-			result[j].insert(result[j].end(), val.begin(), val.end());
+			
 		}
 	}
 
 	return result;
 }
 
-vector<int> Solver::getConflic(vector<bool> interIsInSeason, vector<pair<int, int>>  tDts, pair<int, int> tDt, int j) {
+vector<int> Solver::getConflic(vector<int> exclusion, vector<bool> interIsInSeason, vector<pair<int, int>>  tDts, pair<int, int> tDt, int j) {
 	vector<int> result;
 	for (int i = 0; i < interIsInSeason.size(); i++) {
-		if (interIsInSeason[i] && i != j && ((tDt.first < tDts[i].first && tDt.first + tDt.second > tDts[i].first) || (tDt.first > tDts[i].first && tDts[i].second + tDts[i].first > tDt.first))) {
-			result.push_back(i);
+		if (interIsInSeason[i] && i != j && ((tDt.first < tDts[i].first && tDt.first + tDt.second >= tDts[i].first) || (tDt.first > tDts[i].first && tDts[i].second + tDts[i].first >= tDt.first) || tDt.first == tDts[i].first)) {
+			result.push_back(exclusion[i]);
 		}
 	}
-	
 	return result;
 }
 	
@@ -86,20 +89,20 @@ vector<bool> Solver::testIfInSeason(vector<int> tInSeasons, vector<pair<int, int
 	return in;
 }
 
-vector<pair<int, int>> Solver::getTDt(vector<int> interTime, vector<int> tabInter, vector<Intervention> interventions) {
+vector<pair<int, int>> Solver::getTDt(vector<int> interTime, vector<int> exclusion, vector<Intervention> interventions) {
 	vector<pair<int, int>> result;
 	int t;
-	for (int j = 0; j < tabInter.size() - 1; j++) {
-		t = interTime[tabInter[j]];
-		result.push_back(make_pair(t, interventions[tabInter[j]].getDelta()[t - 1]));
+	for (int j = 0; j < exclusion.size(); j++) {
+		t = interTime[exclusion[j]];
+		result.push_back(make_pair(t, interventions[exclusion[j]].getDelta()[t - 1]));
 	}
 	return result;
 }
-
+/*
 //méthode getTps from randInitialisation
 
 int Solver::getTps(Intervention intervention, int i) {
-	vector<vector<int>> value = this->data.randInitialisation();
+	vector<int> value = randInitialisation();
 	return
 }
 
@@ -117,5 +120,5 @@ bool Solver::checkt() {
 
 }
 //"yolo"
-
+*/
 

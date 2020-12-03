@@ -32,14 +32,26 @@ int main() {
     
 
     dataCollector D(exemple1);
-    //Solver s(D);
+    Solver s(D);
 
 
-    cout << D.getAlpha();
+    cout << D.getAlpha()<< '\n';
 
+    vector<int> nik = s.nik;
+    map<int, vector<int>> a = s.a;
 
+    for (int i = 0; i < nik.size(); i++)
+        cout << nik[i]<< '\n';
 
-    
+    cout  <<'\n' << "map" << '\n';
+
+    for (map<int, vector<int>>::iterator it = a.begin(); it != a.end(); ++it) {
+        cout << it->first << " ";
+        for (int i = 0; i < it->second.size(); i++)
+            cout << it->second[i] << " ";
+        cout << '\n';
+    }
+
 
 }
 
