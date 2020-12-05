@@ -141,10 +141,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dataCollector.cpp" />
+    <ClCompile Include="ExclusionCheck.cpp" />
     <ClCompile Include="Exclusions.cpp" />
     <ClCompile Include="Intervention.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="Resources.cpp" />
+    <ClCompile Include="ScoreEvaluation.cpp" />
     <ClCompile Include="Seasons.cpp" />
     <ClCompile Include="Solver.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -152,11 +154,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dataCollector.h" />
+    <ClInclude Include="ExclusionCheck.h" />
     <ClInclude Include="Exclusions.h" />
     <ClInclude Include="Intervention.h" />
     <ClInclude Include="Parser%28old%29.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="Resources.h" />
+    <ClInclude Include="ScoreEvaluation.h" />
     <ClInclude Include="Seasons.h" />
     <ClInclude Include="Solver.h" />
     <ClInclude Include="WorkloadCheck.h" />
