@@ -12,6 +12,7 @@ public:
 	int workloadCheckMin(int score);
 	vector<int> getInterventionBad();
 	vector<vector<int>> getTimeBad();
+	vector<vector<int>> getArrayWorkload();
 
 
 private:

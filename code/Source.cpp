@@ -16,7 +16,7 @@ using namespace std;
 
 int main() {
 
-    const char* path = "example1.json";
+    const char* path = "example2.json";
     FILE* exemple1;
     errno_t err;
     vector<int> c;
@@ -41,9 +41,33 @@ int main() {
     int score = w.workloadCheck(nik);
     vector<int> mauvais =w.getInterventionBad();
 
+    cout << "solution :";
+    for (int indice = 0; indice < nik.size(); indice++)
+        cout << "intervention : " << indice+1 << " jour : "<<nik[indice]<<"  ";
+    cout << "\n";
+
+    cout << "workload_mine : ";
+    vector<vector<int>> workloadmine = w.getArrayWorkload();
+    for (int ligne = 0; ligne < workloadmine.size(); ligne++) {
+        for (int colonne = 0; colonne < workloadmine[ligne].size(); colonne++)
+            cout << workloadmine[ligne][colonne]<<" ";
+        cout << "\n";
+    }
+
+    vector<vector<int>> tempsma = w.getTimeBad();
+
+    cout << "jour mauvais : ";
+    for (int ligne = 0; ligne < tempsma.size(); ligne++) {
+        for (int colonne = 0; colonne < tempsma[ligne].size(); colonne++)
+            cout << tempsma[ligne][colonne] << " ";
+        cout << "\n";
+    }
+
     cout << "score : " << score<<"\n";
-    for (int inter : mauvais)
-        cout << inter<<" " ;
+    cout << "intervention mauvaise : ";
+    for (int indice=0;indice<mauvais.size();indice++)
+        cout << mauvais[indice] <<" " ;
+
 
 
 }
