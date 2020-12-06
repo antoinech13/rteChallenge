@@ -16,7 +16,7 @@ using namespace std;
 
 int main() {
 
-    const char* path = "example1.json";
+    const char* path = "example2.json";
     FILE* exemple1;
     errno_t err;
     vector<int> c;
@@ -39,11 +39,10 @@ int main() {
     
     vector<vector<int>> score = s.getScore();
 
-    for (int i = 0; i < score.size(); i++) {
-        for (int j = 0; j < score[i].size();j++)
-            cout << score[i][j] << " ";
-        cout << "new line" <<'\n';
-    }
+    cout << "score : " << score<<"\n";
+    for (int inter : mauvais)
+        cout << inter<<" " ;
+
 
 }
 
