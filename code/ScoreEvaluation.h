@@ -2,6 +2,7 @@
 #include <vector>
 #include <time.h>
 #include "dataCollector.h" 
+#include "Intervention.h"
 
 
 class ScoreEvaluation
@@ -10,22 +11,18 @@ class ScoreEvaluation
 public:
 	ScoreEvaluation(dataCollector data, vector<int> interTime);
 	
-	/*
-	*return the scenario randomly selected btw 1 and the minimum of scenario number.
-	*/
-	int scenarioRandInit();
+
 
 private:
 	dataCollector data;
 	vector<int> scenarios;
 	vector<int> interTime;
-	int minScenarioNbIdx;
-	int ScenarioNb;
+	vector<Intervention> interventions;
 
-	/*
-	*return the idex of the minimum of the vector scenrarios
-	*/
-	int minChoiceScenarioIdx();
+	vector<vector<int>> extractScenario();
+	vector<vector<vector<pair<int, vector<int>>>>> extractAllRisk();
+
+
 
 };
 

@@ -5,21 +5,28 @@ using namespace std;
 
 ScoreEvaluation::ScoreEvaluation(dataCollector data, vector<int> interTime) {
 	this->data = data;
-	this->interTime = interTime;//////////////////////////////////////////////utile?
+	this->interTime = interTime;
+	this->interventions = data.getInterventions();
 	this->scenarios = data.getScenarioNumber();
-	this->minScenarioNbIdx = minChoiceScenarioIdx();
-	this->ScenarioNb = scenarioRandInit();
 
 }
 
-int ScoreEvaluation::minChoiceScenarioIdx() {
-	int minIdx = min_element(this->scenarios.begin(), this->scenarios.end()) - this->scenarios.begin();
-	return minIdx;
+
+vector<vector<int>> ScoreEvaluation::extractScenario() {
+	vector<vector<int>> value; // line: scenarion column: time
+	vector<vector<vector<pair<int, vector<int>>>>> riskByInterventions = extractAllRisk();
+	vector<int> idxStartTime = this->interTime;
+
+	for (int i = 0; i < riskByInterventions.size(); i++) {
+
+	}
+
 }
 
-int ScoreEvaluation::scenarioRandInit() {
-	srand(time(0));
-	int value = rand() % (this->scenarios[this->minScenarioNbIdx] - 1) + 1;
-	
+vector<vector<vector<pair<int, vector<int>>>>> ScoreEvaluation::extractAllRisk() {
+	vector<vector<vector<pair<int, vector<int>>>>> value;
+
+	for (int i = 0; i < this->interventions.size(); i++)
+		value.push_back(this->interventions[i].getRisk());
 	return value;
 }
