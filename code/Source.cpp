@@ -9,6 +9,7 @@
 #include "Intervention.h"
 #include "dataCollector.h"
 #include "Solver.h"
+#include "WorkloadCheck.h"
 
 
 using namespace std;
@@ -34,23 +35,15 @@ int main() {
     dataCollector D(exemple1);
     Solver s(D);
 
-
-    cout << D.getAlpha()<< '\n';
-
     vector<int> nik = s.nik;
-    map<int, vector<int>> a = s.a;
+    
+    WorkloadCheck w(D);
+    int score = w.workloadCheck(nik);
+    vector<int> mauvais =w.getInterventionBad();
 
-    for (int i = 0; i < nik.size(); i++)
-        cout << nik[i]<< '\n';
-
-    cout  <<'\n' << "map" << '\n';
-
-    for (map<int, vector<int>>::iterator it = a.begin(); it != a.end(); ++it) {
-        cout << it->first << " ";
-        for (int i = 0; i < it->second.size(); i++)
-            cout << it->second[i] << " ";
-        cout << '\n';
-    }
+    cout << "score : " << score<<"\n";
+    for (int inter : mauvais)
+        cout << inter<<" " ;
 
 
 }

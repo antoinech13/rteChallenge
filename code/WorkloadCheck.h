@@ -10,6 +10,9 @@ public:
 	int workloadCheck(vector<int> soluce);
 	int workloadCheckMax(vector<int> soluce);
 	int workloadCheckMin(int score);
+	vector<int> getInterventionBad();
+	vector<vector<int>> getTimeBad();
+
 
 private:
 	vector<vector<int>>arrayWorkload;
