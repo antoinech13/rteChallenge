@@ -35,7 +35,7 @@ int main() {
     dataCollector D(exemple1);
     Solver s(D);
 
-    vector<int> nik = s.nik;
+    vector<int> nik = s.initTime;
     
     WorkloadCheck w(D);
     int score = w.workloadCheck(nik);

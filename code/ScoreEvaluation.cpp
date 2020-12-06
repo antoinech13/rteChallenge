@@ -2,7 +2,7 @@
 #include <algorithm> 
 
 using namespace std;
-
+/*
 ScoreEvaluation::ScoreEvaluation(dataCollector data, vector<int> interTime) {
 	this->data = data;
 	this->interTime = interTime;
@@ -29,4 +29,4 @@ vector<vector<vector<pair<int, vector<int>>>>> ScoreEvaluation::extractAllRisk()
 	for (int i = 0; i < this->interventions.size(); i++)
 		value.push_back(this->interventions[i].getRisk());
 	return value;
-}
+}*/

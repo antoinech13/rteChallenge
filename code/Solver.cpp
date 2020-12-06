@@ -11,9 +11,9 @@
 Solver::Solver(dataCollector data){
 	this->data = data;
 	ExclusionCheck checker(data);
-	this->nik = randInitialisation();
-	this->a = checker.violatExclusions(nik);
-	ScoreEvaluation s(data, nik);
+	this->initTime = randInitialisation();
+	this->exclusionViolation = checker.violatExclusions(initTime);
+	//ScoreEvaluation s(data, initTime);
 }
 
 vector<int> Solver::randInitialisation() {
