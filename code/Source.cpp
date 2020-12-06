@@ -35,16 +35,15 @@ int main() {
     dataCollector D(exemple1);
     Solver s(D);
 
-    vector<int> nik = s.initTime;
+    vector<int> nik = s.getInitTime();
     
-    WorkloadCheck w(D);
-    int score = w.workloadCheck(nik);
-    vector<int> mauvais =w.getInterventionBad();
+    vector<vector<int>> score = s.getScore();
 
-    cout << "score : " << score<<"\n";
-    for (int inter : mauvais)
-        cout << inter<<" " ;
-
+    for (int i = 0; i < score.size(); i++) {
+        for (int j = 0; j < score[i].size();j++)
+            cout << score[i][j] << " ";
+        cout << "new line" <<'\n';
+    }
 
 }
 

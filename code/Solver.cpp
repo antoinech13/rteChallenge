@@ -6,14 +6,26 @@
 #include <map>
 #include <string>
 
+map<int, vector<int >> Solver::getExclusionViolation() {
+	return this->exclusionViolation;
+}
 
+vector<int> Solver::getInitTime() {
+	return this->initTime;
+}
+
+vector<vector<int>> Solver::getScore() {
+	return this->Score;
+}
 
 Solver::Solver(dataCollector data){
 	this->data = data;
 	ExclusionCheck checker(data);
 	this->initTime = randInitialisation();
 	this->exclusionViolation = checker.violatExclusions(initTime);
-	//ScoreEvaluation s(data, initTime);
+	vector<int> test= { 1,1,2 };
+	ScoreEvaluation s(data, test);
+	this->Score = s.getEvalScenario();
 }
 
 vector<int> Solver::randInitialisation() {
@@ -50,6 +62,6 @@ bool Solver::checkt() {
 
 
 }*/
-//"yolo"
+
 
 

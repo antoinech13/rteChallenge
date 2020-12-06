@@ -10,7 +10,7 @@ class ScoreEvaluation
 
 public:
 	ScoreEvaluation(dataCollector data, vector<int> interTime);
-	
+	vector<vector<int>> getEvalScenario();
 
 
 private:
@@ -18,7 +18,7 @@ private:
 	vector<int> scenarios;
 	vector<int> interTime;
 	vector<Intervention> interventions;
-
+	vector<vector<int>> evalScenario;
 	vector<vector<int>> extractScenario();
 	vector<vector<vector<pair<int, vector<int>>>>> extractAllRisk();
 
