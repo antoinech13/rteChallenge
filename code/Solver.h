@@ -14,6 +14,7 @@ public:
 	map<int, vector<int >> getExclusionViolation();
 	vector<int> getInitTime();
 	vector<vector<int>> getScore();
+	int checkWorload(vector<int>);
 
 
 private:
@@ -22,4 +23,5 @@ private:
 	map<int, vector<int>> exclusionViolation;
 	vector<int> initTime;
 	vector<vector<int>> Score;
+	WorkloadCheck w;
 };

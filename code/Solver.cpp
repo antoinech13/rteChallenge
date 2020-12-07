@@ -5,6 +5,7 @@
 #include <time.h>
 #include <map>
 #include <string>
+#include "WorkloadCheck.h"
 
 map<int, vector<int >> Solver::getExclusionViolation() {
 	return this->exclusionViolation;
@@ -26,6 +27,7 @@ Solver::Solver(dataCollector data){
 	vector<int> test= { 1,1,2 };
 	ScoreEvaluation s(data, test);
 	this->Score = s.getEvalScenario();
+	this->w = w(data);
 }
 
 vector<int> Solver::randInitialisation() {
@@ -37,6 +39,11 @@ vector<int> Solver::randInitialisation() {
 		value.push_back(rand() % interventions[i].getTmax() + 1);
 	}
 	return value;
+}
+
+int Solver::checkWorload(vector<int> soluce) {
+	int score = this->w.workloadCheck(this->initTime);
+	return score;
 }
 
  

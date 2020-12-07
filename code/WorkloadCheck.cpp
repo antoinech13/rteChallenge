@@ -26,7 +26,6 @@ int WorkloadCheck::workloadCheckMax(vector<int> soluce) {
 				if (arrayWorkload[nomC][delaisjour] > this->ressouces[nomC].second["max"][delaisjour]) {
 					score++;
 					this->interventionBad.push_back(indice);
-					cout << "score : " << score << " indice : " << indice;
 				}
 			}
 		}
