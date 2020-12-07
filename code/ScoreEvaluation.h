@@ -21,6 +21,8 @@ private:
 	vector<vector<int>> evalScenario;
 	vector<vector<int>> extractScenario();
 	vector<vector<vector<pair<int, vector<int>>>>> extractAllRisk();
+	vector<int> avgOnSc();
+	int Obj1();
 
 
 

@@ -27,7 +27,7 @@ Solver::Solver(dataCollector data){
 	vector<int> test= { 1,1,2 };
 	ScoreEvaluation s(data, test);
 	this->Score = s.getEvalScenario();
-	this->w = w(data);
+	this->w = WorkloadCheck (data);
 }
 
 vector<int> Solver::randInitialisation() {

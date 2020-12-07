@@ -1,6 +1,7 @@
 #pragma once
 #include "dataCollector.h"
 #include "Intervention.h"
+#include "WorkloadCheck.h"
 #include <map>
 #include <string>
 

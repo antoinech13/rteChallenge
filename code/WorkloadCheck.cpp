@@ -10,6 +10,8 @@ WorkloadCheck::WorkloadCheck(dataCollector data) {
 	this->arrayWorkload = vector<vector<int>>(ressouces.size(), vector<int>(data.getT()));
 };
 
+WorkloadCheck::WorkloadCheck() {}
+
 
 int WorkloadCheck::workloadCheckMax(vector<int> soluce) {
 	int score = 0;

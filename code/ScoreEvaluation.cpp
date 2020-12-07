@@ -17,6 +17,15 @@ ScoreEvaluation::ScoreEvaluation(dataCollector data, vector<int> interTime) {
 	this->evalScenario = extractScenario();
 }
 
+int ScoreEvaluation::Obj1() {
+	vector<int> avgByTime;
+	for(int temps = 0; temps < this->evalScenario.size(); temps++)
+
+}
+
+vector<int> ScoreEvaluation::avgOnSc(int i) {
+	for (int scenario = 0; scenario < this->evalScenario[i].size(); scenario++)
+}
 
 vector<vector<int>> ScoreEvaluation::extractScenario() {
 	vector<vector<int>> value; // line: scenario column: time
@@ -27,12 +36,13 @@ vector<vector<int>> ScoreEvaluation::extractScenario() {
 	for (int j = 0; j < this->data.getT(); j++) {
 		for (int k = 0; k < scNb[j]; k++) {
 			for (int i = 0; i < riskByInterventions.size(); i++) {
-				risk += riskByInterventions[i][j][interTime[i]-1].second[k];
+				risk += riskByInterventions[i][j][(int)interTime[i]-1].second[k];
 			}
 			valueForOneScenario.push_back(risk);
+			risk = 0;
 		}
 		value.push_back(valueForOneScenario);
-
+		valueForOneScenario.clear();
 	}
 
 	return value;
