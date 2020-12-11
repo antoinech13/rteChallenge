@@ -8,7 +8,7 @@ class TimeChecker
 	public:
 	TimeChecker(dataCollector data);
 	TimeChecker();
-
+  
 
 
 

@@ -6,7 +6,7 @@
 TimeChecker::TimeChecker(dataCollector data) {
 	this->interventions = data.getInterventions();
 	this->deltas = data.getDelta();
-	
+	  
 
 }
 
