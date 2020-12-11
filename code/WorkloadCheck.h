@@ -8,7 +8,7 @@ class WorkloadCheck
 public:
 	WorkloadCheck(dataCollector data);
 	WorkloadCheck();
-	int workloadCheck(vector<int> soluce);
+	int getWorkloadCheck(vector<int> soluce);
 	int workloadCheckMax(vector<int> soluce);
 	int workloadCheckMin(int score);
 	vector<int> getInterventionBad();

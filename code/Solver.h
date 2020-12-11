@@ -14,8 +14,8 @@ public:
 	Solver(dataCollector data);
 	map<int, vector<int >> getExclusionViolation();
 	vector<int> getInitTime();
-	vector<vector<int>> getScore();
-	int checkWorload(vector<int>);
+	double getObj1();
+
 
 
 private:
@@ -23,6 +23,8 @@ private:
 	vector<int> randInitialisation();
 	map<int, vector<int>> exclusionViolation;
 	vector<int> initTime;
-	vector<vector<int>> Score;
+	double obj1;
+	map<int, vector<int>> scoreExclusion();
+	int scoreCheckWorload(vector<int>);
 	WorkloadCheck w;
 };

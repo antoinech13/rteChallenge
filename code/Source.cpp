@@ -9,7 +9,7 @@
 #include "Intervention.h"
 #include "dataCollector.h"
 #include "Solver.h"
-#include "WorkloadCheck.h"
+
 
 
 using namespace std;
@@ -37,13 +37,9 @@ int main() {
 
     vector<int> nik = s.getInitTime();
     
-    vector<vector<int>> score = s.getScore();
+    double score = s.getObj1();
 
-    for (int i = 0; i < score.size(); i++) {
-        for (int j = 0; j < score[i].size(); j++)
-            cout << score[i][j] << " ";
-        cout << '\n';
-    }
+    cout << "obj1 " << score << '\n';
 
 }
 

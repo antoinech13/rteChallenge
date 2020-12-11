@@ -53,7 +53,7 @@ int WorkloadCheck::workloadCheckMin(int score) {
 
 
 
-int WorkloadCheck::workloadCheck(vector<int> soluce) {
+int WorkloadCheck::getWorkloadCheck(vector<int> soluce) {
 	int score = workloadCheckMax(soluce);
 	score = workloadCheckMin(score);
 
