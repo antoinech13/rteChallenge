@@ -150,6 +150,7 @@
     <ClCompile Include="Seasons.cpp" />
     <ClCompile Include="Solver.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="TimeChecker.cpp" />
     <ClCompile Include="WorkloadCheck.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +164,7 @@
     <ClInclude Include="ScoreEvaluation.h" />
     <ClInclude Include="Seasons.h" />
     <ClInclude Include="Solver.h" />
+    <ClInclude Include="TimeChecker.h" />
     <ClInclude Include="WorkloadCheck.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

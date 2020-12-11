@@ -60,6 +60,9 @@
     <ClCompile Include="ScoreEvaluation.cpp">
       <Filter>Fichiers sources\solver</Filter>
     </ClCompile>
+    <ClCompile Include="TimeChecker.cpp">
+      <Filter>Fichiers sources\solver</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dataCollector.h">
@@ -93,6 +96,9 @@
       <Filter>Fichiers d%27en-tête\solver</Filter>
     </ClInclude>
     <ClInclude Include="ScoreEvaluation.h">
+      <Filter>Fichiers d%27en-tête\solver</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeChecker.h">
       <Filter>Fichiers d%27en-tête\solver</Filter>
     </ClInclude>
   </ItemGroup>
