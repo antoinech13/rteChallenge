@@ -10,6 +10,7 @@ class ScoreEvaluation
 
 public:
 	ScoreEvaluation(dataCollector data, vector<int> interTime);
+	ScoreEvaluation();
 	double getEvalScenario();
 	double newEvalScenario();
 

@@ -2,20 +2,20 @@
 #include "Intervention.h"
 
 
-class TimeChecker {
+class TimeChecker{
 
 
 
 	public:
-	TimeChecker(dataCollector data, vector<int> time);
 
+		TimeChecker(dataCollector data, vector<int> time);
+		TimeChecker();
+
+		vector<int> getViolations();
   
 
-
-
-
 	private:
-		vector<int> getViolations();
+	
 		vector<Intervention> interventions;
 		vector<int> times;
 		int T;

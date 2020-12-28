@@ -8,8 +8,8 @@
 #include "Parser.h"
 #include "Intervention.h"
 #include "dataCollector.h"
+#include "TimeChecker.h"
 #include "Solver.h"
-
 
 
 using namespace std;
@@ -35,11 +35,19 @@ int main() {
     dataCollector D(exemple1);
     Solver s(D);
 
-    vector<int> nik = s.getInitTime();
-    
-    double score = s.getObj1();
 
-    cout << "obj1 " << score << '\n';
+    vector<int> violation = s.estimateViolation(s.getTime());
+    for (int i = 0; i < violation.size(); i++)
+        cout << violation[i] << " ";
+    cout << '\n';
+    s.move();
+    cout << "new violation" << '\n';
+    violation = s.estimateViolation(s.getTime());
+    for (int i = 0; i < violation.size(); i++)
+        cout << violation[i] << " ";
+    cout << '\n';
+
+
 
 }
 

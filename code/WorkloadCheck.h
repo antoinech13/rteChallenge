@@ -17,6 +17,7 @@ public:
 
 
 private:
+	int T;
 	vector<vector<int>>arrayWorkload;
 	vector<pair<int, map<string, vector<int>>>> ressouces;
 	vector<Intervention> interventions;

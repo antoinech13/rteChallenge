@@ -21,6 +21,7 @@ ScoreEvaluation::ScoreEvaluation(dataCollector data, vector<int> interTime) {
 	this->evalScenario = extractScenario();
 }
 
+ScoreEvaluation::ScoreEvaluation(){}
 
 double ScoreEvaluation::extractScenario() {
 	vector<vector<int>> value; // line: scenario column: time

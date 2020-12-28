@@ -4,10 +4,11 @@
 
 
 WorkloadCheck::WorkloadCheck(dataCollector data) {
+	this->T = data.getT();
 	this->interventions = data.getInterventions();
 	this->ressouces = data.getResources();
 	vector<int> tab(data.getT(), 0);
-	this->arrayWorkload = vector<vector<int>>(ressouces.size(), vector<int>(data.getT()));
+	
 };
 
 WorkloadCheck::WorkloadCheck() {}
@@ -54,6 +55,7 @@ int WorkloadCheck::workloadCheckMin(int score) {
 
 
 int WorkloadCheck::getWorkloadCheck(vector<int> soluce) {
+	this->arrayWorkload = vector<vector<int>>(ressouces.size(), vector<int>(this->T));
 	int score = workloadCheckMax(soluce);
 	score = workloadCheckMin(score);
 

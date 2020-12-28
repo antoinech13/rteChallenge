@@ -5,11 +5,13 @@
 
 
 TimeChecker::TimeChecker(dataCollector data, vector<int> time) {
-	this-> T = data.getT();
+	this->T = data.getT();
 	this->interventions = data.getInterventions();
 	this->times = time;
 
 }
+
+TimeChecker::TimeChecker(){}
 
 vector<int> TimeChecker::getViolations() {
 	vector<int> values;
