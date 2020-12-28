@@ -20,8 +20,12 @@ private:
 	vector<int> scenarios;
 	vector<int> interTime;
 	vector<Intervention> interventions;
+	float alpha;
+	float quantile;
 	double evalScenario;
 	double extractScenario();
+	double extractScenario2();
+	double extractScenarioFinal();
 	vector<vector<vector<pair<int, vector<int>>>>> extractAllRisk();
 
 
