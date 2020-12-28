@@ -26,7 +26,7 @@ map<int, vector<int>> ExclusionCheck::violatExclusions(vector<int> interventionP
 	map<int, vector<int>> result;
 
 
-	// chack every exclusions rules
+	// check every exclusions rules
 	for (int i = 0; i < exclusions.size(); i++) {
 
 		exclusion = exclusions[i].second;
@@ -38,6 +38,7 @@ map<int, vector<int>> ExclusionCheck::violatExclusions(vector<int> interventionP
 		for (int j = 0; j < exclusion.size(); j++) {
 			if (interIsInSeason[i]) {
 				val = getConflic(exclusion, interIsInSeason, tDt, tDt[j], j);
+
 			}
 			if (val.size() != 0) {
 				if (result.find(j) == result.end())
@@ -56,7 +57,7 @@ map<int, vector<int>> ExclusionCheck::violatExclusions(vector<int> interventionP
 vector<int> ExclusionCheck::getConflic(vector<int> exclusion, vector<bool> interIsInSeason, vector<pair<int, int>>  tDts, pair<int, int> tDt, int j) {
 	vector<int> result;
 	for (int i = 0; i < interIsInSeason.size(); i++) {
-		if (interIsInSeason[i] && i != j && ((tDt.first < tDts[i].first && tDt.first + tDt.second >= tDts[i].first) || (tDt.first > tDts[i].first && tDts[i].second + tDts[i].first >= tDt.first) || tDt.first == tDts[i].first)) {
+		if (interIsInSeason[i] && i != j && ((tDt.first < tDts[i].first && tDt.first + tDt.second > tDts[i].first) || (tDt.first > tDts[i].first && tDts[i].second + tDts[i].first > tDt.first) || tDt.first == tDts[i].first)) {
 			result.push_back(exclusion[i]);
 		}
 	}
@@ -76,6 +77,7 @@ vector<bool> ExclusionCheck::testIfInSeason(vector<int> tInSeasons, vector<pair<
 	}
 	return in;
 }
+
 
 vector<pair<int, int>> ExclusionCheck::getTDt(vector<int> interTime, vector<int> exclusion, vector<Intervention> interventions) {
 	vector<pair<int, int>> result;

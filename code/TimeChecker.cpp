@@ -16,7 +16,7 @@ TimeChecker::TimeChecker(){}
 vector<int> TimeChecker::getViolations() {
 	vector<int> values;
 	for(int i = 0; i < this->interventions.size(); i++) {
-		if (this->times[i] + this->interventions[i].getDelta()[this->times[i]] > T)
+		if (this->times[i] + this->interventions[i].getDelta()[this->times[i]-1] - 1 > this->T) 
 			values.push_back(i);
 	}
 	return values;

@@ -52,20 +52,24 @@ double ScoreEvaluation::extractScenario() {
 	return avgByTime;
 }
 
+
+
+/*on extrait les valeurs de risque à un temps donné, pour chaque scénario on somme les valeurs de risque pour chaque intervention
+ex : au temps 1, pour le scénario 1 risque(scénario 1, temps 1) = risque(scénario 1, temps 1)_I1 + ... + risque(scénario 1, temps 1)_In;
+Ensuite, on multiplie la valeur maximale dans ces sommes de risques par scénario par la valeur du quantile tau*max(risque(scénario s, temps t fixé);
+La valeur Qt est la valeur minimale dans les sommes de valeurs de risque par scénario qui s'approche le plus du max;
+Puis l'excès pour le quantile tau au temps t est la valeur absolue entre Qt et le risque moyen au temps t;
+On somme les différents excès pour tous les temps et on divise par la période de temps T;
+
+
+*/
+/*
 double ScoreEvaluation::extractScenario2() {
 	vector<vector<int>> value; // line: scenario column: time
 	vector<vector<vector<pair<int, vector<int>>>>> riskByInterventions = extractAllRisk();
 	vector<int> valueForOneScenario, scNb = this->scenarios, idxStartTime = this->interTime;
 	int risk = 0;
-	/*on extrait les valeurs de risque à un temps donné, pour chaque scénario on somme les valeurs de risque pour chaque intervention 
-	ex : au temps 1, pour le scénario 1 risque(scénario 1, temps 1) = risque(scénario 1, temps 1)_I1 + ... + risque(scénario 1, temps 1)_In;
-	Ensuite, on multiplie la valeur maximale dans ces sommes de risques par scénario par la valeur du quantile tau*max(risque(scénario s, temps t fixé);
-	La valeur Qt est la valeur minimale dans les sommes de valeurs de risque par scénario qui s'approche le plus du max;
-	Puis l'excès pour le quantile tau au temps t est la valeur absolue entre Qt et le risque moyen au temps t;
-	On somme les différents excès pour tous les temps et on divise par la période de temps T;
 
-	
-	*/
 }
 
 
@@ -78,7 +82,7 @@ double ScoreEvaluation::extractScenarioFinal() {
 
 }
 
-
+*/
 
 vector<vector<vector<pair<int, vector<int>>>>> ScoreEvaluation::extractAllRisk() {
 	vector<vector<vector<pair<int, vector<int>>>>> value;

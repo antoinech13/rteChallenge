@@ -8,7 +8,6 @@
 #include "Parser.h"
 #include "Intervention.h"
 #include "dataCollector.h"
-#include "TimeChecker.h"
 #include "Solver.h"
 
 
@@ -33,7 +32,9 @@ int main() {
     
 
     dataCollector D(exemple1);
+    cout << "ici \n";
     Solver s(D);
+    cout << "la \n";
 
 
     vector<int> violation = s.estimateViolation(s.getTime());

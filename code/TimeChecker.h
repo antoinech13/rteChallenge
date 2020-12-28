@@ -4,10 +4,7 @@
 
 class TimeChecker{
 
-
-
 	public:
-
 		TimeChecker(dataCollector data, vector<int> time);
 		TimeChecker();
 

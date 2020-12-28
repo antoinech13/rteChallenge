@@ -2,7 +2,6 @@
 #include "Intervention.h"
 #include "ExclusionCheck.h"
 #include "ScoreEvaluation.h"
-#include "TimeChecker.h"
 #include <time.h>
 #include <map>
 #include <string>
@@ -36,6 +35,9 @@ Solver::Solver(dataCollector data){
 	this->w = WorkloadCheck(data);
 	this->exclusionViolation = checker.violatExclusions(Time);
 	this->obj1 = s.getEvalScenario();
+	cout << "Time \n";
+	for (int i = 0; i < this->Time.size(); i++)
+		cout << this->Time[i] << " ";
 }
 
 
@@ -76,8 +78,27 @@ vector<int> Solver::estimateViolation(vector<int> time) {
 	violation.insert(violation.end(), workload.begin(), workload.end());
 	violation.insert(violation.end(), tme.begin(), tme.end());
 
+
 	sort(violation.begin(), violation.end());
 	violation.erase(unique(violation.begin(), violation.end()), violation.end());
+
+	cout << "exclusion \n";
+	for (int i = 0; i < exclusion.size(); i++)
+		cout << exclusion[i] << " ";
+	cout << '\n';
+	cout << "wrokload \n";
+	for (int i = 0; i < workload.size(); i++)
+		cout << workload[i] << " ";
+	cout << '\n';
+	cout << "time \n";
+	for (int i = 0; i < tme.size(); i++)
+		cout << tme[i] << " ";
+	cout << '\n';
+
+	cout << "violation \n";
+	for (int i = 0; i < violation.size(); i++)
+		cout << violation[i] << " ";
+	cout << '\n';
 
 	return violation;
 }
@@ -85,15 +106,30 @@ vector<int> Solver::estimateViolation(vector<int> time) {
 void Solver::move() {
 	
 	vector<Intervention> interventions = this->data.getInterventions();
-	vector<int> newTime = this->Time;
+	vector<int> newTime;
+	
+	for (int i = 0; i < this->Time.size(); i++)
+		newTime.push_back(this->Time[i]);
+
 	vector<int> violation = estimateViolation(this->Time);
 	vector<int> newViolation;
 
 	while(violation.size() > 0) {
+
+		srand(time(0));
 		
 		int idx = rand() % violation.size();
 		newTime[violation[idx]] = rand() % interventions[violation[idx]].getTmax() + 1;
-
+		
+		cout << "Time \n";
+		for (int i = 0; i < this->Time.size(); i++) 
+			cout << this->Time[i] << " ";
+	
+		cout << '\n';
+		cout << "new Time \n";
+		for (int i = 0; i < newTime.size(); i++)
+			cout << newTime[i] << " ";
+		cout << '\n';
 		newViolation = estimateViolation(newTime);
 
 		if (newViolation.size() < violation.size()) {
