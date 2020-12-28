@@ -15,7 +15,7 @@ using namespace std;
 
 int main() {
 
-    const char* path = "example2.json";
+    const char* path = "example1.json";
     FILE* exemple1;
     errno_t err;
     vector<int> c;
@@ -36,8 +36,9 @@ int main() {
     Solver s(D);
     cout << "la \n";
 
-
+    vector<int> time;
     vector<int> violation = s.estimateViolation(s.getTime());
+    cout << "violation" << '\n';
     for (int i = 0; i < violation.size(); i++)
         cout << violation[i] << " ";
     cout << '\n';
@@ -47,6 +48,11 @@ int main() {
     for (int i = 0; i < violation.size(); i++)
         cout << violation[i] << " ";
     cout << '\n';
+    time = s.getTime();
+    cout << "time" << '\n';
+    for (int i = 0; i < time.size(); i++)
+        cout << time[i] << " ";
+    
 
 
 

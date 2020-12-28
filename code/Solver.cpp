@@ -81,7 +81,7 @@ vector<int> Solver::estimateViolation(vector<int> time) {
 
 	sort(violation.begin(), violation.end());
 	violation.erase(unique(violation.begin(), violation.end()), violation.end());
-
+/*
 	cout << "exclusion \n";
 	for (int i = 0; i < exclusion.size(); i++)
 		cout << exclusion[i] << " ";
@@ -98,7 +98,7 @@ vector<int> Solver::estimateViolation(vector<int> time) {
 	cout << "violation \n";
 	for (int i = 0; i < violation.size(); i++)
 		cout << violation[i] << " ";
-	cout << '\n';
+	cout << '\n';*/
 
 	return violation;
 }
@@ -119,8 +119,13 @@ void Solver::move() {
 		srand(time(0));
 		
 		int idx = rand() % violation.size();
-		newTime[violation[idx]] = rand() % interventions[violation[idx]].getTmax() + 1;
-		
+		do {
+
+			srand(time(0));
+			newTime[violation[idx]] = rand() % interventions[violation[idx]].getTmax() + 1;
+
+		} while (newTime[violation[idx]] == this->Time[violation[idx]]);
+		/*	
 		cout << "Time \n";
 		for (int i = 0; i < this->Time.size(); i++) 
 			cout << this->Time[i] << " ";
@@ -130,6 +135,7 @@ void Solver::move() {
 		for (int i = 0; i < newTime.size(); i++)
 			cout << newTime[i] << " ";
 		cout << '\n';
+		*/
 		newViolation = estimateViolation(newTime);
 
 		if (newViolation.size() < violation.size()) {
