@@ -4,33 +4,26 @@
 using namespace std;
 
 
-double ScoreEvaluation::getEvalScenario() {
-	return this->evalScenario;
-}
-double ScoreEvaluation::newEvalScenario() {
-	this->evalScenario = extractScenario();
-	return this->evalScenario;
-}
 
 
-ScoreEvaluation::ScoreEvaluation(dataCollector data, vector<int> interTime) {
+ScoreEvaluation::ScoreEvaluation(dataCollector data) {
 	this->data = data;
-	this->interTime = interTime;
 	this->interventions = data.getInterventions();
 	this->scenarios = data.getScenarioNumber();
-	this->evalScenario = extractScenario();
 	this->alpha = data.getAlpha();
 	this->quantile = data.getQuantile();
 }
 
 ScoreEvaluation::ScoreEvaluation(){}
 
-double ScoreEvaluation::extractScenario() {
+double ScoreEvaluation::extractScenario(vector<int> interTime) {
 	vector<vector<int>> value; // line: scenario column: time
 	vector<vector<vector<pair<int, vector<int>>>>> riskByInterventions = extractAllRisk();
-	vector<int> valueForOneScenario, scNb = this->scenarios, idxStartTime = this->interTime;
+	vector<int> risksAtTime, valueForOneScenario, scNb = this->scenarios, idxStartTime = interTime;
 	int risk = 0;
 	double avgBySc = 0, avgByTime = 0;
+	this->means.clear();
+	this->risks.clear();
 
 	for (int j = 0; j < this->data.getT(); j++) {
 		for (int k = 0; k < scNb[j]; k++) {
@@ -39,13 +32,17 @@ double ScoreEvaluation::extractScenario() {
 			}
 			valueForOneScenario.push_back(risk);
 			avgBySc += risk;
+			risksAtTime.push_back(risk);
 			risk = 0;
 		}
 		value.push_back(valueForOneScenario);
 		avgBySc /= valueForOneScenario.size();
+		this->means.push_back(avgBySc);
+		this->risks.push_back(risksAtTime);
 		avgByTime += avgBySc;
 		avgBySc = 0;
 		valueForOneScenario.clear();
+		risksAtTime.clear();
 
 	}
 	avgByTime /= value.size();

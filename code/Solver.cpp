@@ -30,11 +30,11 @@ Solver::Solver(dataCollector data){
 	this->Time = randInitialisation();
 	vector<int> test = { 1,1,2 };
 	this->checker = ExclusionCheck(data);
-	this->s = ScoreEvaluation(data, this->Time);
+	this->s = ScoreEvaluation(data);
 	this->t = TimeChecker(data, this->Time);
 	this->w = WorkloadCheck(data);
 	this->exclusionViolation = checker.violatExclusions(Time);
-	this->obj1 = s.getEvalScenario();
+	this->obj1 = s.extractScenario(this->Time);
 	cout << "Time \n";
 	for (int i = 0; i < this->Time.size(); i++)
 		cout << this->Time[i] << " ";
@@ -113,8 +113,9 @@ void Solver::move() {
 
 	vector<int> violation = estimateViolation(this->Time);
 	vector<int> newViolation;
-
-	while(violation.size() > 0) {
+	int cpt=0;
+	double timeStart = clock();
+	while(violation.size() > 0 && (cpt != interventions.size() || (clock() - timeStart) / CLOCKS_PER_SEC < 300)) {
 
 		srand(time(0));
 		
@@ -125,6 +126,8 @@ void Solver::move() {
 			newTime[violation[idx]] = rand() % interventions[violation[idx]].getTmax() + 1;
 
 		} while (newTime[violation[idx]] == this->Time[violation[idx]]);
+		
+		
 		/*	
 		cout << "Time \n";
 		for (int i = 0; i < this->Time.size(); i++) 
@@ -141,6 +144,8 @@ void Solver::move() {
 		if (newViolation.size() < violation.size()) {
 			this->Time = newTime;
 			violation = newViolation;
+
+
 		}
 
 	}

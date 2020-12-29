@@ -9,21 +9,18 @@ class ScoreEvaluation
 {
 
 public:
-	ScoreEvaluation(dataCollector data, vector<int> interTime);
+	ScoreEvaluation(dataCollector data);
 	ScoreEvaluation();
-	double getEvalScenario();
-	double newEvalScenario();
+	double extractScenario(vector<int> interTime);
 
 
 private:
 	dataCollector data;
-	vector<int> scenarios;
-	vector<int> interTime;
+	vector<int> scenarios, means;
+	vector<vector<int>> risks;
 	vector<Intervention> interventions;
 	float alpha;
 	float quantile;
-	double evalScenario;
-	double extractScenario();
 	double extractScenario2();
 	double extractScenarioFinal();
 	vector<vector<vector<pair<int, vector<int>>>>> extractAllRisk();
