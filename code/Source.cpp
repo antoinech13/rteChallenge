@@ -36,7 +36,7 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 
-    const char* path = "example2.JSON";
+    const char* path = "example1.JSON";
     FILE* exemple;
    
     vector<int> c;

@@ -36,7 +36,7 @@ Solver::Solver(dataCollector data){
 	this->w = WorkloadCheck(data);
 	this->exclusionViolation = checker.violatExclusions(this->Time);
 	this->score = DBL_MAX;
-
+	cout << "nnnnnnnnnnnnnniiiiiiiiikkkkkk: " << this->score << '\n';
 	cout << "Time \n";
 	for (int i = 0; i < this->Time.size(); i++)
 		cout << this->Time[i] << " ";
@@ -117,50 +117,62 @@ void Solver::move() {
 
 	vector<int> violation = estimateViolation(this->Time);
 	vector<int> newViolation;
-	int cpt=0;
-	double obj1, timeStart = clock();
+	int idx, cpt=0;
+	double score, timeStart = clock();
 	
-	while(violation.size() > 0 && (cpt != interventions.size() || (clock() - timeStart) / CLOCKS_PER_SEC < 300)) {
-
-
+	while((cpt != 1000)) {
 
 		srand(time(0));
-		
-		int idx = rand() % violation.size();
-		do {
+		if (violation.size() > 0)
+			idx = rand() % violation.size();
+		else
+			idx = rand() % Time.size();
 
-			srand(time(0));
+		srand(time(0));
+
+		cout << "idx: " << idx << '\n';
+		if (violation.size() > 0)
 			newTime[violation[idx]] = rand() % interventions[violation[idx]].getTmax() + 1;
+		else
+			newTime[idx] = rand() % interventions[idx].getTmax() + 1;
 
-		} while (newTime[violation[idx]] == Time[violation[idx]]);
 		
-		
-		/*	
 		cout << "Time \n";
-		for (int i = 0; i < this->Time.size(); i++) 
-			cout << this->Time[i] << " ";
+		for (int i = 0; i < Time.size(); i++) 
+			cout << Time[i] << " ";
 	
 		cout << '\n';
 		cout << "new Time \n";
 		for (int i = 0; i < newTime.size(); i++)
 			cout << newTime[i] << " ";
 		cout << '\n';
-		*/
+		
 		newViolation = estimateViolation(newTime);
+		
+		cout << "violation\n";
+		for (int i = 0; i < violation.size(); i++)
+			cout << violation[i] << " ";
+		cout << '\n';
+		cout << "newviolation\n";
+		for (int i = 0; i < newViolation.size(); i++)
+			cout << newViolation[i] << " ";
+		cout << '\n';
 
-		if (newViolation.size() < violation.size()) {
-			Time = newTime;
-			violation = newViolation;
-		}
-		else
-			newTime[violation[idx]] = Time[violation[idx]];
+		
+		Time = newTime;
+		violation = newViolation;
+		
+
 
 		if (violation.size() == 0) {
-			obj1 = this->s.extractScenario(this->Time);
+			score = this->s.extractScenarioFinal(this->Time);
 			cpt++;
-
-			if (obj1 < this->score) {
+			cout << "cpt: " << cpt << '\n';
+			cout << "score: " << this->score << " newScore" << score << '\n';
+			if (score < this->score) {
 				this->Time = Time;
+				this->score = score;
+				
 			}
 		}
 

@@ -75,7 +75,7 @@ double ScoreEvaluation::extractScenario2() {
 	{
 		sort(this->risks[tim].begin() , this->risks[tim].end(), compare);
 
-		int indiceScenar = this->risks[tim].size() * this->quantile;
+		int indiceScenar = this->risks[tim].size() * this->quantile - 1;
 
 		if (this->risks[tim][indiceScenar]-this->means[tim] < 0)
 		{
@@ -95,6 +95,12 @@ double ScoreEvaluation::extractScenarioFinal(vector<int> interTime) {
 	double score_final = 0;
 	double risk1 = extractScenario(interTime);
 	double risk2 = extractScenario2();
+	cout << " TimeScore \n";
+	for (int i = 0; i < interTime.size(); i++) {
+		cout << interTime[i] << " ";
+	}
+	cout << "\n";
+	cout << "risk2: " << risk2 << " risk1: " << risk1 << '\n';
 	score_final = this->alpha * risk1 + (1 - this->alpha) * risk2;
 	return score_final;
 
