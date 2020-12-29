@@ -16,12 +16,12 @@ using namespace std;
 int main() {
 
     const char* path = "example1.json";
-    FILE* exemple1;
-    errno_t err;
+    FILE* exemple;
+   
     vector<int> c;
-    err = fopen_s(&exemple1, path, "r");
+    exemple = fopen(path, "r");
 
-    if (err != 0) {
+    if (exemple != NULL) {
         printf("cannot open file\n");
         return 0;
     }
@@ -31,7 +31,7 @@ int main() {
 
     
 
-    dataCollector D(exemple1);
+    dataCollector D(exemple);
     cout << "ici \n";
     Solver s(D);
     cout << "la \n";
