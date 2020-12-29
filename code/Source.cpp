@@ -34,9 +34,9 @@ void writeSoluce(vector<int> time)
 
 using namespace std;
 
-int main() {
+int main(int argc, char* argv[]) {
 
-    const char* path = "example1.json";
+    const char* path = argv[1];
     FILE* exemple;
    
     vector<int> c;
