@@ -165,7 +165,7 @@ void Solver::move() {
 
 
 		if (violation.size() == 0) {
-			score = this->s.extractScenarioFinal(this->Time);
+			score = this->s.extractScenarioFinal(Time);
 			cpt++;
 			cout << "cpt: " << cpt << '\n';
 			cout << "score: " << this->score << " newScore" << score << '\n';
