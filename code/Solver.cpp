@@ -120,7 +120,7 @@ void Solver::move() {
 	int idx, cpt=0;
 	double score, timeStart = clock();
 	
-	while((cpt != 1000)) {
+	while((clock() - timeStart) / CLOCKS_PER_SEC < 60) {
 
 		srand(time(0));
 		if (violation.size() > 0)
@@ -130,14 +130,14 @@ void Solver::move() {
 
 		srand(time(0));
 
-		cout << "idx: " << idx << '\n';
+		//cout << "idx: " << idx << '\n';
 		if (violation.size() > 0)
 			newTime[violation[idx]] = rand() % interventions[violation[idx]].getTmax() + 1;
 		else
 			newTime[idx] = rand() % interventions[idx].getTmax() + 1;
 
 		
-		cout << "Time \n";
+		/*cout << "Time \n";
 		for (int i = 0; i < Time.size(); i++) 
 			cout << Time[i] << " ";
 	
@@ -145,11 +145,11 @@ void Solver::move() {
 		cout << "new Time \n";
 		for (int i = 0; i < newTime.size(); i++)
 			cout << newTime[i] << " ";
-		cout << '\n';
+		cout << '\n';*/
 		
 		newViolation = estimateViolation(newTime);
 		
-		cout << "violation\n";
+		/*cout << "violation\n";
 		for (int i = 0; i < violation.size(); i++)
 			cout << violation[i] << " ";
 		cout << '\n';
@@ -157,7 +157,7 @@ void Solver::move() {
 		for (int i = 0; i < newViolation.size(); i++)
 			cout << newViolation[i] << " ";
 		cout << '\n';
-
+		*/
 		
 		Time = newTime;
 		violation = newViolation;
@@ -167,8 +167,8 @@ void Solver::move() {
 		if (violation.size() == 0) {
 			score = this->s.extractScenarioFinal(Time);
 			cpt++;
-			cout << "cpt: " << cpt << '\n';
-			cout << "score: " << this->score << " newScore" << score << '\n';
+			//cout << "cpt: " << cpt << '\n';
+			//cout << "score: " << this->score << " newScore" << score << '\n';
 			if (score < this->score) {
 				this->Time = Time;
 				this->score = score;

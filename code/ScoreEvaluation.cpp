@@ -95,12 +95,13 @@ double ScoreEvaluation::extractScenarioFinal(vector<int> interTime) {
 	double score_final = 0;
 	double risk1 = extractScenario(interTime);
 	double risk2 = extractScenario2();
-	cout << " TimeScore \n";
+	
+	/*cout << " TimeScore \n";
 	for (int i = 0; i < interTime.size(); i++) {
 		cout << interTime[i] << " ";
 	}
 	cout << "\n";
-	cout << "risk2: " << risk2 << " risk1: " << risk1 << '\n';
+	cout << "risk2: " << risk2 << " risk1: " << risk1 << '\n';*/
 	score_final = this->alpha * risk1 + (1 - this->alpha) * risk2;
 	return score_final;
 
