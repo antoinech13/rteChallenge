@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_DEPRECATE
 #include <iostream>
 #include <fstream>
 #include <string.h>
@@ -41,8 +42,8 @@ int main() {
     vector<int> c;
     exemple = fopen(path, "r");
 
-    if (exemple != NULL) {
-        printf("cannot open file\n");
+    if (exemple == NULL) {
+        printf("errore to open file\n");
         return 0;
     }
     else {
