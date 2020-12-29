@@ -61,26 +61,46 @@ On somme les différents excès pour tous les temps et on divise par la période de
 
 
 */
-/*
-double ScoreEvaluation::extractScenario2() {
-	vector<vector<int>> value; // line: scenario column: time
-	vector<vector<vector<pair<int, vector<int>>>>> riskByInterventions = extractAllRisk();
-	vector<int> valueForOneScenario, scNb = this->scenarios, idxStartTime = this->interTime;
-	int risk = 0;
 
+bool compare(int i, int j) 
+{ 
+	return (i < j); 
 }
 
 
-double ScoreEvaluation::extractScenarioFinal() {
+double ScoreEvaluation::extractScenario2() {
+	double score2 = 0;
+
+	for (int tim = 0; tim < this->risks.size(); tim++)
+	{
+		sort(this->risks[tim].begin() , this->risks[tim].end(), compare);
+
+		int indiceScenar = this->risks[tim].size() * this->quantile;
+
+		if (this->risks[tim][indiceScenar]-this->means[tim] < 0)
+		{
+			score2 += 0;
+		}
+		else
+		{
+			score2 += this->risks[tim][indiceScenar] - this->means[tim];
+		}
+		
+	}
+	return score2 / this->risks.size();
+}
+
+
+double ScoreEvaluation::extractScenarioFinal(vector<int> interTime) {
 	double score_final = 0;
-	double risk1 = extractScenario();
+	double risk1 = extractScenario(interTime);
 	double risk2 = extractScenario2();
-	score_final = alpha * risk1 + (1 - alpha) * risk2;
+	score_final = this->alpha * risk1 + (1 - this->alpha) * risk2;
 	return score_final;
 
 }
 
-*/
+
 
 vector<vector<vector<pair<int, vector<int>>>>> ScoreEvaluation::extractAllRisk() {
 	vector<vector<vector<pair<int, vector<int>>>>> value;

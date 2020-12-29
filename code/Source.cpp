@@ -71,7 +71,7 @@ int main(int argc, char* argv[]) {
     cout << "time" << '\n';
     for (int i = 0; i < time.size(); i++)
         cout << time[i] << " ";
-    
+   
     writeSoluce(time);
 
 
