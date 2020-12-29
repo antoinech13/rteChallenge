@@ -9,6 +9,26 @@
 #include "Intervention.h"
 #include "dataCollector.h"
 #include "Solver.h"
+#include <fstream>
+
+void writeSoluce(vector<int> time)
+{
+    ofstream monFlux("Soluce.txt");
+
+    if (monFlux)
+    {
+        for (int inter = 0; inter < time.size(); inter++)
+        {
+            monFlux << "I" << inter + 1 << " : " << time[inter] << endl;
+        }
+    }
+    else
+    {
+        cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
+    }
+
+    monFlux.close();
+}
 
 
 using namespace std;
@@ -53,6 +73,7 @@ int main() {
     for (int i = 0; i < time.size(); i++)
         cout << time[i] << " ";
     
+    writeSoluce(time);
 
 
 
