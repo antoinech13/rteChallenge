@@ -58,7 +58,7 @@ double ScoreEvaluation::extractScenario() {
 /*on extrait les valeurs de risque à un temps donné, pour chaque scénario on somme les valeurs de risque pour chaque intervention
 ex : au temps 1, pour le scénario 1 risque(scénario 1, temps 1) = risque(scénario 1, temps 1)_I1 + ... + risque(scénario 1, temps 1)_In;
 Ensuite, on classe le tableau des sommes de risque pour chaque scénario à chaque temps par ordre croissant
-et on prend la valeur à l'entier arrondi de ce tableau trié en quantile tau*(longueur du tableau)-1 qui est la valeur Q(quantile) au temps t.
+et on prend la valeur de ce tableau trié à l'entier arrondi au supérieur du quantile tau*(longueur du tableau)-1 qui est la valeur Q(quantile) au temps t.
 Puis l'excès pour le quantile tau au temps t est la valeur absolue entre Qt et le risque moyen au temps t;
 On somme les différents excès pour tous les temps et on divise par la période de temps T;
 
