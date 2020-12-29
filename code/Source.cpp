@@ -50,8 +50,6 @@ int main(int argc, char* argv[]) {
         printf("open file\n");
     }
 
-    
-
     dataCollector D(exemple);
     cout << "ici \n";
     Solver s(D);
