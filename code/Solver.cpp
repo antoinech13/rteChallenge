@@ -6,6 +6,7 @@
 #include <map>
 #include <string>
 #include <iterator>
+#include <float.h>
 #include <algorithm>
 
 using namespace std;
@@ -19,8 +20,8 @@ vector<int> Solver::getTime() {
 	return this->Time;
 }
 
-double Solver::getObj1() {
-	return this->obj1;
+double Solver::getScore() {
+	return this->score;
 }
 
 
@@ -33,8 +34,9 @@ Solver::Solver(dataCollector data){
 	this->s = ScoreEvaluation(data);
 	this->t = TimeChecker(data, this->Time);
 	this->w = WorkloadCheck(data);
-	this->exclusionViolation = checker.violatExclusions(Time);
-	this->obj1 = s.extractScenario(this->Time);
+	this->exclusionViolation = checker.violatExclusions(this->Time);
+	this->score = DBL_MAX;
+
 	cout << "Time \n";
 	for (int i = 0; i < this->Time.size(); i++)
 		cout << this->Time[i] << " ";
@@ -106,16 +108,21 @@ vector<int> Solver::estimateViolation(vector<int> time) {
 void Solver::move() {
 	
 	vector<Intervention> interventions = this->data.getInterventions();
-	vector<int> newTime;
+	vector<int> Time, newTime;
 	
-	for (int i = 0; i < this->Time.size(); i++)
+	for (int i = 0; i < this->Time.size(); i++) {
 		newTime.push_back(this->Time[i]);
+		Time.push_back(this->Time[i]);
+	}
 
 	vector<int> violation = estimateViolation(this->Time);
 	vector<int> newViolation;
 	int cpt=0;
-	double timeStart = clock();
+	double obj1, timeStart = clock();
+	
 	while(violation.size() > 0 && (cpt != interventions.size() || (clock() - timeStart) / CLOCKS_PER_SEC < 300)) {
+
+
 
 		srand(time(0));
 		
@@ -125,7 +132,7 @@ void Solver::move() {
 			srand(time(0));
 			newTime[violation[idx]] = rand() % interventions[violation[idx]].getTmax() + 1;
 
-		} while (newTime[violation[idx]] == this->Time[violation[idx]]);
+		} while (newTime[violation[idx]] == Time[violation[idx]]);
 		
 		
 		/*	
@@ -142,10 +149,19 @@ void Solver::move() {
 		newViolation = estimateViolation(newTime);
 
 		if (newViolation.size() < violation.size()) {
-			this->Time = newTime;
+			Time = newTime;
 			violation = newViolation;
+		}
+		else
+			newTime[violation[idx]] = Time[violation[idx]];
 
+		if (violation.size() == 0) {
+			obj1 = this->s.extractScenario(this->Time);
+			cpt++;
 
+			if (obj1 < this->score) {
+				this->Time = Time;
+			}
 		}
 
 	}
@@ -163,26 +179,6 @@ vector<int> Solver::exclusionTab(vector<int> time) {
 }
 
 
-//méthode getTps from randInitialisation
-/*
-int Solver::getTps(Intervention intervention, int i) {
-	vector<int> value = randInitialisation();
-	return
-}
-
-// checker pour t (t + Delta(i,t) =< T + 1 )
-
-bool Solver::checkt() {
-	int tps = this->data.getTps();
-	int T = this->data.getT();
-	int Delta = this->data.getDelta();
-
-	if (tps + Delta > T + 1)
-		return false;
-	return true;
-
-
-}*/
 
 
 

@@ -19,7 +19,7 @@ public:
 	vector<int> estimateViolation(vector<int> time);
 	void move();
 	vector<int> getTime();
-	double getObj1();
+	double getScore();
 
 
 
@@ -30,7 +30,7 @@ private:
 	map<int, vector<int>> exclusionViolation;
 	vector<int> Time;
 	vector<int> violation;
-	double obj1;
+	double score;
 	map<int, vector<int>> scoreExclusion();
 	int scoreCheckWorload(vector<int>);
 	
