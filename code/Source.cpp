@@ -20,7 +20,7 @@ void writeSoluce(vector<int> time)
     {
         for (int inter = 0; inter < time.size(); inter++)
         {
-            monFlux << "I" << inter + 1 << " : " << time[inter] << endl;
+            monFlux << "I" << inter + 1 << " " << time[inter] << endl;
         }
     }
     else
