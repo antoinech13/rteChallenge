@@ -122,7 +122,7 @@ int main(int argc, char* argv[]) {
     
     
     
-    /*
+    
     Solver s(D);
     cout << "la \n";
 
@@ -143,7 +143,7 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < time.size(); i++)
         cout << time[i] << " ";
    
-    writeSoluce(time);*/
+    writeSoluce(time);
 
 
 

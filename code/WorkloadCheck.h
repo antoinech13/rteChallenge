@@ -19,7 +19,7 @@ public:
 private:
 	int T;
 	vector<vector<int>>arrayWorkload;
-	vector<pair<int, map<string, vector<int>>>> ressouces;
+	vector<pair<int, map<string, vector<double>>>> ressouces;
 	vector<Intervention> interventions;
 	vector<int> interventionBad;
 	vector<vector<int>>timeBad;
