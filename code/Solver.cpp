@@ -11,7 +11,7 @@
 
 using namespace std;
 
-/*
+
 map<int, vector<int >> Solver::getExclusionViolation() {
 	return this->exclusionViolation;
 }
@@ -83,7 +83,7 @@ vector<int> Solver::estimateViolation(vector<int> time) {
 
 	sort(violation.begin(), violation.end());
 	violation.erase(unique(violation.begin(), violation.end()), violation.end());
-/*
+	/*
 	cout << "exclusion \n";
 	for (int i = 0; i < exclusion.size(); i++)
 		cout << exclusion[i] << " ";
@@ -102,7 +102,7 @@ vector<int> Solver::estimateViolation(vector<int> time) {
 		cout << violation[i] << " ";
 	cout << '\n';*/
 
-/*
+
 
 	return violation;
 }
@@ -149,7 +149,7 @@ void Solver::move() {
 			cout << newTime[i] << " ";
 		cout << '\n';*/
 		
-/*
+
 
 		newViolation = estimateViolation(newTime);
 		
@@ -163,7 +163,7 @@ void Solver::move() {
 		cout << '\n';
 		*/
 
-/*
+
 		Time = newTime;
 		violation = newViolation;
 		
@@ -199,4 +199,3 @@ vector<int> Solver::exclusionTab(vector<int> time) {
 
 
 
-*/
