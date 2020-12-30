@@ -6,8 +6,8 @@
 
 using namespace std;
 
-class Parser
-{
+class Parser{
+
 public:
     int nextChar();
     vector<int> toVector();
