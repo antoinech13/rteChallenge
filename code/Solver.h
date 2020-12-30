@@ -17,7 +17,7 @@ public:
 	Solver(dataCollector data);
 	map<int, vector<int >> getExclusionViolation();
 	vector<int> estimateViolation(vector<int> time);
-	void move();
+	void move(double timeStart);
 	vector<int> getTime();
 	double getScore();
 

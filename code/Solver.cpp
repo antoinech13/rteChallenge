@@ -107,10 +107,11 @@ vector<int> Solver::estimateViolation(vector<int> time) {
 	return violation;
 }
 
-void Solver::move() {
+void Solver::move(double timeStart) {
 	
 	vector<Intervention> interventions = this->data.getInterventions();
 	vector<int> Time, newTime;
+	float cpTime = this->data.getComputationalTime() * 60;
 	
 	for (int i = 0; i < this->Time.size(); i++) {
 		newTime.push_back(this->Time[i]);
@@ -120,9 +121,9 @@ void Solver::move() {
 	vector<int> violation = estimateViolation(this->Time);
 	vector<int> newViolation;
 	int idx, cpt=0;
-	double score, timeStart = clock();
+	double score;
 	
-	while((clock() - timeStart) / CLOCKS_PER_SEC < 60) {
+	while((clock() - timeStart) / CLOCKS_PER_SEC < cpTime) {
 
 		srand(time(0));
 		if (violation.size() > 0)

@@ -53,7 +53,7 @@ void print(vector<string> tab) {
 }
 
 int main(int argc, char* argv[]) {
-
+    double timeStart = clock();
     const char* path = "A_01.JSON";
     FILE* exemple;
    
@@ -132,7 +132,7 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < violation.size(); i++)
         cout << violation[i] << " ";
     cout << '\n';
-    s.move();
+    s.move(timeStart);
     cout << "new violation" << '\n';
     violation = s.estimateViolation(s.getTime());
     for (int i = 0; i < violation.size(); i++)
