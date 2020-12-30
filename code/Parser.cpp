@@ -235,7 +235,8 @@ vector<string> Parser::split(string str, char C) {
             val = "";
         }
         else
-            val.push_back(str[i]);
+            if(str[i] != '"')
+                val.push_back(str[i]);
         
     }
 

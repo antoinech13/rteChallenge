@@ -34,6 +34,24 @@ void writeSoluce(vector<int> time)
 
 using namespace std;
 
+void print(vector<int> tab) {
+    for (int i = 0; i < tab.size(); i++)
+        cout << tab[i] << " ";
+    cout << '\n';
+}
+
+void print(vector<double> tab) {
+    for (int i = 0; i < tab.size(); i++)
+        cout << tab[i] << " ";
+    cout << '\n';
+}
+
+void print(vector<string> tab) {
+    for (int i = 0; i < tab.size(); i++)
+        cout << tab[i] << " ";
+    cout << '\n';
+}
+
 int main(int argc, char* argv[]) {
 
     const char* path = "A_01.JSON";
@@ -61,6 +79,40 @@ int main(int argc, char* argv[]) {
     cout << D.getQuantile() <<'\n';
     cout << "computational time \n";
     cout << D.getComputationalTime() << '\n';
+    cout << "scenario numbers:\n";
+    print(D.getScenarioNumber());
+    cout << "get resources:\n";
+    vector<pair<int, map<string, vector<double>>>> res = D.getResources();
+    cout << " first: " << res[0].first << '\n';
+    cout << " second:\n";
+    print(res[0].second["max"]);
+    cout << "exclusion:\n";
+    vector<pair<string, vector<double>>> exclu = D.getExclusions();
+    cout << " first: " << exclu[0].first << '\n';
+    cout << " second:\n";
+    print(exclu[0].second);
+    cout << "seasons:\n";
+    map<string, vector<double>> seas = D.getSeasons();
+    print(seas["winter"]);
+    cout << "Interventions: \n";
+    vector<Intervention> inter = D.getInterventions();
+    cout << " Tmax:\n";
+    cout << inter[0].getTmax() << '\n';
+    cout << " Delta\n";
+    print(inter[0].getDelta());
+    cout << "InterId\n";
+    cout << inter[0].getInterId() << '\n';
+    cout << "workload:\n";
+    vector<pair<int, vector<vector<pair<int, double>>>>> wk = inter[0].getWorkload();
+    cout << "first: " << wk[0].first <<'\n';
+    cout << "value 0 0 first: " << wk[0].second[0][0].first << '\n';
+    cout << "value value " << wk[0].second[0][0].second << '\n';
+    cout << "risk \n";
+    vector<vector<pair<int, vector<double>>>> rsk = inter[0].getRisk();
+    cout << "first 0 0 " << rsk[0][0].first << '\n';
+    cout << "value\n";
+    print(rsk[0][0].second);
+
 
     
     

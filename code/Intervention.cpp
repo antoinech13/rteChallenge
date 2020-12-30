@@ -24,9 +24,17 @@ vector<vector<pair<int, vector<double>>>> Intervention::getRisk() {
 	return this->risk;
 }
 
+double Intervention::getInterId() {
+	return this->interId;
+}
+
+void Intervention::setId(double id) {
+	this->interId = id;
+}
 
 Intervention::Intervention(string vFile) {
 	Parser I(vFile);
+
 	this->tmax = Parser::getDoubleWithoutCom(I.getValues()[I.keyFind("tmax")]);
 	this->Delta = I.toDbTable(I.getValues()[I.keyFind("Delta")]);
 	this->workload = extractWorkLoad(I.getValues()[I.keyFind("workload")]);
