@@ -16,7 +16,7 @@ vector<double> Intervention::getDelta() {
 	return this->Delta;
 }
 
-vector<pair<int, vector<vector<pair<int, double>>>>> Intervention::getWorkload() {
+vector<pair<int, vector<pair<int, vector<pair<int, double>>>>>> Intervention::getWorkload() {
 	return this->workload;
 }
 
@@ -74,12 +74,12 @@ vector<pair<int, vector<double>>> Intervention::extractTr(string vFile) {
 }
 
 
-vector<pair<int, vector<vector<pair<int, double>>>>> Intervention::extractWorkLoad(string vFile) {
+vector<pair<int, vector<pair<int, vector<pair<int, double>>>>>> Intervention::extractWorkLoad(string vFile) {
 	Parser I(vFile);
 	vector<string> main = I.getMain();
 	vector<string> value = I.getValues();
-	vector<vector<pair<int, double>>> p;
-	vector<pair<int, vector<vector<pair<int, double>>>>> val;
+	vector<pair<int, vector<pair<int, double>>>> p;
+	vector<pair<int, vector<pair<int, vector<pair<int, double>>>>>> val;
 	vector<double> mainVal = Parser::strTabToDbTabWithoutFirstCharacther(main, '_', 1);
 	
 	for (int i = 0; i < value.size(); i++) {
@@ -91,16 +91,16 @@ vector<pair<int, vector<vector<pair<int, double>>>>> Intervention::extractWorkLo
 
 }
 
-vector<vector<pair<int, double>>> Intervention::extractC(string vFile) {
+vector<pair<int, vector<pair<int, double>>>> Intervention::extractC(string vFile) {
 	Parser I(vFile);
 	vector<string> main = I.getMain();
 	vector<string> value = I.getValues();
 	vector<pair<int, double>> p;
-	vector<vector<pair<int, double>>> val;
+	vector<pair<int, vector<pair<int, double>>>> val;
 
 	for (int i = 0; i < value.size(); i++) {
 		p = extractTstep(value[i]);
-		val.push_back(p);
+		val.push_back(make_pair(Parser::getDoubleWithoutCom(main[i]), p));
 	}
 
 	return val;

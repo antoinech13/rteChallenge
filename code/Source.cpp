@@ -103,10 +103,11 @@ int main(int argc, char* argv[]) {
     cout << "InterId\n";
     cout << inter[0].getInterId() << '\n';
     cout << "workload:\n";
-    vector<pair<int, vector<vector<pair<int, double>>>>> wk = inter[0].getWorkload();
+    vector<pair<int, vector<pair<int, vector<pair<int, double>>>>>> wk = inter[0].getWorkload();
     cout << "first: " << wk[0].first <<'\n';
-    cout << "value 0 0 first: " << wk[0].second[0][0].first << '\n';
-    cout << "value value " << wk[0].second[0][0].second << '\n';
+    cout << "value 0 first: " << wk[0].second[0].first << '\n';
+    cout << "value 0 0 first: " << wk[0].second[0].second[0].first << '\n';
+    cout << "value value " << wk[0].second[0].second[0].second << '\n';
     cout << "risk \n";
     vector<vector<pair<int, vector<double>>>> rsk = inter[0].getRisk();
     cout << "first 0 0 " << rsk[0][0].first << '\n';
