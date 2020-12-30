@@ -36,7 +36,7 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 
-    const char* path = "example1.JSON";
+    const char* path = "A_01.JSON";
     FILE* exemple;
    
     vector<int> c;
@@ -51,7 +51,25 @@ int main(int argc, char* argv[]) {
     }
 
     dataCollector D(exemple);
-    cout << "ici \n";
+    
+    cout << "test of the dataCollector \n";
+    cout << "alpha \n";
+    cout << D.getAlpha() << '\n';
+    cout << "T\n";
+    cout << D.getT() << '\n';
+    cout << "quantile \n";
+    cout << D.getQuantile() <<'\n';
+    cout << "computational time \n";
+    cout << D.getComputationalTime() << '\n';
+
+    
+    
+    
+    
+    
+    
+    
+    /*
     Solver s(D);
     cout << "la \n";
 
@@ -72,7 +90,7 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < time.size(); i++)
         cout << time[i] << " ";
    
-    writeSoluce(time);
+    writeSoluce(time);*/
 
 
 

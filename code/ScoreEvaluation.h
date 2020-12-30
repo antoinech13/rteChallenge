@@ -17,14 +17,14 @@ public:
 
 private:
 	dataCollector data;
-	vector<int> scenarios, means;
-	vector<vector<int>> risks;
+	vector<double> scenarios, means;
+	vector<vector<double>> risks;
 	vector<Intervention> interventions;
 	float alpha;
 	float quantile;
 	//double extractScenario(vector<int> interTime);
 	double extractScenario2();
-	vector<vector<vector<pair<int, vector<int>>>>> extractAllRisk();
+	vector<vector<vector<pair<int, vector<double>>>>> extractAllRisk();
 
 
 

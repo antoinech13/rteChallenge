@@ -11,12 +11,12 @@ class Resources
 
 public:
 	Resources(string vFile);
-	vector<pair<int, map<string, vector<int>>>> getData();
+	vector<pair<int, map<string, vector<double>>>> getData();
 
 private:
 	
-	vector<pair<int, map<string, vector<int>>>> data;
-	vector<pair<int, map<string, vector<int>>>> extractData(string vFile);
-	map<string, vector<int>> extractMap(string vFile);
+	vector<pair<int, map<string, vector<double>>>> data;
+	vector<pair<int, map<string, vector<double>>>> extractData(string vFile);
+	map<string, vector<double>> extractMap(string vFile);
 };
 

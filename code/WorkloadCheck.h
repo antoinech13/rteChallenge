@@ -4,7 +4,7 @@
 
 class WorkloadCheck
 {
-
+	/*
 public:
 	WorkloadCheck(dataCollector data);
 	WorkloadCheck();
@@ -23,4 +23,5 @@ private:
 	vector<Intervention> interventions;
 	vector<int> interventionBad;
 	vector<vector<int>>timeBad;
+*/
 };

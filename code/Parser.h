@@ -32,10 +32,12 @@ public:
     static int keyFind(vector<string> keyTab, string key);
     int keyFind(string key);
     static vector<int> stringToInt(string source);
-    static vector<int> toIntTable(string tab);
+    static vector<double> toDbTable(string tab);
     static vector<string> toStringTable(string tab);
-    static vector<int> strTabToIntTabWithoutFirstCharacther(vector<string> tab);
+    static vector<double> strTabToDbTabWithoutFirstCharacther(vector<string> tab, char C, int idx);
     static vector<string> mainSequence(string vFile);
+    static vector<string> split(string str, char C);
+    static double getDoubleWithoutCom(string str);
     vector<string> mainSequence();
     static vector<string> divideSection(string vFile);
     vector<string> divideSection();

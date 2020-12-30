@@ -9,22 +9,22 @@ class Intervention
 
 public:
 	int getTmax();
-	vector<int> getDelta();
-	vector<pair<int, vector<vector<pair<int, int>>>>> getWorkload();
-	vector<vector<pair<int, vector<int>>>> getRisk();
+	vector<double> getDelta();
+	vector<pair<int, vector<vector<pair<int, double>>>>> getWorkload();
+	vector<vector<pair<int, vector<double>>>> getRisk();
 	Intervention(string vFile);
 
 private:
 	int tmax;
-	vector<int> Delta;
+	vector<double> Delta;
 
-	vector<pair<int, vector<vector<pair<int, int>>>>> workload;
-	vector<pair<int, vector<vector<pair<int, int>>>>> extractWorkLoad(string vFile);
-	vector<vector<pair<int, int>>> extractC(string vFile);
-	vector<pair<int, int>> extractTstep(string vFile);
+	vector<pair<int, vector<vector<pair<int, double>>>>> workload;
+	vector<pair<int, vector<vector<pair<int, double>>>>> extractWorkLoad(string vFile);
+	vector<vector<pair<int, double>>> extractC(string vFile);
+	vector<pair<int, double>> extractTstep(string vFile);
 	
-	vector<vector<pair<int, vector<int>>>> risk;
-	vector<vector<pair<int, vector<int>>>> extractRisk(string vFile);
-	vector<pair<int, vector<int>>> extractTr(string vFile);
+	vector<vector<pair<int, vector<double>>>> risk;
+	vector<vector<pair<int, vector<double>>>> extractRisk(string vFile);
+	vector<pair<int, vector<double>>> extractTr(string vFile);
 };
 

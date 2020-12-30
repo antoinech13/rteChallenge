@@ -16,13 +16,14 @@ class dataCollector
 
 public:
 	int getT();
-	vector<int> getScenarioNumber();
+	vector<double> getScenarioNumber();
 	float getQuantile();
 	float getAlpha();
+	float getComputationalTime();
 	vector<Intervention> getInterventions();
-	vector<pair<int, map<string, vector<int>>>> getResources();
-	vector<pair<string, vector<int>>> getExclusions();
-	map<string, vector<int>> getSeasons();
+	vector<pair<int, map<string, vector<double>>>> getResources();
+	vector<pair<string, vector<double>>> getExclusions();
+	map<string, vector<double>> getSeasons();
 
 	dataCollector();
 	dataCollector(FILE * I);
@@ -30,13 +31,14 @@ public:
 
 private:
 	int T;
-	vector<int> scenariosNumber;
+	vector<double> scenariosNumber;
 	float quantile;
 	float alpha;
+	float cpTime;
 	vector<Intervention> interventions;
 	vector<Intervention>  buildInterventions(string vFile);
-	vector<pair<int, map<string, vector<int>>>> resources;
-	vector<pair<string, vector<int>>> exclusions;
-	map<string, vector<int>> seasons;
+	vector<pair<int, map<string, vector<double>>>> resources;
+	vector<pair<string, vector<double>>> exclusions;
+	map<string, vector<double>> seasons;
 
 };

@@ -14,13 +14,13 @@ ExclusionCheck::ExclusionCheck(){}
 
 map<int, vector<int>> ExclusionCheck::violatExclusions(vector<int> interventionPosition) {
 
-	vector<pair<string, vector<int>>> exclusions = this->data.getExclusions();
-	map<string, vector<int>> seasons = this->data.getSeasons();
+	vector<pair<string, vector<double>>> exclusions = this->data.getExclusions();
+	map<string, vector<double>> seasons = this->data.getSeasons();
 	vector<Intervention> interventions = this->data.getInterventions();
-
-	vector<int> exclusion, val, tInSeasons;
+	vector<int> val;
+	vector<double> exclusion, tInSeasons;
 	string season;
-	vector<pair<int, int>> tDt;
+	vector<pair<int, double>> tDt;
 	vector<bool> interIsInSeason;
 
 	map<int, vector<int>> result;
@@ -54,7 +54,7 @@ map<int, vector<int>> ExclusionCheck::violatExclusions(vector<int> interventionP
 	return result;
 }
 
-vector<int> ExclusionCheck::getConflic(vector<int> exclusion, vector<bool> interIsInSeason, vector<pair<int, int>>  tDts, pair<int, int> tDt, int j) {
+vector<int> ExclusionCheck::getConflic(vector<double> exclusion, vector<bool> interIsInSeason, vector<pair<int, double>>  tDts, pair<int, double> tDt, int j) {
 	vector<int> result;
 	for (int i = 0; i < interIsInSeason.size(); i++) {
 		if (interIsInSeason[i] && i != j && ((tDt.first < tDts[i].first && tDt.first + tDt.second - 1 >= tDts[i].first) || (tDt.first > tDts[i].first && tDts[i].second + tDts[i].first - 1 >= tDt.first) || tDt.first == tDts[i].first)) {
@@ -64,7 +64,7 @@ vector<int> ExclusionCheck::getConflic(vector<int> exclusion, vector<bool> inter
 	return result;
 }
 
-vector<bool> ExclusionCheck::testIfInSeason(vector<int> tInSeasons, vector<pair<int, int>> tDt) {
+vector<bool> ExclusionCheck::testIfInSeason(vector<double> tInSeasons, vector<pair<int, double>> tDt) {
 	vector<bool> in;
 
 	for (int i = 0; i < tDt.size(); i++) {
@@ -79,8 +79,8 @@ vector<bool> ExclusionCheck::testIfInSeason(vector<int> tInSeasons, vector<pair<
 }
 
 
-vector<pair<int, int>> ExclusionCheck::getTDt(vector<int> interTime, vector<int> exclusion, vector<Intervention> interventions) {
-	vector<pair<int, int>> result;
+vector<pair<int, double>> ExclusionCheck::getTDt(vector<int> interTime, vector<double> exclusion, vector<Intervention> interventions) {
+	vector<pair<int, double>> result;
 	int t;
 	for (int j = 0; j < exclusion.size(); j++) {
 		t = interTime[exclusion[j]];

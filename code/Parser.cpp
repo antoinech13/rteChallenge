@@ -153,6 +153,14 @@ vector<int> Parser::stringToInt(string source) {
     return intter;
 }
 
+double Parser::getDoubleWithoutCom(string str) {
+    string val;
+    for (int i = 0; i < str.size(); i++)
+        if (str[i] != '"')
+            val.push_back(str[i]);
+    return stod(val);
+}
+
 /**
 *
 * Function which get values of table in JSON file
@@ -163,23 +171,26 @@ vector<int> Parser::stringToInt(string source) {
 * 
 * 
 */
-vector<int> Parser::toIntTable(string tab) {
+vector<double> Parser::toDbTable(string tab) {
     string value;
-    vector<int> values;
+    vector<double> values;
+    int comma = 0;
     int bra = 0;
     for (int i = 0; i < tab.size(); i++) {
+        
+
         if (tab[i] == ',') {
 
-            values.push_back(stoi(value));
+            values.push_back(stod(value));
             value = "";
         }
         if (tab[i] == ']') {
             bra--;
-            values.push_back(stoi(value));
+            values.push_back(stod(value));
             return values;
 
         }
-        if (bra == 1 && tab[i] != ',') {
+        if (bra == 1 && tab[i] != ',' && tab[i] != '"') {
             value.push_back(tab[i]);
         }
         if (tab[i] == '[')
@@ -213,10 +224,37 @@ vector<string> Parser::toStringTable(string tab) {
     }
 }
 
-vector<int> Parser::strTabToIntTabWithoutFirstCharacther(vector<string> tab) {
-    vector<int> result;
+vector<string> Parser::split(string str, char C) {
+    vector<string> result;
+    string val = "";
+
+    for (int i = 0; i < str.size(); i++) {
+        
+        if (str[i] == C) {
+            result.push_back(val);
+            val = "";
+        }
+        else
+            val.push_back(str[i]);
+        
+    }
+
+    if (val.size() > 0)
+        result.push_back(val);
+
+    return result;
+}
+
+
+
+vector<double> Parser::strTabToDbTabWithoutFirstCharacther(vector<string> tab, char C, int idx) {
+    vector<double> result;
+    vector<string> nb;
     for (int i = 0; i < tab.size(); i++) {
-        result.push_back(stoi(tab[i].erase(0,1)) - 1);
+        nb = split(tab[i], C);
+        if(nb.size() > 0)
+            if (nb[idx] != "\n" && nb[idx] != " " && nb[idx] != "\f" && nb[idx] != "\r" && nb[idx] != "\t" && nb[idx] != "\v" && nb[idx].size() > 0)
+                result.push_back(stod(nb[idx]) - 1);
     }
     return result;
 }
@@ -291,6 +329,7 @@ vector<string> Parser::mainSequence() {
     vector<string> main;
     int bra = 0;
     int com = 0;
+    int croch = 0;
     bool endsection = false;
     string newmain;
 
@@ -299,14 +338,18 @@ vector<string> Parser::mainSequence() {
             com++;
 
         if (com > 1) {
+            if (vFile[i] == '[')
+                croch++;
+            if (vFile[i] == ']')
+                croch--;
+
             if (vFile[i] == '{')
                 bra++;
-
             else if (vFile[i] == '}')
                 bra--;
         }
 
-        if (com % 2 != 0 && bra == 0) {
+        if (com % 2 != 0 && bra == 0 && croch == 0) {
             if (vFile[i] != '"') {
                 newmain.push_back(vFile[i]);
                 endsection = false;

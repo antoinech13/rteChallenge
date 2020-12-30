@@ -2,7 +2,7 @@
 #include "dataCollector.h"
 #include "Resources.h"
 
-
+/*
 WorkloadCheck::WorkloadCheck(dataCollector data) {
 	this->T = data.getT();
 	this->interventions = data.getInterventions();
@@ -74,3 +74,4 @@ vector<vector<int>> WorkloadCheck::getTimeBad() {
 vector<vector<int>> WorkloadCheck::getArrayWorkload() {
 	return arrayWorkload;
 }
+*/

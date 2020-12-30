@@ -12,34 +12,34 @@ int Intervention::getTmax() {
 	return this->tmax;
 }
 
-vector<int> Intervention::getDelta() {
+vector<double> Intervention::getDelta() {
 	return this->Delta;
 }
 
-vector<pair<int, vector<vector<pair<int, int>>>>> Intervention::getWorkload() {
+vector<pair<int, vector<vector<pair<int, double>>>>> Intervention::getWorkload() {
 	return this->workload;
 }
 
-vector<vector<pair<int, vector<int>>>> Intervention::getRisk() {
+vector<vector<pair<int, vector<double>>>> Intervention::getRisk() {
 	return this->risk;
 }
 
 
 Intervention::Intervention(string vFile) {
 	Parser I(vFile);
-	this->tmax = stoi(I.getValues()[I.keyFind("tmax")]);
-	this->Delta = I.toIntTable(I.getValues()[I.keyFind("Delta")]);
+	this->tmax = Parser::getDoubleWithoutCom(I.getValues()[I.keyFind("tmax")]);
+	this->Delta = I.toDbTable(I.getValues()[I.keyFind("Delta")]);
 	this->workload = extractWorkLoad(I.getValues()[I.keyFind("workload")]);
 	this->risk = extractRisk(I.getValues()[I.keyFind("risk")]);
 }
 
 
-vector<vector<pair<int, vector<int>>>>	Intervention::extractRisk(string vFile) {
+vector<vector<pair<int, vector<double>>>>	Intervention::extractRisk(string vFile) {
 	Parser I(vFile);
 	vector<string> main = I.getMain();
 	vector<string> value = I.getValues();
-	vector<pair<int, vector<int>>> p;
-	vector<vector<pair<int, vector<int>>>> val;
+	vector<pair<int, vector<double>>> p;
+	vector<vector<pair<int, vector<double>>>> val;
 
 	for (int i = 0; i < value.size(); i++) {
 		p = extractTr(value[i]);
@@ -49,16 +49,16 @@ vector<vector<pair<int, vector<int>>>>	Intervention::extractRisk(string vFile) {
 	return val;
 }
 
-vector<pair<int, vector<int>>> Intervention::extractTr(string vFile) {
+vector<pair<int, vector<double>>> Intervention::extractTr(string vFile) {
 	Parser I(vFile);
 	vector<string> main = I.getMain();
 	vector<string> value = I.getValues();
-	vector<pair<int, vector<int>>> val;
-	pair<int, vector<int>> p;
+	vector<pair<int, vector<double>>> val;
+	pair<int, vector<double>> p;
 
 	for (int i = 0; i < value.size(); i++) {
 		p.first = stoi(main[i]);
-		p.second = Parser::toIntTable(value[i]);
+		p.second = Parser::toDbTable(value[i]);
 		val.push_back(p);
 	}
 
@@ -66,28 +66,29 @@ vector<pair<int, vector<int>>> Intervention::extractTr(string vFile) {
 }
 
 
-vector<pair<int, vector<vector<pair<int, int>>>>> Intervention::extractWorkLoad(string vFile) {
+vector<pair<int, vector<vector<pair<int, double>>>>> Intervention::extractWorkLoad(string vFile) {
 	Parser I(vFile);
 	vector<string> main = I.getMain();
 	vector<string> value = I.getValues();
-	vector<vector<pair<int, int>>> p;
-	vector<pair<int, vector<vector<pair<int, int>>>>> val;
-
+	vector<vector<pair<int, double>>> p;
+	vector<pair<int, vector<vector<pair<int, double>>>>> val;
+	vector<double> mainVal = Parser::strTabToDbTabWithoutFirstCharacther(main, '_', 1);
+	
 	for (int i = 0; i < value.size(); i++) {
 		p = extractC(value[i]);
-		val.push_back(make_pair(stoi(main[i].erase(0, 1))-1,p));
+		val.push_back(make_pair(mainVal[i], p));
 	}
 
 	return val;
 
 }
 
-vector<vector<pair<int, int>>> Intervention::extractC(string vFile) {
+vector<vector<pair<int, double>>> Intervention::extractC(string vFile) {
 	Parser I(vFile);
 	vector<string> main = I.getMain();
 	vector<string> value = I.getValues();
-	vector<pair<int, int>> p;
-	vector<vector<pair<int, int>>> val;
+	vector<pair<int, double>> p;
+	vector<vector<pair<int, double>>> val;
 
 	for (int i = 0; i < value.size(); i++) {
 		p = extractTstep(value[i]);
@@ -98,16 +99,16 @@ vector<vector<pair<int, int>>> Intervention::extractC(string vFile) {
 
 }
 
-vector<pair<int, int>> Intervention::extractTstep(string vFile) {
+vector<pair<int, double>> Intervention::extractTstep(string vFile) {
 	Parser I(vFile);
 	vector<string> main = I.getMain();
 	vector<string> value = I.getValues();
-	pair<int, int> p;
-	vector<pair<int, int>> val;
+	pair<int, double> p;
+	vector<pair<int, double>> val;
 
 	for(int i = 0; i < value.size(); i++) {
 		p.first = stoi(main[i]);
-		p.second = stoi(value[i]);
+		p.second = stod(value[i]);
 		val.push_back(p);
 	}
 

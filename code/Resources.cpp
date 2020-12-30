@@ -6,7 +6,7 @@
 #include "Resources.h"
 #include "Parser.h"
 
-vector < pair<int, map<string, vector<int>>>> Resources::getData() {
+vector < pair<int, map<string, vector<double>>>> Resources::getData() {
 	return this->data;
 }
 
@@ -14,15 +14,18 @@ Resources::Resources(string vFile) {
 	this->data = extractData(vFile);	
 }
 
-vector<pair<int, map<string, vector<int>>>> Resources::extractData(string vFile) {
+vector<pair<int, map<string, vector<double>>>> Resources::extractData(string vFile) {
 	Parser I(vFile);
 	vector<string> main = I.getMain();
 	vector<string> values = I.getValues();
-	pair<int, map<string, vector<int>>> p;
-	vector<pair<int, map<string, vector<int>>>> val;
+	pair<int, map<string, vector<double>>> p;
+	vector<pair<int, map<string, vector<double>>>> val;
+
+	vector<double> mainVal = Parser::strTabToDbTabWithoutFirstCharacther(main, '_', 1);
+
 
 	for (int i = 0; i < values.size(); i++) {
-		p.first = stoi(main[i].erase(0, 1)) - 1;
+		p.first = mainVal[i];
 		p.second = extractMap(values[i]);
 		val.push_back(p);
 	}
@@ -30,15 +33,14 @@ vector<pair<int, map<string, vector<int>>>> Resources::extractData(string vFile)
 	return val;
 }
 
-map<string, vector<int>> Resources::extractMap(string vFile) {
+map<string, vector<double>> Resources::extractMap(string vFile) {
 	Parser I(vFile);
 	vector<string> main = I.getMain();
 	vector<string> values = I.getValues();
-	vector<int> p;
-	map<string, vector<int>> val;
+	map<string, vector<double>> val;
 
 	for (int i = 0; i < values.size(); i++) {
-		val[main[i]] = Parser::toIntTable(values[i]);
+		val[main[i]] = Parser::toDbTable(values[i]);
 	}
 	return val;
 }

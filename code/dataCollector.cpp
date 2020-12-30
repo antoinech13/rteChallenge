@@ -18,7 +18,11 @@ float dataCollector::getQuantile() {
 	return this->quantile;
 }
 
-vector<int> dataCollector::getScenarioNumber() {
+float dataCollector::getComputationalTime() {
+	return this->cpTime;
+}
+
+vector<double> dataCollector::getScenarioNumber() {
 	return this->scenariosNumber;
 }
 
@@ -26,32 +30,44 @@ vector<Intervention> dataCollector::getInterventions() {
 	return this->interventions;
 }
 
-vector<pair<int, map<string, vector<int>>>> dataCollector::getResources() {
+vector<pair<int, map<string, vector<double>>>> dataCollector::getResources() {
 	return this->resources;
 }
 
-vector<pair<string, vector<int>>> dataCollector::getExclusions() {
+vector<pair<string, vector<double>>> dataCollector::getExclusions() {
 	return this->exclusions;
 }
 
-map<string, vector<int>> dataCollector::getSeasons() {
+map<string, vector<double>> dataCollector::getSeasons() {
 	return this->seasons;
 }
 
+
 dataCollector::dataCollector(FILE* vFile) {
+	cout << "begin to parse the file\n";
 	Parser I(vFile);
+	cout << "the file is well parse\n";
 	Exclusions E(I.getValues()[I.keyFind("Exclusions")]);
 	Resources R(I.getValues()[I.keyFind("Resources")]);
 	Seasons S(I.getValues()[I.keyFind("Seasons")]);
-
+	cout << "get T\n";
 	this->T = stoi(I.getValues()[I.keyFind("T")]);
+	cout << "get alpha\n";
 	this->alpha = stof(I.getValues()[I.keyFind("Alpha")]);
+	cout << "get quantile\n";
 	this->quantile = stof(I.getValues()[I.keyFind("Quantile")]);
-	this->scenariosNumber = Parser::toIntTable(I.getValues()[I.keyFind("Scenarios_number")]);
+	cout << "get scenario\n";
+	this->scenariosNumber = Parser::toDbTable(I.getValues()[I.keyFind("Scenarios_number")]);
+	cout << "get Interventions\n";
 	this->interventions = buildInterventions(I.getValues()[I.keyFind("Interventions")]);
+	cout << "get resources\n";
 	this->resources = R.getData();
+	cout << "get exclusions\n";
 	this->exclusions = E.getData();
+	cout << "get seasons\n";
 	this->seasons = S.getData();
+	cout << "get computation Time \n";
+	this->cpTime = stof(I.getValues()[I.keyFind("ComputationTime")]);
 
 }
 
