@@ -12,7 +12,7 @@
 
 class Solver
 {
-	
+	/*
 public:
 	Solver(dataCollector data);
 	map<int, vector<int >> getExclusionViolation();
@@ -40,5 +40,5 @@ private:
 	ScoreEvaluation s;
 	TimeChecker t;
 	dataCollector data;
-	
+	*/
 };

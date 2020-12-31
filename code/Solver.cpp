@@ -11,7 +11,7 @@
 
 using namespace std;
 
-
+/*
 map<int, vector<int >> Solver::getExclusionViolation() {
 	return this->exclusionViolation;
 }
@@ -102,8 +102,7 @@ vector<int> Solver::estimateViolation(vector<int> time) {
 		cout << violation[i] << " ";
 	cout << '\n';*/
 
-
-
+/*
 	return violation;
 }
 
@@ -151,7 +150,7 @@ void Solver::move(double timeStart) {
 		cout << '\n';*/
 		
 
-
+/*
 		newViolation = estimateViolation(newTime);
 		
 		/*cout << "violation\n";
@@ -164,7 +163,7 @@ void Solver::move(double timeStart) {
 		cout << '\n';
 		*/
 
-
+/*
 		Time = newTime;
 		violation = newViolation;
 		
@@ -200,3 +199,4 @@ vector<int> Solver::exclusionTab(vector<int> time) {
 
 
 
+*/

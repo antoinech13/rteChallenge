@@ -21,7 +21,9 @@ vector<pair<int, map<string, vector<double>>>> Resources::extractData(string vFi
 	pair<int, map<string, vector<double>>> p;
 	vector<pair<int, map<string, vector<double>>>> val;
 
-	vector<double> mainVal = Parser::strTabToDbTabWithoutFirstCharacther(main, '_', 1);
+	//vector<double> mainVal = Parser::strTabToDbTabWithoutFirstCharacther(main, '_', 1);
+	vector<double> mainVal = Parser::extractDbVecWords(main);
+	mainVal = Parser::substract(mainVal, 1);
 
 
 	for (int i = 0; i < values.size(); i++) {

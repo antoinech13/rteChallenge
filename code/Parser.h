@@ -38,6 +38,13 @@ public:
     static vector<string> mainSequence(string vFile);
     static vector<string> split(string str, char C);
     static double getDoubleWithoutCom(string str);
+    static vector<double> extractDbWords(string str);
+    static vector<int> extractIntWords(string str);
+    static vector<double> extractDbVecWords(vector<string> str);
+    static vector<int> extractIntVecWords(vector<string> str);
+    static vector<double> substract(vector<double> tab, double x);
+    static vector<int> substract(vector<int> tab, int x);
+
     vector<string> mainSequence();
     static vector<string> divideSection(string vFile);
     vector<string> divideSection();
