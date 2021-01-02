@@ -35,7 +35,8 @@ int WorkloadCheck::workloadCheckMax(vector<int> soluce) {
 				timeIdx = timeToIdx(delaisjour + 1, workload[c].second);
 				startingTime = startingTimeToIdx(jour + 1, workload[c].second[timeIdx].second);
 				
-				arrayWorkload[nomC][delaisjour] += workload[c].second[timeIdx].second[startingTime].second;
+				if(timeIdx != NULL && startingTime != NULL)
+					arrayWorkload[nomC][delaisjour] += workload[c].second[timeIdx].second[startingTime].second;
 	
 				if (arrayWorkload[nomC][delaisjour] > this->ressouces[nomC].second["max"][delaisjour]) {
 					score++;
