@@ -68,14 +68,14 @@ int main(int argc, char* argv[]) {
         printf("open file\n");
     }
     
-    vector<double> nik =  Parser::extractDbWords("Intervention_125.3 Intervention_120.2 c2 uol 354");
-    vector<int> nik2 = Parser::extractIntWords("Intervention_125.3 Intervention_120.2 c2 uol 354");
+    vector<double> nik =  Parser::extractDbWords("Intervention_125.3 Interve12.2ntion_120.2 c2 uol 354");
+    vector<int> nik2 = Parser::extractIntWords("Intervention_125.3 Interven12.3tion_120.2 c2 uol 354");
     cout << "nik:\n";
     print(nik);
     print(nik2);
     vector<string> nik3;
     nik3.push_back("Intervention_125.3");
-    nik3.push_back("Intervention_120.2");
+    nik3.push_back("Interve12.3ntion_120.2");
     nik3.push_back("c2 uol 354");
     vector<double> marche = Parser::extractDbVecWords(nik3);
     print(marche);
@@ -135,9 +135,8 @@ int main(int argc, char* argv[]) {
     
     
     
-    
-    /*
-    
+   
+       
     Solver s(D);
     cout << "la \n";
 
@@ -160,7 +159,7 @@ int main(int argc, char* argv[]) {
    
     writeSoluce(time);
 
-    */
+    
 
 }
 

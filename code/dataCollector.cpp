@@ -98,3 +98,14 @@ vector<Intervention> dataCollector::buildInterventions(string vFile) {
 	return val;
 
 }
+
+int dataCollector::IdToIdx(int id) {
+	for (int i = 0; i < this->interventions.size(); i++) {
+		if (id == interventions[i].getInterId()) {
+			return i;
+		}
+	}
+		
+	cout << "intervention not found!\n";
+	return NULL;
+}

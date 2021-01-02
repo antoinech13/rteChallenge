@@ -116,7 +116,7 @@ vector<pair<int, double>> Intervention::extractTstep(string vFile) {
 	vector<pair<int, double>> val;
 
 	for(int i = 0; i < value.size(); i++) {
-		p.first = stoi(main[i]);
+		p.first = Parser::getDoubleWithoutCom(main[i]);
 		p.second = stod(value[i]);
 		val.push_back(p);
 	}
