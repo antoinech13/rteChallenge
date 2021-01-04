@@ -104,7 +104,7 @@ vector<int> Solver::estimateViolation(vector<int> time) {
 vector<int> Solver::findWorkload(int idx)
 {
 	vector<int> loadMultiple;
-	vector<pair<int, vector<pair<int, vector<pair<int, double>>>>>> workMultiple = this->data.getInterventions()[this->data.IdToIdx(violation[idx])].getWorkload();
+	vector<pair<int, vector<pair<int, vector<pair<int, double>>>>>> workMultiple = this->data.getInterventions()[this->data.IdToIdx(idx)].getWorkload();
 	for (int indice = 0; indice < workMultiple.size(); indice++)
 	{
 		loadMultiple.push_back(workMultiple[indice].first);
@@ -141,20 +141,27 @@ void Solver::move(double timeStart) {
 	vector<int> newViolation;
 	vector<vector<int>> timeBad = this->w.getTimeBad();
 
-	int idx, cpt=0;
+	int idx, inter, cpt=0;
 	double score;
 	
 	while((clock() - timeStart) / CLOCKS_PER_SEC < cpTime) {
 
 		srand(time(0));
 		if (violation.size() > 0)
+		{
 			idx = rand() % violation.size();
+			inter = violation[idx];
+		}
+			
 		else
+		{
 			idx = rand() % Time.size();
+			inter = idx;
+		}
 
 		srand(time(0));
 
-		vector<int> timeBadWorkMin = chekFindWork(idx, timeBad);
+		vector<int> timeBadWorkMin = chekFindWork(inter, timeBad);
 		
 		//cout << "idx: " << idx << '\n';
 		if (violation.size() > 0) {
