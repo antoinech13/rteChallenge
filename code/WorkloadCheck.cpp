@@ -39,7 +39,7 @@ void WorkloadCheck::workloadCheckMax(vector<int> soluce) {
 	
 				if (arrayWorkload[nomC][delaisjour] > this->ressouces[nomC].second["max"][delaisjour]) {
 					
-					this->interventionBad.push_back(indice);
+					this->interventionBad.push_back(this->interventions[indice].getInterId());
 				}
 			}
 		}

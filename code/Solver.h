@@ -32,7 +32,6 @@ private:
 	vector<int> violation;
 	double score;
 	map<int, vector<int>> scoreExclusion();
-	int scoreCheckWorload(vector<int>);
 	
 	
 	WorkloadCheck w;

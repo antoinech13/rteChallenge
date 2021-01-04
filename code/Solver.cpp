@@ -54,10 +54,6 @@ vector<int> Solver::randInitialisation() {
 	return value;
 }
 
-int Solver::scoreCheckWorload(vector<int> soluce) {
-	int score = this->w.getWorkloadCheck(this->Time);
-	return score;
-}
 
 map<int, vector<int>> Solver::scoreExclusion() {
 	return this->exclusionViolation;
