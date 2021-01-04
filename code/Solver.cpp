@@ -228,9 +228,9 @@ void Solver::move(double timeStart) {
 
 			if (monFlux)
 			{
-				for (int intere = 0; intere < newViolation.size(); intere++)
+				for (int intere = 0; intere < newTime.size(); intere++)
 				{
-					monFlux << newViolation[intere] << " " << endl;
+					monFlux << newTime[intere] << " " << endl;
 				}
 			}
 			else
