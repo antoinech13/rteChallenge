@@ -1,4 +1,4 @@
-#include "Solver.h"
+ï»¿#include "Solver.h"
 #include "Intervention.h"
 #include "ExclusionCheck.h"
 #include "ScoreEvaluation.h"
@@ -206,7 +206,7 @@ void Solver::move(double timeStart) {
 			newTime[idx] = rand() % interventions[idx].getTmax() + 1;
 
 		
-		cout << "Time \n";
+		/*cout << "Time \n";
 		for (int i = 0; i < Time.size(); i++) 
 			cout << Time[i] << " ";
 	
@@ -214,15 +214,24 @@ void Solver::move(double timeStart) {
 		cout << "new Time \n";
 		for (int i = 0; i < newTime.size(); i++)
 			cout << newTime[i] << " ";
-		cout << '\n';
+		cout << '\n';*/
 		
 
 
 		newViolation = estimateViolation(newTime);
-		cout << "new violation size: " << newViolation.size() << '\n';
+		
+		/*cout << "violation\n";
+		for (int i = 0; i < violation.size(); i++)
+			cout << violation[i] << " ";
+		cout << '\n';
+		cout << "newviolation\n";
+		for (int i = 0; i < newViolation.size(); i++)
+			cout << newViolation[i] << " ";
+		cout << '\n';*/
+		
 		if (newViolation.size() == 0)
 		{
-			cout << "écriture solution\n";
+			cout << "ï¿½criture solution\n";
 			ofstream monFlux("SoluceTime.txt");
 
 			if (monFlux)
