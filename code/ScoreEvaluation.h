@@ -13,7 +13,7 @@ public:
 	ScoreEvaluation();
 	double extractScenarioFinal(vector<int> interTime);
 	double extractScenario(vector<int> interTime);
-
+	void print(vector<vector<vector<pair<int, vector<double>>>>> riskByInterventions);
 
 private:
 	dataCollector data;

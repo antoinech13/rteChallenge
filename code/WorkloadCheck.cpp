@@ -32,7 +32,9 @@ void WorkloadCheck::workloadCheckMax(vector<int> soluce) {
 				//cout << "test?: " << '\n';
 				//cout << "Intervention ID: " << this->interventions[indice].getInterId() << '\n';
 				timeIdx = timeToIdx(delaisjour + 1, workload[c].second);
-				startingTime = startingTimeToIdx(jour + 1, workload[c].second[timeIdx].second);
+				
+				if(timeIdx != -1)
+					startingTime = startingTimeToIdx(jour + 1, workload[c].second[timeIdx].second);
 				
 				if(timeIdx != -1 && startingTime != -1)
 					arrayWorkload[nomC][delaisjour] += workload[c].second[timeIdx].second[startingTime].second;
