@@ -29,12 +29,12 @@ double Solver::getScore() {
 
 
 Solver::Solver(dataCollector data){
-	const char* path = "SolutionTime";
+	const char* path = "SoluceTime.txt";
 	FILE* exemple;
 
 
 	vector<int> sq;
-	string d;
+	string d = "";
 	exemple = fopen(path, "r");
 	char c;
 	
