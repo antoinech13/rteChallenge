@@ -226,7 +226,7 @@ void Solver::move(double timeStart) {
 		
 
 
-		if (violation.size() == 0 && timeBad.size() ==0 ) 
+		if (violation.size() == 0 && timeBad.size() == 0) 
 		{
 			cout << "score coputation: \n";
 			score = this->s.extractScenarioFinal(Time);
