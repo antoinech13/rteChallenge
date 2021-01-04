@@ -32,6 +32,8 @@ private:
 	vector<int> violation;
 	double score;
 	map<int, vector<int>> scoreExclusion();
+	vector<int> findWorkload(int idx);
+	vector<int>  chekFindWork(int idx, vector<vector<int>> timeBad);
 	
 	
 	WorkloadCheck w;
