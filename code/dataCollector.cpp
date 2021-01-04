@@ -67,7 +67,15 @@ dataCollector::dataCollector(FILE* vFile) {
 	cout << "get seasons\n";
 	this->seasons = S.getData();
 	cout << "get computation Time \n";
-	this->cpTime = stof(I.getValues()[I.keyFind("ComputationTime")]);
+	try
+	{
+		this->cpTime = stof(I.getValues()[I.keyFind("ComputationTime")]);
+	}
+	catch (const std::exception& e)
+	{
+		this->cpTime = 1;
+	}
+	
 
 }
 
@@ -78,8 +86,9 @@ vector<Intervention> dataCollector::buildInterventions(string vFile) {
 	vector<string> main = I.getMain();
 	vector<string> values = I.getValues();
 	vector<Intervention> val;
-	vector<double> ids = Parser::strTabToDbTabWithoutFirstCharacther(main, '_', 1);
-
+	//vector<double> ids = Parser::strTabToDbTabWithoutFirstCharacther(main, '_', 1);
+	vector<double> ids = Parser::extractDbVecWords(main);
+	ids = Parser::substract(ids, 1);
 
 	for (int i = 0; i < values.size(); i++) {
 		Intervention it(values[i]);
@@ -88,4 +97,15 @@ vector<Intervention> dataCollector::buildInterventions(string vFile) {
 	}
 	return val;
 
+}
+
+int dataCollector::IdToIdx(int id) {
+	for (int i = 0; i < this->interventions.size(); i++) {
+		if (id == interventions[i].getInterId()) {
+			return i;
+		}
+	}
+		
+	cout << "intervention not found!\n";
+	return NULL;
 }

@@ -18,14 +18,19 @@ vector<pair<string, vector<double>>> Exclusions::extractData(string vFile) {
 	vector<int> tabInter;
 	vector<pair<string, vector<double>>> val;
 
+	
+
 	for (int i = 0; i < values.size(); i++) {
 		tab = Parser::toStringTable(values[i]);
 		p.first = tab[tab.size()-1];
 		tab.pop_back();
-		p.second = Parser::strTabToDbTabWithoutFirstCharacther(tab, '_', 1);
+		//p.second = Parser::strTabToDbTabWithoutFirstCharacther(tab, '_', 1);
+		p.second = Parser::extractDbVecWords(tab);
+		p.second = Parser::substract(p.second, 1);
 		val.push_back(p);
 	}
 
 	return val;
 
 }
+

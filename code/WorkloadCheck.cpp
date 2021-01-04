@@ -15,6 +15,8 @@ WorkloadCheck::WorkloadCheck() {}
 
 int WorkloadCheck::workloadCheckMax(vector<int> soluce) {
 	int score = 0;
+	int timeIdx;
+	int startingTime;
 	for (int indice = 0; indice < soluce.size(); indice++) {
 		int jour = soluce[indice] - 1;
 		int delta = this->interventions[indice].getDelta()[jour];
@@ -23,7 +25,18 @@ int WorkloadCheck::workloadCheckMax(vector<int> soluce) {
 			for (int c = 0; c < workload.size(); c++) {
 				int nomC = workload[c].first;
 				int delaisjour = jour + nbjour;
-				arrayWorkload[nomC][delaisjour] += workload[c].second[delaisjour].second[jour].second;
+				//cout << "soluce: " << soluce[indice] << '\n';
+				//cout << "delta: " << delta << '\n';
+				//cout << "nomC: " << nomC << '\n';
+				//cout << "delai: " << delaisjour << '\n';
+				//cout << "size1: " << arrayWorkload.size() << " size2: " << arrayWorkload[0].size() << '\n';
+				//cout << "test?: " << '\n';
+				//cout << "Intervention ID: " << this->interventions[indice].getInterId() << '\n';
+				timeIdx = timeToIdx(delaisjour + 1, workload[c].second);
+				startingTime = startingTimeToIdx(jour + 1, workload[c].second[timeIdx].second);
+				
+				if(timeIdx != NULL && startingTime != NULL)
+					arrayWorkload[nomC][delaisjour] += workload[c].second[timeIdx].second[startingTime].second;
 	
 				if (arrayWorkload[nomC][delaisjour] > this->ressouces[nomC].second["max"][delaisjour]) {
 					score++;
@@ -70,4 +83,20 @@ vector<vector<int>> WorkloadCheck::getTimeBad() {
 
 vector<vector<int>> WorkloadCheck::getArrayWorkload() {
 	return arrayWorkload;
+}
+
+int WorkloadCheck::timeToIdx(int time, vector<pair<int, vector<pair<int, double>>>> workloadTime) {
+	for (int i = 0; i < workloadTime.size(); i++)
+		if (time == workloadTime[i].first)
+			return i;
+	//cout << "problem with WorkloadCheck: Time step not found! time: " << time << '\n';
+	return NULL;
+}
+
+int WorkloadCheck::startingTimeToIdx(int time, vector<pair<int, double>> workloadSTime) {
+	for (int i = 0; i < workloadSTime.size(); i++)
+		if (time == workloadSTime[i].first)
+			return i;
+	//cout << "problem with WorkloadCheck: Starting time step not found! time: " << time << '\n';
+	return NULL;
 }

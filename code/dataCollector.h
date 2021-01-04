@@ -24,6 +24,7 @@ public:
 	vector<pair<int, map<string, vector<double>>>> getResources();
 	vector<pair<string, vector<double>>> getExclusions();
 	map<string, vector<double>> getSeasons();
+	int IdToIdx(int id);
 
 	dataCollector();
 	dataCollector(FILE * I);

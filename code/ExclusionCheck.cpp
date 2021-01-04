@@ -33,10 +33,21 @@ map<int, vector<int>> ExclusionCheck::violatExclusions(vector<int> interventionP
 		season = exclusions[i].first;
 		tDt = getTDt(interventionPosition, exclusion, interventions);
 		tInSeasons = seasons[season];
+		/*cout << "season: " << season << '\n';
+		for (int w = 0; w < exclusion.size(); w++)
+			cout << exclusion[w] << " ";
+		cout << '\n';*/
+
 		interIsInSeason = testIfInSeason(tInSeasons, tDt);
 
+		/*cout << "interIsInSeason: " << '\n';
+		for (int w = 0; w < interIsInSeason.size(); w++)
+			cout << interIsInSeason[w] << " ";
+		cout << '\n';
+		cout << "exclusion size \n" << exclusion.size() << '\n';*/
+
 		for (int j = 0; j < exclusion.size(); j++) {
-			if (interIsInSeason[i]) {
+			if (interIsInSeason[j]) {
 				val = getConflic(exclusion, interIsInSeason, tDt, tDt[j], j);
 
 			}
@@ -68,7 +79,10 @@ vector<bool> ExclusionCheck::testIfInSeason(vector<double> tInSeasons, vector<pa
 	vector<bool> in;
 
 	for (int i = 0; i < tDt.size(); i++) {
-		if (tDt[i].first >= tInSeasons[0] && tDt[i].first <= tInSeasons[tInSeasons.size() - 1]) {
+		if (tInSeasons.size() == 0)
+			in.push_back(false);
+
+		else if (tDt[i].first >= tInSeasons[0] && tDt[i].first <= tInSeasons[tInSeasons.size() - 1]) {
 			in.push_back(true);
 		}
 		else {
@@ -82,9 +96,11 @@ vector<bool> ExclusionCheck::testIfInSeason(vector<double> tInSeasons, vector<pa
 vector<pair<int, double>> ExclusionCheck::getTDt(vector<int> interTime, vector<double> exclusion, vector<Intervention> interventions) {
 	vector<pair<int, double>> result;
 	int t;
+	int idx;
 	for (int j = 0; j < exclusion.size(); j++) {
-		t = interTime[exclusion[j]];
-		result.push_back(make_pair(t, interventions[exclusion[j]].getDelta()[t - 1]));
+		idx = this->data.IdToIdx(exclusion[j]);
+		t = interTime[idx];
+		result.push_back(make_pair(t, interventions[idx].getDelta()[t - 1]));
 	}
 	return result;
 }

@@ -246,7 +246,83 @@ vector<string> Parser::split(string str, char C) {
     return result;
 }
 
+vector<double> Parser::extractDbWords(string str)
+{
+    string val;
+    vector<double> save;
+    bool num = false;
+    bool point = false;
+    for (int i = 0; i < str.size(); i++)
+    {
+        if (isdigit(str[i])) {
+            val.push_back(str[i]);
+            num = true;
+            if (i == str.size() - 1) {// case when the number is at the end of the str
+                save.push_back(stod(val));
+                val = "";
+                point = false;
+            }
+        }
+        else if (!point && num && str[i] == '.')
+        {
+            val.push_back(str[i]);
+            num = false;
+            point = true;
+        }
+        else if (val.size() > 0) {
+            save.push_back(stod(val));
+            val = "";
+            point = false;
+        }
 
+    }
+    
+     return save;
+}
+
+vector<int> Parser::extractIntWords(string str)
+{
+    string val;
+    vector<int> save;
+
+    for (int i = 0; i < str.size(); i++)
+    {
+        if (isdigit(str[i])) {
+            val.push_back(str[i]);
+            if (i == str.size() - 1) {// case when the number is at the end of the str
+                save.push_back(stod(val));
+                val = "";
+            }
+        }
+        else if (val.size() > 0) {
+            save.push_back(stoi(val));
+            val = "";
+        }
+
+    }
+
+    return save;
+}
+
+vector<double> Parser::extractDbVecWords(vector<string> str) {
+    vector<double> save;
+    vector<double> temp;
+    for (int i = 0; i < str.size(); i++) {
+        temp = Parser::extractDbWords(str[i]);
+        save.insert(save.end(), temp.begin(), temp.end());
+    }
+    return save;
+}
+
+vector<int> Parser::extractIntVecWords(vector<string> str) {
+    vector<int> save;
+    vector<int> temp;
+    for (int i = 0; i < str.size(); i++) {
+        temp = Parser::extractIntWords(str[i]);
+        save.insert(save.end(), temp.begin(), temp.end());
+    }
+    return save;
+}
 
 vector<double> Parser::strTabToDbTabWithoutFirstCharacther(vector<string> tab, char C, int idx) {
     vector<double> result;
@@ -258,6 +334,21 @@ vector<double> Parser::strTabToDbTabWithoutFirstCharacther(vector<string> tab, c
                 result.push_back(stod(nb[idx]) - 1);
     }
     return result;
+}
+
+
+vector<double> Parser::substract(vector<double> tab, double x) {
+    for (int i = 0; i < tab.size(); i++) {
+        tab[i] -= x;
+    }
+    return tab;
+}
+
+vector<int> Parser::substract(vector<int> tab, int x) {
+    for (int i = 0; i < tab.size(); i++) {
+        tab[i] -= x;
+    }
+    return tab;
 }
 
 string Parser::toString(vector<int> vFile) {

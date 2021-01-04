@@ -36,7 +36,6 @@ Solver::Solver(dataCollector data){
 	this->w = WorkloadCheck(data);
 	this->exclusionViolation = checker.violatExclusions(this->Time);
 	this->score = DBL_MAX;
-	cout << "nnnnnnnnnnnnnniiiiiiiiikkkkkk: " << this->score << '\n';
 	cout << "Time \n";
 	for (int i = 0; i < this->Time.size(); i++)
 		cout << this->Time[i] << " ";
@@ -103,7 +102,6 @@ vector<int> Solver::estimateViolation(vector<int> time) {
 	cout << '\n';*/
 
 
-
 	return violation;
 }
 
@@ -140,7 +138,7 @@ void Solver::move(double timeStart) {
 			newTime[idx] = rand() % interventions[idx].getTmax() + 1;
 
 		
-		/*cout << "Time \n";
+		cout << "Time \n";
 		for (int i = 0; i < Time.size(); i++) 
 			cout << Time[i] << " ";
 	
@@ -148,13 +146,13 @@ void Solver::move(double timeStart) {
 		cout << "new Time \n";
 		for (int i = 0; i < newTime.size(); i++)
 			cout << newTime[i] << " ";
-		cout << '\n';*/
+		cout << '\n';
 		
 
 
 		newViolation = estimateViolation(newTime);
 		
-		/*cout << "violation\n";
+		cout << "violation\n";
 		for (int i = 0; i < violation.size(); i++)
 			cout << violation[i] << " ";
 		cout << '\n';
@@ -162,7 +160,7 @@ void Solver::move(double timeStart) {
 		for (int i = 0; i < newViolation.size(); i++)
 			cout << newViolation[i] << " ";
 		cout << '\n';
-		*/
+		
 
 
 		Time = newTime;
@@ -173,8 +171,8 @@ void Solver::move(double timeStart) {
 		if (violation.size() == 0) {
 			score = this->s.extractScenarioFinal(Time);
 			cpt++;
-			//cout << "cpt: " << cpt << '\n';
-			//cout << "score: " << this->score << " newScore" << score << '\n';
+			cout << "cpt: " << cpt << '\n';
+			cout << "score: " << this->score << " newScore" << score << '\n';
 			if (score < this->score) {
 				this->Time = Time;
 				this->score = score;

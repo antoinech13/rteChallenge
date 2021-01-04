@@ -14,6 +14,8 @@ public:
 	vector<int> getInterventionBad();
 	vector<vector<int>> getTimeBad();
 	vector<vector<int>> getArrayWorkload();
+	int timeToIdx(int time, vector<pair<int, vector<pair<int, double>>>> workloadTime);
+	int startingTimeToIdx(int time, vector<pair<int, double>> workloadTime);
 
 
 private:
@@ -23,5 +25,5 @@ private:
 	vector<Intervention> interventions;
 	vector<int> interventionBad;
 	vector<vector<int>>timeBad;
-
+	
 };

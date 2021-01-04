@@ -80,8 +80,9 @@ vector<pair<int, vector<pair<int, vector<pair<int, double>>>>>> Intervention::ex
 	vector<string> value = I.getValues();
 	vector<pair<int, vector<pair<int, double>>>> p;
 	vector<pair<int, vector<pair<int, vector<pair<int, double>>>>>> val;
-	vector<double> mainVal = Parser::strTabToDbTabWithoutFirstCharacther(main, '_', 1);
-	
+	//vector<double> mainVal = Parser::strTabToDbTabWithoutFirstCharacther(main, '_', 1);
+	vector<double> mainVal = Parser::extractDbVecWords(main);
+	mainVal = Parser::substract(mainVal, 1);
 	for (int i = 0; i < value.size(); i++) {
 		p = extractC(value[i]);
 		val.push_back(make_pair(mainVal[i], p));
@@ -115,7 +116,7 @@ vector<pair<int, double>> Intervention::extractTstep(string vFile) {
 	vector<pair<int, double>> val;
 
 	for(int i = 0; i < value.size(); i++) {
-		p.first = stoi(main[i]);
+		p.first = Parser::getDoubleWithoutCom(main[i]);
 		p.second = stod(value[i]);
 		val.push_back(p);
 	}
