@@ -13,7 +13,8 @@ WorkloadCheck::WorkloadCheck(dataCollector data) {
 
 WorkloadCheck::WorkloadCheck() {}
 
-int WorkloadCheck::workloadCheckMax(vector<int> soluce) {
+void WorkloadCheck::workloadCheckMax(vector<int> soluce) {
+	int jour, delta, delaisjour, nomC, timeIdx, startingTime;
 	
 	for (int indice = 0; indice < soluce.size(); indice++) {
 		jour = soluce[indice] - 1;
@@ -48,16 +49,16 @@ int WorkloadCheck::workloadCheckMax(vector<int> soluce) {
 void WorkloadCheck::workloadCheckMin() {
 	for (int ligne = 0; ligne < arrayWorkload.size(); ligne++) {
 		vector<int> lim;
-		for (int colonne = 0; colonne < arrayWorkload[ligne].size(); colonne++){
+		for (int colonne = 0; colonne < arrayWorkload[ligne].size(); colonne++) {
 			if (arrayWorkload[ligne][colonne] < ressouces[ligne].second["min"][colonne]) {
-			
-		    	lim.push_back(colonne + 1);
-	
+
+				lim.push_back(colonne + 1);
+
 			}
 		}
 		this->timeBad.push_back(lim);
 	}
-	return score;
+}
 
 
 void WorkloadCheck::getWorkloadCheck(vector<int> soluce) {
