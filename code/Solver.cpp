@@ -139,7 +139,7 @@ void Solver::move(double timeStart) {
 	vector<int> newViolation;
 	vector<vector<int>> timeBad = this->w.getTimeBad();
 
-	int idx, inter, cpt=0, cpt2 = 0;
+	int idx, inter, cpt=0, cpt2 = 0, cpt3=0;
 	double score;
 	
 	while((clock() - timeStart) / CLOCKS_PER_SEC < cpTime) {
@@ -156,6 +156,7 @@ void Solver::move(double timeStart) {
 			if (cpt2 == 3) {
 				cout << "cpt reinit\n";
 				cpt2 = 0;
+				cpt3 = 1;
 				idx = rand() % Time.size();
 				inter = idx;
 			}
@@ -163,6 +164,7 @@ void Solver::move(double timeStart) {
 
 				cout << "cpt increment\n";
 				cpt2++;
+				cpt3 = 0;
 				idx = rand() % violation.size();
 				inter = this->data.IdToIdx(violation[idx]);
 			}
@@ -183,6 +185,10 @@ void Solver::move(double timeStart) {
 			if (timeBadWorkMin.size() > 0)
 			{
 				newTime[this->data.IdToIdx(violation[idx])] = timeBadWorkMin[rand() % timeBadWorkMin.size()];
+			}
+			else if (cpt3 == 1)
+			{
+				newTime[idx] = rand() % interventions[idx].getTmax() + 1;
 			}
 			else
 			{
