@@ -92,7 +92,7 @@ vector<int> Solver::estimateViolation(vector<int> time) {
 	for (int i = 0; i < tme.size(); i++)
 		cout << tme[i] << " ";
 	cout << '\n';
-*/
+	*/
 
 
 	return violation;
@@ -138,18 +138,32 @@ void Solver::move(double timeStart) {
 	vector<int> newViolation;
 	vector<vector<int>> timeBad = this->w.getTimeBad();
 
-	int idx, inter, cpt=0;
+	int idx, inter, cpt=0, cpt2 = 0;
 	double score;
 	
 	while((clock() - timeStart) / CLOCKS_PER_SEC < cpTime) {
 
 		srand(time(0));
-		if (violation.size() > 0)
+		if (violation.size() > 0 && violation.size() != 1)
 		{
 			idx = rand() % violation.size();
 			inter = violation[idx];
 		}
-			
+		
+		else if(violation.size() == 1)
+		{
+			if (cpt2 == 3) {
+				cpt2 = 0;
+				idx = rand() % Time.size();
+				inter = idx;
+			}
+			else {
+				cpt2++;
+				idx = rand() % violation.size();
+				inter = violation[idx];
+			}
+		}
+
 		else
 		{
 			idx = rand() % Time.size();
@@ -214,6 +228,7 @@ void Solver::move(double timeStart) {
 
 		if (violation.size() == 0 && timeBad.size() ==0 ) 
 		{
+			cout << "score coputation: \n";
 			score = this->s.extractScenarioFinal(Time);
 			cpt++;
 			cout << "cpt: " << cpt << '\n';

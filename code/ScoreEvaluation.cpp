@@ -49,8 +49,16 @@ double ScoreEvaluation::extractScenario(vector<int> interTime) {
 				//cout << "idx compute" << '\n';
 				//cout << "Tmax: " << this->interventions[i].getTmax() << " j: " << j <<'\n';
 				if (idx != -1 ) {
-					cout << "idx: " << idx << " key: " << riskByInterventions[i][j][idx].first << '\n';
-					risk += riskByInterventions[i][j][idx].second[k];
+					try
+					{
+						cout << "idx: " << idx << " key: " << riskByInterventions[i][j][idx].first << '\n';
+						risk += riskByInterventions[i][j][idx].second[k];
+					}
+					catch (const std::exception& e)
+					{
+						risk += 1;
+					}
+					
 				}
 			}
 			valueForOneScenario.push_back(risk);
