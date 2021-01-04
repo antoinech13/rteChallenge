@@ -8,6 +8,7 @@
 #include <iterator>
 #include <float.h>
 #include <algorithm>
+#include <fstream>
 
 using namespace std;
 
@@ -101,7 +102,7 @@ vector<int> Solver::estimateViolation(vector<int> time) {
 vector<int> Solver::findWorkload(int idx)
 {
 	vector<int> loadMultiple;
-	vector<pair<int, vector<pair<int, vector<pair<int, double>>>>>> workMultiple = this->data.getInterventions()[this->data.IdToIdx(idx)].getWorkload();
+	vector<pair<int, vector<pair<int, vector<pair<int, double>>>>>> workMultiple = this->data.getInterventions()[idx].getWorkload();
 	for (int indice = 0; indice < workMultiple.size(); indice++)
 	{
 		loadMultiple.push_back(workMultiple[indice].first);
@@ -147,7 +148,7 @@ void Solver::move(double timeStart) {
 		if (violation.size() > 0 && violation.size() != 1)
 		{
 			idx = rand() % violation.size();
-			inter = violation[idx];
+			inter = this->data.IdToIdx(violation[idx]);
 		}
 		
 		else if(violation.size() == 1)
@@ -160,7 +161,7 @@ void Solver::move(double timeStart) {
 			else {
 				cpt2++;
 				idx = rand() % violation.size();
-				inter = violation[idx];
+				inter = this->data.IdToIdx(violation[idx]);
 			}
 		}
 
@@ -218,7 +219,24 @@ void Solver::move(double timeStart) {
 			cout << newViolation[i] << " ";
 		cout << '\n';
 		
+		if (newViolation.size() == 0)
+		{
+			ofstream monFlux("SoluceTime.txt");
 
+			if (monFlux)
+			{
+				for (int intere = 0; intere < newViolation.size(); intere++)
+				{
+					monFlux << newViolation[intere] << " " << endl;
+				}
+			}
+			else
+			{
+				cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
+			}
+
+			monFlux.close();
+		}
 
 		Time = newTime;
 		violation = newViolation;

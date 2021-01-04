@@ -10,7 +10,6 @@
 #include "Intervention.h"
 #include "dataCollector.h"
 #include "Solver.h"
-#include <fstream>
 
 void writeSoluce(vector<int> time)
 {
@@ -157,7 +156,7 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < time.size(); i++)
         cout << time[i] << " ";
    
-    writeSoluce(time);
+   // writeSoluce(time);
 
     
 
