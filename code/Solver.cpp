@@ -54,10 +54,6 @@ vector<int> Solver::randInitialisation() {
 	return value;
 }
 
-int Solver::scoreCheckWorload(vector<int> soluce) {
-	int score = this->w.getWorkloadCheck(this->Time);
-	return score;
-}
 
 map<int, vector<int>> Solver::scoreExclusion() {
 	return this->exclusionViolation;
@@ -82,7 +78,8 @@ vector<int> Solver::estimateViolation(vector<int> time) {
 
 	sort(violation.begin(), violation.end());
 	violation.erase(unique(violation.begin(), violation.end()), violation.end());
-	/*
+
+/*
 	cout << "exclusion \n";
 	for (int i = 0; i < exclusion.size(); i++)
 		cout << exclusion[i] << " ";
@@ -95,11 +92,11 @@ vector<int> Solver::estimateViolation(vector<int> time) {
 	for (int i = 0; i < tme.size(); i++)
 		cout << tme[i] << " ";
 	cout << '\n';
+*/
 
-	cout << "violation \n";
-	for (int i = 0; i < violation.size(); i++)
-		cout << violation[i] << " ";
-	cout << '\n';*/
+
+	return violation;
+}
 
 
 	return violation;
@@ -118,22 +115,47 @@ void Solver::move(double timeStart) {
 
 	vector<int> violation = estimateViolation(this->Time);
 	vector<int> newViolation;
-	int idx, cpt=0;
+	vector<vector<int>> timeBad = this->w.getTimeBad();
+
+	int idx, inter, cpt=0;
 	double score;
 	
 	while((clock() - timeStart) / CLOCKS_PER_SEC < cpTime) {
 
 		srand(time(0));
 		if (violation.size() > 0)
+		{
 			idx = rand() % violation.size();
+			inter = violation[idx];
+		}
+			
 		else
+		{
 			idx = rand() % Time.size();
+			inter = idx;
+		}
 
 		srand(time(0));
 
+		vector<int> timeBadWorkMin = chekFindWork(inter, timeBad);
+		
 		//cout << "idx: " << idx << '\n';
-		if (violation.size() > 0)
-			newTime[violation[idx]] = rand() % interventions[violation[idx]].getTmax() + 1;
+		if (violation.size() > 0) {
+			if (timeBadWorkMin.size() > 0)
+			{
+				newTime[this->data.IdToIdx(violation[idx])] = timeBadWorkMin[rand() % timeBadWorkMin.size()];
+			}
+			else
+			{
+				cout << "jen est marre: " <<this->data.IdToIdx(violation[idx]) << " intervention id:  "<< this->data.getInterventions()[this->data.IdToIdx(violation[idx])].getInterId()<<'\n';
+				newTime[this->data.IdToIdx(violation[idx])] = rand() % interventions[this->data.IdToIdx(violation[idx])].getTmax() + 1;
+			}
+			
+		}
+		else if (timeBadWorkMin.size() > 0)
+		{
+			newTime[idx] = timeBadWorkMin[rand() % timeBadWorkMin.size()];
+		}
 		else
 			newTime[idx] = rand() % interventions[idx].getTmax() + 1;
 
@@ -165,10 +187,12 @@ void Solver::move(double timeStart) {
 
 		Time = newTime;
 		violation = newViolation;
+		timeBad = this->w.getTimeBad();
 		
 
 
-		if (violation.size() == 0) {
+		if (violation.size() == 0 && timeBad.size() ==0 ) 
+		{
 			score = this->s.extractScenarioFinal(Time);
 			cpt++;
 			cout << "cpt: " << cpt << '\n';

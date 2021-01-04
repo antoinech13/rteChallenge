@@ -99,8 +99,10 @@ vector<pair<int, double>> ExclusionCheck::getTDt(vector<int> interTime, vector<d
 	int idx;
 	for (int j = 0; j < exclusion.size(); j++) {
 		idx = this->data.IdToIdx(exclusion[j]);
-		t = interTime[idx];
-		result.push_back(make_pair(t, interventions[idx].getDelta()[t - 1]));
+		if (idx != -1) {
+			t = interTime[idx];
+			result.push_back(make_pair(t, interventions[idx].getDelta()[t - 1]));
+		}
 	}
 	return result;
 }
