@@ -145,8 +145,9 @@ void Solver::move(double timeStart) {
 	while((clock() - timeStart) / CLOCKS_PER_SEC < cpTime) {
 
 		srand(time(0));
-		if (violation.size() > 0 && violation.size() != 1)
+		if (violation.size() > 0)
 		{
+			cout << "bhdhjcsobhfinjifnuerq\n";
 			idx = rand() % violation.size();
 			inter = this->data.IdToIdx(violation[idx]);
 		}
@@ -218,6 +219,7 @@ void Solver::move(double timeStart) {
 
 
 		newViolation = estimateViolation(newTime);
+		cout << "new violation size: " << newViolation.size() << '\n';
 		if (newViolation.size() == 0)
 		{
 			cout << "écriture solution\n";
