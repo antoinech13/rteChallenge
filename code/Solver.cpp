@@ -28,6 +28,13 @@ double Solver::getScore() {
 
 
 Solver::Solver(dataCollector data){
+	const char* path = "SolutionTime";
+	FILE* exemple;
+
+
+	vector<int> c;
+	exemple = fopen(path, "r");
+
 	this->data = data;
 	this->Time = randInitialisation();
 	vector<int> test = { 1,1,2 };
