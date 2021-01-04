@@ -168,10 +168,10 @@ void Solver::move(double timeStart) {
 		}
 		else if (timeBadWorkMin.size() > 0)
 		{
-			newTime[this->data.IdToIdx(violation[idx])] = timeBadWorkMin[rand() % timeBadWorkMin.size()];
+			newTime[idx] = timeBadWorkMin[rand() % timeBadWorkMin.size()];
 		}
 		else
-			newTime[this->data.IdToIdx(violation[idx])] = rand() % interventions[idx].getTmax() + 1;
+			newTime[idx] = rand() % interventions[idx].getTmax() + 1;
 
 		
 		cout << "Time \n";
