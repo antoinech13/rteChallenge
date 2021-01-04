@@ -66,17 +66,17 @@ map<int, vector<int>> Solver::scoreExclusion() {
 
 vector<int> Solver::estimateViolation(vector<int> time) {
 
-	//w.getWorkloadCheck(time);
+	w.getWorkloadCheck(time);
 	this->t = TimeChecker(this->data, time);
 
 	vector<int> exclusion = exclusionTab(time);
-	//vector<int> workload = this->w.getInterventionBad();
+	vector<int> workload = this->w.getInterventionBad();
 	vector<int> tme = this->t.getViolations();
 
 	vector<int> violation;
 
 	violation.insert(violation.end(), exclusion.begin(), exclusion.end());
-	//violation.insert(violation.end(), workload.begin(), workload.end());
+	violation.insert(violation.end(), workload.begin(), workload.end());
 	violation.insert(violation.end(), tme.begin(), tme.end());
 
 

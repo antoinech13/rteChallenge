@@ -30,12 +30,13 @@ double ScoreEvaluation::extractScenario(vector<int> interTime) {
 	for (int j = 0; j < this->data.getT(); j++) {
 		for (int k = 0; k < scNb[j]; k++) {
 			for (int i = 0; i < riskByInterventions.size(); i++) {
-				idx = keyToIdx(interTime[i] - 1, riskByInterventions[i][j]);
-				cout << "idx compute" << '\n';
-				cout << "Tmax: " << this->interventions[i].getTmax() << " j: " << j <<'\n';
-				if(idx != -1 && this->interventions[i].getTmax() - 1 > j)
+				idx = keyToIdx(interTime[i], riskByInterventions[i][j]);
+				//cout << "idx compute" << '\n';
+				//cout << "Tmax: " << this->interventions[i].getTmax() << " j: " << j <<'\n';
+				if (idx != -1 && this->interventions[i].getTmax() > j) {
 					cout << "idx: " << idx;
 					risk += riskByInterventions[i][j][idx].second[k];
+				}
 			}
 			valueForOneScenario.push_back(risk);
 			avgBySc += risk;
