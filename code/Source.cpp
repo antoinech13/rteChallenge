@@ -10,7 +10,6 @@
 #include "Intervention.h"
 #include "dataCollector.h"
 #include "Solver.h"
-#include <fstream>
 
 void writeSoluce(vector<int> time)
 {

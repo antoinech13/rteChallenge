@@ -8,6 +8,7 @@
 #include <iterator>
 #include <float.h>
 #include <algorithm>
+#include <fstream>
 
 using namespace std;
 
@@ -221,7 +222,24 @@ void Solver::move(double timeStart) {
 			cout << newViolation[i] << " ";
 		cout << '\n';
 		
+		if (newViolation.size() == 0)
+		{
+			ofstream monFlux("SoluceTime.txt");
 
+			if (monFlux)
+			{
+				for (int intere = 0; intere < newViolation.size(); intere++)
+				{
+					monFlux << newViolation[intere] << " " << endl;
+				}
+			}
+			else
+			{
+				cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
+			}
+
+			monFlux.close();
+		}
 
 		Time = newTime;
 		violation = newViolation;
