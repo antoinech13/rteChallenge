@@ -353,6 +353,6 @@ def check_and_display(instance_file, solution_file):
 
 if __name__ == '__main__':
 
-        instance_file = "A_01.json"
+        instance_file = "example2.json"
         solution_file = "Soluce.txt"
         check_and_display(instance_file, solution_file)
