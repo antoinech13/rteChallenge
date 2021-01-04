@@ -44,8 +44,8 @@ Solver::Solver(dataCollector data){
 			d.push_back(c);
 		else
 		{
-			d = "";
 			sq.push_back(stoi(d));
+			d = "";
 		}
 		
 	} while (c != EOF);
