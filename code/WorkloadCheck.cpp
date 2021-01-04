@@ -13,18 +13,16 @@ WorkloadCheck::WorkloadCheck(dataCollector data) {
 
 WorkloadCheck::WorkloadCheck() {}
 
-void WorkloadCheck::workloadCheckMax(vector<int> soluce) {
-	int score = 0;
-	int timeIdx;
-	int startingTime;
+int WorkloadCheck::workloadCheckMax(vector<int> soluce) {
+	
 	for (int indice = 0; indice < soluce.size(); indice++) {
-		int jour = soluce[indice] - 1;
-		int delta = this->interventions[indice].getDelta()[jour];
+		jour = soluce[indice] - 1;
+		delta = this->interventions[indice].getDelta()[jour];
 		vector<pair<int, vector<pair<int, vector<pair<int, double>>>>>> workload = this->interventions[indice].getWorkload();
 		for (int nbjour = 0; nbjour < delta; nbjour++) {
 			for (int c = 0; c < workload.size(); c++) {
-				int nomC = workload[c].first;
-				int delaisjour = jour + nbjour;
+				nomC = workload[c].first;
+				delaisjour = jour + nbjour;
 				//cout << "soluce: " << soluce[indice] << '\n';
 				//cout << "delta: " << delta << '\n';
 				//cout << "nomC: " << nomC << '\n';
@@ -39,8 +37,8 @@ void WorkloadCheck::workloadCheckMax(vector<int> soluce) {
 					arrayWorkload[nomC][delaisjour] += workload[c].second[timeIdx].second[startingTime].second;
 	
 				if (arrayWorkload[nomC][delaisjour] > this->ressouces[nomC].second["max"][delaisjour]) {
-				
-					this->interventionBad.push_back(this->interventions[indice].getInterId());
+					
+					this->interventionBad.push_back(indice);
 				}
 			}
 		}
@@ -53,14 +51,13 @@ void WorkloadCheck::workloadCheckMin() {
 		for (int colonne = 0; colonne < arrayWorkload[ligne].size(); colonne++){
 			if (arrayWorkload[ligne][colonne] < ressouces[ligne].second["min"][colonne]) {
 			
-				lim.push_back(colonne + 1);
+		    	lim.push_back(colonne + 1);
 	
 			}
 		}
 		this->timeBad.push_back(lim);
 	}
-
-}
+	return score;
 
 
 void WorkloadCheck::getWorkloadCheck(vector<int> soluce) {
@@ -68,7 +65,6 @@ void WorkloadCheck::getWorkloadCheck(vector<int> soluce) {
 	this->arrayWorkload = vector<vector<int>>(ressouces.size(), vector<int>(this->T));
 	workloadCheckMax(soluce);
 	workloadCheckMin();
-
 
 }
 
