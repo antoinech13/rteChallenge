@@ -212,18 +212,9 @@ void Solver::move(double timeStart) {
 
 
 		newViolation = estimateViolation(newTime);
-		
-		cout << "violation\n";
-		for (int i = 0; i < violation.size(); i++)
-			cout << violation[i] << " ";
-		cout << '\n';
-		cout << "newviolation\n";
-		for (int i = 0; i < newViolation.size(); i++)
-			cout << newViolation[i] << " ";
-		cout << '\n';
-		
 		if (newViolation.size() == 0)
 		{
+			cout << "écriture solution\n";
 			ofstream monFlux("SoluceTime.txt");
 
 			if (monFlux)
@@ -240,6 +231,17 @@ void Solver::move(double timeStart) {
 
 			monFlux.close();
 		}
+		
+		cout << "violation\n";
+		for (int i = 0; i < violation.size(); i++)
+			cout << violation[i] << " ";
+		cout << '\n';
+		cout << "newviolation\n";
+		for (int i = 0; i < newViolation.size(); i++)
+			cout << newViolation[i] << " ";
+		cout << '\n';
+		
+		
 
 		Time = newTime;
 		violation = newViolation;
