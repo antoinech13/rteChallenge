@@ -65,6 +65,7 @@ void WorkloadCheck::getWorkloadCheck(vector<int> soluce) {
 	this->interventionBad.clear();
 	this->arrayWorkload = vector<vector<int>>(ressouces.size(), vector<int>(this->T));
 	workloadCheckMax(soluce);
+	this->timeBad.clear();
 	workloadCheckMin();
 
 }
