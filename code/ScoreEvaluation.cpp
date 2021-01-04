@@ -22,7 +22,7 @@ double ScoreEvaluation::extractScenario(vector<int> interTime) {
 	vector<double> risksAtTime, valueForOneScenario, scNb = this->scenarios;
 	vector<int> idxStartTime = interTime;
 
-	int risk = 0;
+	int idx, risk = 0;
 	double avgBySc = 0, avgByTime = 0;
 	this->means.clear();
 	this->risks.clear();
@@ -30,7 +30,12 @@ double ScoreEvaluation::extractScenario(vector<int> interTime) {
 	for (int j = 0; j < this->data.getT(); j++) {
 		for (int k = 0; k < scNb[j]; k++) {
 			for (int i = 0; i < riskByInterventions.size(); i++) {
-				risk += riskByInterventions[i][j][(int)interTime[i]-1].second[k];
+				idx = keyToIdx(interTime[i] - 1, riskByInterventions[i][j]);
+				cout << "idx compute" << '\n';
+				cout << "Tmax: " << this->interventions[i].getTmax() << " j: " << j <<'\n';
+				if(idx != -1 && this->interventions[i].getTmax() - 1 > j)
+					cout << "idx: " << idx;
+					risk += riskByInterventions[i][j][idx].second[k];
 			}
 			valueForOneScenario.push_back(risk);
 			avgBySc += risk;
@@ -52,7 +57,14 @@ double ScoreEvaluation::extractScenario(vector<int> interTime) {
 }
 
 
-
+int ScoreEvaluation::keyToIdx(int time, vector<pair<int, vector<double>>> rsk) {
+	for (int i = 0; i < rsk.size(); i++) {
+		if (rsk[i].first == time)
+			return i;
+	}
+	cout << "didn't found the starting time, for the time step: " << time << '\n';
+	return -1;
+}
 
 /*on extrait les valeurs de risque à un temps donné, pour chaque scénario on somme les valeurs de risque pour chaque intervention
 ex : au temps 1, pour le scénario 1 risque(scénario 1, temps 1) = risque(scénario 1, temps 1)_I1 + ... + risque(scénario 1, temps 1)_In;
@@ -72,7 +84,7 @@ bool compare(int i, int j)
 
 double ScoreEvaluation::extractScenario2() {
 	double score2 = 0;
-
+	cout << "scenario2\n";
 	for (int tim = 0; tim < this->risks.size(); tim++)
 	{
 		sort(this->risks[tim].begin() , this->risks[tim].end(), compare);

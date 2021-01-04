@@ -35,7 +35,7 @@ int WorkloadCheck::workloadCheckMax(vector<int> soluce) {
 				timeIdx = timeToIdx(delaisjour + 1, workload[c].second);
 				startingTime = startingTimeToIdx(jour + 1, workload[c].second[timeIdx].second);
 				
-				if(timeIdx != NULL && startingTime != NULL)
+				if(timeIdx != -1 && startingTime != -1)
 					arrayWorkload[nomC][delaisjour] += workload[c].second[timeIdx].second[startingTime].second;
 	
 				if (arrayWorkload[nomC][delaisjour] > this->ressouces[nomC].second["max"][delaisjour]) {
@@ -90,7 +90,7 @@ int WorkloadCheck::timeToIdx(int time, vector<pair<int, vector<pair<int, double>
 		if (time == workloadTime[i].first)
 			return i;
 	//cout << "problem with WorkloadCheck: Time step not found! time: " << time << '\n';
-	return NULL;
+	return -1;
 }
 
 int WorkloadCheck::startingTimeToIdx(int time, vector<pair<int, double>> workloadSTime) {
@@ -98,5 +98,5 @@ int WorkloadCheck::startingTimeToIdx(int time, vector<pair<int, double>> workloa
 		if (time == workloadSTime[i].first)
 			return i;
 	//cout << "problem with WorkloadCheck: Starting time step not found! time: " << time << '\n';
-	return NULL;
+	return -1;
 }

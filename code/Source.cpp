@@ -84,7 +84,7 @@ int main(int argc, char* argv[]) {
 
 
     dataCollector D(exemple);
-    
+   /*
     cout << "test of the dataCollector \n";
     cout << "alpha \n";
     cout << D.getAlpha() << '\n';
@@ -128,7 +128,7 @@ int main(int argc, char* argv[]) {
     cout << "first 0 0 " << rsk[0][0].first << '\n';
     cout << "value\n";
     print(rsk[0][0].second);
-
+    */
     
     
     

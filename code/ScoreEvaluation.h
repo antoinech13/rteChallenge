@@ -25,7 +25,7 @@ private:
 	//double extractScenario(vector<int> interTime);
 	double extractScenario2();
 	vector<vector<vector<pair<int, vector<double>>>>> extractAllRisk();
-
+	int keyToIdx(int time, vector<pair<int, vector<double>>> rsk);
 
 
 

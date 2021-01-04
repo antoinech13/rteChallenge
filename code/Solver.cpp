@@ -66,17 +66,17 @@ map<int, vector<int>> Solver::scoreExclusion() {
 
 vector<int> Solver::estimateViolation(vector<int> time) {
 
-	w.getWorkloadCheck(time);
+	//w.getWorkloadCheck(time);
 	this->t = TimeChecker(this->data, time);
 
 	vector<int> exclusion = exclusionTab(time);
-	vector<int> workload = this->w.getInterventionBad();
+	//vector<int> workload = this->w.getInterventionBad();
 	vector<int> tme = this->t.getViolations();
 
 	vector<int> violation;
 
 	violation.insert(violation.end(), exclusion.begin(), exclusion.end());
-	violation.insert(violation.end(), workload.begin(), workload.end());
+	//violation.insert(violation.end(), workload.begin(), workload.end());
 	violation.insert(violation.end(), tme.begin(), tme.end());
 
 
@@ -132,8 +132,10 @@ void Solver::move(double timeStart) {
 		srand(time(0));
 
 		//cout << "idx: " << idx << '\n';
-		if (violation.size() > 0)
-			newTime[violation[idx]] = rand() % interventions[violation[idx]].getTmax() + 1;
+		if (violation.size() > 0) {
+			cout << "jen est marre: " <<this->data.IdToIdx(violation[idx]) << " intervention id:  "<< this->data.getInterventions()[this->data.IdToIdx(violation[idx])].getInterId()<<'\n';
+			newTime[this->data.IdToIdx(violation[idx])] = rand() % interventions[this->data.IdToIdx(violation[idx])].getTmax() + 1;
+		}
 		else
 			newTime[idx] = rand() % interventions[idx].getTmax() + 1;
 

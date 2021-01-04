@@ -17,7 +17,7 @@ vector<int> TimeChecker::getViolations() {
 	vector<int> values;
 	for(int i = 0; i < this->interventions.size(); i++) {
 		if (this->times[i] + this->interventions[i].getDelta()[this->times[i]-1] - 1 > this->T) 
-			values.push_back(i);
+			values.push_back(this->interventions[i].getInterId());
 	}
 	return values;
 

@@ -107,5 +107,5 @@ int dataCollector::IdToIdx(int id) {
 	}
 		
 	cout << "intervention not found!\n";
-	return NULL;
+	return -1;
 }
