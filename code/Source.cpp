@@ -53,7 +53,7 @@ void print(vector<string> tab) {
 
 int main(int argc, char* argv[]) {
     double timeStart = clock();
-    const char* path = "example2.JSON";
+    const char* path = "A_01.JSON";
     FILE* exemple;
    
     vector<int> c;

@@ -245,14 +245,7 @@ void Solver::move(double timeStart) {
 
 		newViolation = estimateViolation(newTime);
 		
-		cout << "violation\n";
-		for (int i = 0; i < violation.size(); i++)
-			cout << violation[i] << " ";
-		cout << '\n';
-		cout << "newviolation\n";
-		for (int i = 0; i < newViolation.size(); i++)
-			cout << newViolation[i] << " ";
-		cout << '\n';
+
 		/*
 		if (newViolation.size() == 0)
 		{
@@ -291,7 +284,7 @@ void Solver::move(double timeStart) {
 		
 
 		
-		if (violation.size() == 0 && timeBad[0].size() == 0) 
+		if (violation.size() == 0 && timeBad.size() == 1 && timeBad[0].size() == 0) 
 		{
 			cout << "score coputation: \n";
 			score = this->s.extractScenarioFinal(Time);
