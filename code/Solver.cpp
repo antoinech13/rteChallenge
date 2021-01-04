@@ -40,7 +40,7 @@ Solver::Solver(dataCollector data){
 	
 	do {
 		c = fgetc(exemple);
-		if (c != ' ' || c != '\n')
+		if (c != ' ' && c != '\n')
 			d.push_back(c);
 		else
 		{
