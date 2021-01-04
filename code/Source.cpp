@@ -19,7 +19,7 @@ void writeSoluce(vector<int> time, dataCollector D)
     {
         for (int inter = 0; inter < time.size(); inter++)
         {
-            monFlux << "I" << D.getInterventions()[inter].getInterId()+1 << " " << time[inter] << endl;
+            monFlux << D.getInterventions()[inter].getName() << D.getInterventions()[inter].getInterId()+1 << " " << time[inter] << endl;
         }
     }
     else
