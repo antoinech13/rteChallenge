@@ -1,3 +1,4 @@
+﻿#define _CRT_SECURE_NO_DEPRECATE
 #include "Solver.h"
 #include "Intervention.h"
 #include "ExclusionCheck.h"
@@ -28,8 +29,26 @@ double Solver::getScore() {
 
 
 Solver::Solver(dataCollector data){
+	const char* path = "SolutionTime";
+	FILE* exemple;
+
+
+	vector<int> sq;
+	string d;
+	exemple = fopen(path, "r");
+	char c;
+	
+	do {
+		c = fgetc(exemple);
+		if (c != ' ', c != '\n')
+			d.push_back(c);
+		d = "";
+		sq.push_back(stoi(d));
+	} while (c != EOF);
+
+
 	this->data = data;
-	this->Time = randInitialisation();
+	this->Time = sq;//randInitialisation();
 	vector<int> test = { 1,1,2 };
 	this->checker = ExclusionCheck(data);
 	this->s = ScoreEvaluation(data);
@@ -134,8 +153,9 @@ void Solver::move(double timeStart) {
 	while((clock() - timeStart) / CLOCKS_PER_SEC < cpTime) {
 
 		srand(time(0));
-		if (violation.size() > 0 && violation.size() != 1)
+		if (violation.size() > 0)
 		{
+			cout << "bhdhjcsobhfinjifnuerq\n";
 			idx = rand() % violation.size();
 			inter = this->data.IdToIdx(violation[idx]);
 		}
@@ -219,6 +239,7 @@ void Solver::move(double timeStart) {
 		
 		if (newViolation.size() == 0)
 		{
+			cout << "�criture solution\n";
 			ofstream monFlux("SoluceTime.txt");
 
 			if (monFlux)
@@ -235,6 +256,17 @@ void Solver::move(double timeStart) {
 
 			monFlux.close();
 		}
+		
+		cout << "violation\n";
+		for (int i = 0; i < violation.size(); i++)
+			cout << violation[i] << " ";
+		cout << '\n';
+		cout << "newviolation\n";
+		for (int i = 0; i < newViolation.size(); i++)
+			cout << newViolation[i] << " ";
+		cout << '\n';
+		
+		
 
 		Time = newTime;
 		violation = newViolation;

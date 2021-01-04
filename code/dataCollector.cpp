@@ -93,6 +93,7 @@ vector<Intervention> dataCollector::buildInterventions(string vFile) {
 	for (int i = 0; i < values.size(); i++) {
 		Intervention it(values[i]);
 		it.setId(ids[i]);
+		it.setName(main[i]);
 		val.push_back(it);
 	}
 	return val;
