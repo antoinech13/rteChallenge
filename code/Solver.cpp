@@ -40,9 +40,9 @@ Solver::Solver(dataCollector data){
 	
 	do {
 		c = fgetc(exemple);
-		if (c != ' ' && c != '\n')
+		if (c != ' ' && c != '\n' && c != '\t')
 			d.push_back(c);
-		else
+		if(c == '\n')
 		{
 			sq.push_back(stoi(d));
 			d = "";
@@ -52,7 +52,7 @@ Solver::Solver(dataCollector data){
 
 
 	this->data = data;
-	this->Time = sq;//randInitialisation();
+	this->Time = randInitialisation();
 	vector<int> test = { 1,1,2 };
 	this->checker = ExclusionCheck(data);
 	this->s = ScoreEvaluation(data);
@@ -168,9 +168,9 @@ void Solver::move(double timeStart) {
 	while((clock() - timeStart) / CLOCKS_PER_SEC < cpTime) {
 
 		srand(time(0));
-		if (violation.size() > 0)
+		if (violation.size() > 1)
 		{
-			cout << "bhdhjcsobhfinjifnuerq\n";
+			
 			idx = rand() % violation.size();
 			inter = this->data.IdToIdx(violation[idx]);
 		}
@@ -208,10 +208,12 @@ void Solver::move(double timeStart) {
 		if (violation.size() > 0) {
 			if (timeBadWorkMin.size() > 0)
 			{
+				cout << "jen est marre: " << this->data.IdToIdx(violation[idx]) << " intervention id:  " << this->data.getInterventions()[this->data.IdToIdx(violation[idx])].getInterId() << '\n';
 				newTime[this->data.IdToIdx(violation[idx])] = timeBadWorkMin[rand() % timeBadWorkMin.size()];
 			}
 			else if (cpt3 == 1)
 			{
+				cout << "jen est marre: " << idx << " intervention id:  " << this->data.getInterventions()[idx].getInterId() << '\n';
 				newTime[idx] = rand() % interventions[idx].getTmax() + 1;
 			}
 			else
@@ -229,7 +231,7 @@ void Solver::move(double timeStart) {
 			newTime[idx] = rand() % interventions[idx].getTmax() + 1;
 
 		
-		/*cout << "Time \n";
+		cout << "Time \n";
 		for (int i = 0; i < Time.size(); i++) 
 			cout << Time[i] << " ";
 	
@@ -237,21 +239,21 @@ void Solver::move(double timeStart) {
 		cout << "new Time \n";
 		for (int i = 0; i < newTime.size(); i++)
 			cout << newTime[i] << " ";
-		cout << '\n';*/
+		cout << '\n';
 		
 
 
 		newViolation = estimateViolation(newTime);
 		
-		/*cout << "violation\n";
+		cout << "violation\n";
 		for (int i = 0; i < violation.size(); i++)
 			cout << violation[i] << " ";
 		cout << '\n';
 		cout << "newviolation\n";
 		for (int i = 0; i < newViolation.size(); i++)
 			cout << newViolation[i] << " ";
-		cout << '\n';*/
-		
+		cout << '\n';
+		/*
 		if (newViolation.size() == 0)
 		{
 			cout << "�criture solution\n";
@@ -270,7 +272,7 @@ void Solver::move(double timeStart) {
 			}
 
 			monFlux.close();
-		}
+		}*/
 		
 		cout << "violation\n";
 		for (int i = 0; i < violation.size(); i++)
@@ -288,8 +290,8 @@ void Solver::move(double timeStart) {
 		timeBad = this->w.getTimeBad();
 		
 
-
-		if (violation.size() == 0 && timeBad.size() == 0) 
+		
+		if (violation.size() == 0 && timeBad[0].size() == 0) 
 		{
 			cout << "score coputation: \n";
 			score = this->s.extractScenarioFinal(Time);

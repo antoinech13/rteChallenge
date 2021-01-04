@@ -19,7 +19,7 @@ void writeSoluce(vector<int> time, dataCollector D)
     {
         for (int inter = 0; inter < time.size(); inter++)
         {
-            monFlux << D.getInterventions()[inter].getName() << D.getInterventions()[inter].getInterId()+1 << " " << time[inter] << endl;
+            monFlux << D.getInterventions()[inter].getName() << " " << time[inter] << endl;
         }
     }
     else
@@ -53,7 +53,7 @@ void print(vector<string> tab) {
 
 int main(int argc, char* argv[]) {
     double timeStart = clock();
-    const char* path = "A_01.JSON";
+    const char* path = "example2.JSON";
     FILE* exemple;
    
     vector<int> c;
