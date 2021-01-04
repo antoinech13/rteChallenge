@@ -8,6 +8,7 @@
 #include <iterator>
 #include <float.h>
 #include <algorithm>
+#include <fstream>
 
 using namespace std;
 
@@ -142,11 +143,14 @@ void Solver::move(double timeStart) {
 		else if(violation.size() == 1)
 		{
 			if (cpt2 == 3) {
+				cout << "cpt reinit\n";
 				cpt2 = 0;
 				idx = rand() % Time.size();
 				inter = idx;
 			}
 			else {
+
+				cout << "cpt increment\n";
 				cpt2++;
 				idx = rand() % violation.size();
 				inter = this->data.IdToIdx(violation[idx]);
@@ -207,7 +211,24 @@ void Solver::move(double timeStart) {
 			cout << newViolation[i] << " ";
 		cout << '\n';
 		
+		if (newViolation.size() == 0)
+		{
+			ofstream monFlux("SoluceTime.txt");
 
+			if (monFlux)
+			{
+				for (int intere = 0; intere < newTime.size(); intere++)
+				{
+					monFlux << newTime[intere] << " " << endl;
+				}
+			}
+			else
+			{
+				cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
+			}
+
+			monFlux.close();
+		}
 
 		Time = newTime;
 		violation = newViolation;
@@ -215,7 +236,7 @@ void Solver::move(double timeStart) {
 		
 
 
-		if (violation.size() == 0 && timeBad.size() ==0 ) 
+		if (violation.size() == 0 && timeBad.size() == 0) 
 		{
 			cout << "score coputation: \n";
 			score = this->s.extractScenarioFinal(Time);

@@ -10,9 +10,8 @@
 #include "Intervention.h"
 #include "dataCollector.h"
 #include "Solver.h"
-#include <fstream>
 
-void writeSoluce(vector<int> time)
+void writeSoluce(vector<int> time, dataCollector D)
 {
     ofstream monFlux("Soluce.txt");
 
@@ -20,7 +19,7 @@ void writeSoluce(vector<int> time)
     {
         for (int inter = 0; inter < time.size(); inter++)
         {
-            monFlux << "I" << inter + 1 << " " << time[inter] << endl;
+            monFlux << "I" << D.getInterventions()[inter].getInterId() << " " << time[inter] << endl;
         }
     }
     else
@@ -157,7 +156,7 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < time.size(); i++)
         cout << time[i] << " ";
    
-   // writeSoluce(time);
+   writeSoluce(time, D);
 
     
 
