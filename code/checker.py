@@ -353,9 +353,6 @@ def check_and_display(instance_file, solution_file):
 
 if __name__ == '__main__':
 
-    if len(sys.argv) != 3:
-        print('ERROR: expecting 2 arguments: paths to instance and solution files')
-    else:
-        instance_file = sys.argv[1]
-        solution_file = sys.argv[2]
-        check_and_display(instance_file, solution_file)
+    instance_file = sys.argv[1]
+    solution_file = sys.argv[2]
+    check_and_display(instance_file, solution_file)
