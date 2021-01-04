@@ -153,11 +153,14 @@ void Solver::move(double timeStart) {
 		else if(violation.size() == 1)
 		{
 			if (cpt2 == 3) {
+				cout << "cpt reinit\n";
 				cpt2 = 0;
 				idx = rand() % Time.size();
 				inter = idx;
 			}
 			else {
+
+				cout << "cpt increment\n";
 				cpt2++;
 				idx = rand() % violation.size();
 				inter = this->data.IdToIdx(violation[idx]);
