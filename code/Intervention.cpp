@@ -32,6 +32,14 @@ void Intervention::setId(double id) {
 	this->interId = id;
 }
 
+string Intervention::getName() {
+	return this->name;
+}
+
+void Intervention::setName(string name) {
+	this->name = name;
+}
+
 Intervention::Intervention(string vFile) {
 	Parser I(vFile);
 

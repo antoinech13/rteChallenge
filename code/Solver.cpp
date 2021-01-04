@@ -40,10 +40,14 @@ Solver::Solver(dataCollector data){
 	
 	do {
 		c = fgetc(exemple);
-		if (c != ' ', c != '\n')
+		if (c != ' ' && c != '\n')
 			d.push_back(c);
-		d = "";
-		sq.push_back(stoi(d));
+		else
+		{
+			sq.push_back(stoi(d));
+			d = "";
+		}
+		
 	} while (c != EOF);
 
 
