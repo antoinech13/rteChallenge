@@ -183,6 +183,7 @@ void Solver::move(double timeStart) {
 	vector<int> newViolation;
 	vector<vector<int>> timeBad = this->w.getTimeBad();
 
+
 	int idx, inter, cpt=0, cpt2 = 0, cpt3=0, temp, randTimeBad, sameViolation = 0;
 	double score;
 	
