@@ -183,12 +183,13 @@ void Solver::move(double timeStart) {
 	vector<int> newViolation;
 	vector<vector<int>> timeBad = this->w.getTimeBad();
 
-	int idx, inter, cpt=0, cpt2 = 0, cpt3=0, temp, randTimeBad, sameViolation = 0;
+	int idx, inter, cpt=0, cpt2 = 0, cpt3=0 randTimeBad, sameViolation = 0;
 	double score;
 	
 	while((clock() - timeStart) / CLOCKS_PER_SEC < cpTime) {
 
-		//srand(time(0));
+		srand(time(0));
+
 		if (sameViolation == 1 && violation.size() != 0)
 		{
 			if (cpt2 == 3) {
