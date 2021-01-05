@@ -279,26 +279,7 @@ void Solver::move(double timeStart) {
 		newViolation = estimateViolation(newTime);
 		
 
-		/*
-		if (newViolation.size() == 0)
-		{
-			cout << "�criture solution\n";
-			ofstream monFlux("SoluceTime.txt");
-
-			if (monFlux)
-			{
-				for (int intere = 0; intere < newTime.size(); intere++)
-				{
-					monFlux << newTime[intere] << " " << endl;
-				}
-			}
-			else
-			{
-				cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
-			}
-
-			monFlux.close();
-		}*/
+		
 		
 		cout << "violation\n";
 		for (int i = 0; i < violation.size(); i++)
@@ -326,6 +307,24 @@ void Solver::move(double timeStart) {
 		
 		if (violation.size() == 0 && timeBad.size() == 1 && timeBad[0].size() == 0) 
 		{
+		
+			cout << "ecriture solution\n";
+			ofstream monFlux("SoluceTime.txt");
+
+			if (monFlux)
+			{
+				for (int intere = 0; intere < newTime.size(); intere++)
+				{
+					monFlux << newTime[intere] << " " << endl;
+				}
+			}
+			else
+			{
+				cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
+			}
+
+			monFlux.close();
+			
 			cout << "score coputation: \n";
 			score = this->s.extractScenarioFinal(Time);
 			cpt++;

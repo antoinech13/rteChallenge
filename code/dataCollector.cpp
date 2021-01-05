@@ -4,6 +4,7 @@
 #include "Resources.h"
 #include "Seasons.h"
 #include "Exclusions.h"
+#include <time.h>
 
 
 int dataCollector::getT() {
@@ -44,6 +45,8 @@ map<string, vector<double>> dataCollector::getSeasons() {
 
 
 dataCollector::dataCollector(FILE* vFile) {
+	//clock_t timebegin = clock();
+	float timebegin = 0;
 	cout << "begin to parse the file\n";
 	Parser I(vFile);
 	cout << "the file is well parse\n";
@@ -67,6 +70,7 @@ dataCollector::dataCollector(FILE* vFile) {
 	cout << "get seasons\n";
 	this->seasons = S.getData();
 	cout << "get computation Time \n";
+	this->cpTime = clock()-timebegin;//temps par secondes clock()-timebegin/CLOCKS_PER_SEC
 	try
 	{
 		this->cpTime = stof(I.getValues()[I.keyFind("ComputationTime")]);
@@ -76,6 +80,7 @@ dataCollector::dataCollector(FILE* vFile) {
 		this->cpTime = 1;
 	}
 	
+
 
 }
 
