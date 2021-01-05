@@ -188,7 +188,8 @@ void Solver::move(double timeStart) {
 	
 	while((clock() - timeStart) / CLOCKS_PER_SEC < cpTime) {
 
-		//srand(time(0));
+		srand(time(0));
+
 		if (sameViolation == 1 && violation.size() != 0)
 		{
 			if (cpt2 == 3) {
