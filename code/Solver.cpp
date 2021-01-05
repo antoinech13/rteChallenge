@@ -146,15 +146,15 @@ vector<int> Solver::findWorkload(int idx)
 vector<int> Solver::chekFindWork(int idx, vector<vector<int>> timeBad)
 {
 	vector<int> timeBadWorkMin;
-	cout << "timeBad : \n";
+	/*cout << "timeBad : "<< "size : "<<timeBad.size() <<"\n";
 	for (int i = 0; i < timeBad.size(); i++)
 	{
 		cout << "c" << i << " : ";
 		affVector(timeBad[i]);
-	}
+	}*/
 	vector<int>loadMultiple = findWorkload(idx);
-	cout << "findWorkload : \n";
-	affVector(loadMultiple);
+	/*cout << "findWorkload : \n";
+	affVector(loadMultiple);*/
 
 	for (int work : loadMultiple)
 	{
@@ -163,9 +163,21 @@ vector<int> Solver::chekFindWork(int idx, vector<vector<int>> timeBad)
 			timeBadWorkMin.push_back(work);
 		}
 	}
-	cout << "timeBadWorkMin : ";
-	affVector(timeBadWorkMin);
+	/*cout << "timeBadWorkMin : ";
+	affVector(timeBadWorkMin);*/
 	return timeBadWorkMin;
+}
+
+bool chekTimeBadEmpty(vector<vector<int>> timeBad)
+{
+	for (vector<int> badWork : timeBad)
+	{
+		if (badWork.size() != 0)
+		{
+			return false;
+		}
+	}
+	return true;
 }
 
 void Solver::move(double timeStart) {
@@ -210,7 +222,7 @@ void Solver::move(double timeStart) {
 			}
 		}
 
-		else if (violation.size() > 1)
+		else if (violation.size() > 0)
 		{
 			cpt3 = 0;
 			idx = rand() % violation.size();
@@ -305,7 +317,7 @@ void Solver::move(double timeStart) {
 		
 
 		
-		if (violation.size() == 0 && timeBad.size() == 1 && timeBad[0].size() == 0) 
+		if (violation.size() == 0 && chekTimeBadEmpty(timeBad))
 		{
 		
 			cout << "ecriture solution\n";
