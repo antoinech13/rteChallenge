@@ -8,6 +8,7 @@
 #include "Resources.h"
 #include "Seasons.h"
 #include "Exclusions.h"
+//#include <time.h>
 
 using namespace std;
 
@@ -36,6 +37,7 @@ private:
 	vector<double> scenariosNumber;
 	float quantile;
 	float alpha;
+	//clock_t cpTime;
 	float cpTime;
 	vector<Intervention> interventions;
 	vector<Intervention>  buildInterventions(string vFile);
