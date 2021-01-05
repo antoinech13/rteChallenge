@@ -79,6 +79,36 @@ dataCollector::dataCollector(FILE* vFile) {
 
 }
 
+dataCollector::dataCollector(FILE* vFile, int timeC) {
+	cout << "begin to parse the file\n";
+	Parser I(vFile);
+	cout << "the file is well parse\n";
+	Exclusions E(I.getValues()[I.keyFind("Exclusions")]);
+	Resources R(I.getValues()[I.keyFind("Resources")]);
+	Seasons S(I.getValues()[I.keyFind("Seasons")]);
+	cout << "get T\n";
+	this->T = stoi(I.getValues()[I.keyFind("T")]);
+	cout << "get alpha\n";
+	this->alpha = stof(I.getValues()[I.keyFind("Alpha")]);
+	cout << "get quantile\n";
+	this->quantile = stof(I.getValues()[I.keyFind("Quantile")]);
+	cout << "get scenario\n";
+	this->scenariosNumber = Parser::toDbTable(I.getValues()[I.keyFind("Scenarios_number")]);
+	cout << "get Interventions\n";
+	this->interventions = buildInterventions(I.getValues()[I.keyFind("Interventions")]);
+	cout << "get resources\n";
+	this->resources = R.getData();
+	cout << "get exclusions\n";
+	this->exclusions = E.getData();
+	cout << "get seasons\n";
+	this->seasons = S.getData();
+	cout << "get computation Time \n";
+	this->cpTime = timeC;
+
+
+
+}
+
 dataCollector::dataCollector() {};
 
 vector<Intervention> dataCollector::buildInterventions(string vFile) {

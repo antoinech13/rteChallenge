@@ -26,6 +26,16 @@ double Solver::getScore() {
 	return this->score;
 }
 
+void affVector(vector<int> v1)
+{
+	for (int i = 0; i < v1.size(); i++)
+	{
+		cout << v1[i] << " ";
+	}
+	cout <<  "\n";
+
+}
+
 
 
 Solver::Solver(dataCollector data){
@@ -70,7 +80,7 @@ Solver::Solver(dataCollector data){
 vector<int> Solver::randInitialisation() {
 	vector<int> value;
 	vector<Intervention> interventions = this->data.getInterventions();
-	srand(time(0));
+	//srand(time(0));
 
 	for (int i = 0; i < interventions.size(); i++) {
 		value.push_back(rand() % interventions[i].getTmax() + 1);
@@ -136,7 +146,16 @@ vector<int> Solver::findWorkload(int idx)
 vector<int> Solver::chekFindWork(int idx, vector<vector<int>> timeBad)
 {
 	vector<int> timeBadWorkMin;
+	cout << "timeBad : \n";
+	for (int i = 0; i < timeBad.size(); i++)
+	{
+		cout << "c" << i << " : ";
+		affVector(timeBad[i]);
+	}
 	vector<int>loadMultiple = findWorkload(idx);
+	cout << "findWorkload : \n";
+	affVector(loadMultiple);
+
 	for (int work : loadMultiple)
 	{
 		if (timeBad[work].size() != 0)
@@ -144,6 +163,8 @@ vector<int> Solver::chekFindWork(int idx, vector<vector<int>> timeBad)
 			timeBadWorkMin.push_back(work);
 		}
 	}
+	cout << "timeBadWorkMin : ";
+	affVector(timeBadWorkMin);
 	return timeBadWorkMin;
 }
 
@@ -162,20 +183,13 @@ void Solver::move(double timeStart) {
 	vector<int> newViolation;
 	vector<vector<int>> timeBad = this->w.getTimeBad();
 
-	int idx, inter, cpt=0, cpt2 = 0, cpt3=0;
+	int idx, inter, cpt=0, cpt2 = 0, cpt3=0, temp, randTimeBad, sameViolation = 0;
 	double score;
 	
 	while((clock() - timeStart) / CLOCKS_PER_SEC < cpTime) {
 
-		srand(time(0));
-		if (violation.size() > 1)
-		{
-			
-			idx = rand() % violation.size();
-			inter = this->data.IdToIdx(violation[idx]);
-		}
-		
-		else if(violation.size() == 1)
+		//srand(time(0));
+		if (sameViolation == 1 && violation.size() != 0)
 		{
 			if (cpt2 == 3) {
 				cout << "cpt reinit\n";
@@ -194,42 +208,59 @@ void Solver::move(double timeStart) {
 			}
 		}
 
+		else if (violation.size() > 1)
+		{
+			cpt3 = 0;
+			idx = rand() % violation.size();
+			inter = this->data.IdToIdx(violation[idx]);
+		}
+		
+		
+
 		else
 		{
 			idx = rand() % Time.size();
 			inter = idx;
 		}
 
-		srand(time(0));
+		//srand(time(0));
 
 		vector<int> timeBadWorkMin = chekFindWork(inter, timeBad);
 		
 		//cout << "idx: " << idx << '\n';
 		if (violation.size() > 0) {
-			if (timeBadWorkMin.size() > 0)
+			if (cpt3 == 1)
 			{
-				cout << "jen est marre: " << this->data.IdToIdx(violation[idx]) << " intervention id:  " << this->data.getInterventions()[this->data.IdToIdx(violation[idx])].getInterId() << '\n';
-				newTime[this->data.IdToIdx(violation[idx])] = timeBadWorkMin[rand() % timeBadWorkMin.size()];
+				cout << "jen est marre2: " << idx << " intervention id:  " << this->data.getInterventions()[idx].getInterId() << '\n';
+				temp = newTime[idx];
+				newTime[idx] = newTime[this->data.IdToIdx(violation[0])];
+				newTime[this->data.IdToIdx(violation[0])] = temp;
+				//newTime[idx] = rand() % interventions[idx].getTmax() + 1;
+				
 			}
-			else if (cpt3 == 1)
+			else if (timeBadWorkMin.size() > 0)
 			{
-				cout << "jen est marre: " << idx << " intervention id:  " << this->data.getInterventions()[idx].getInterId() << '\n';
-				newTime[idx] = rand() % interventions[idx].getTmax() + 1;
+				cout << "jen est marre1: " << this->data.IdToIdx(violation[idx]) << " intervention id:  " << this->data.getInterventions()[this->data.IdToIdx(violation[idx])].getInterId() << '\n';
+				randTimeBad = rand() % timeBadWorkMin.size();
+				newTime[this->data.IdToIdx(violation[idx])] = timeBad[timeBadWorkMin[randTimeBad]][rand() % timeBad[timeBadWorkMin[randTimeBad]].size()];
 			}
 			else
 			{
-				cout << "jen est marre: " <<this->data.IdToIdx(violation[idx]) << " intervention id:  "<< this->data.getInterventions()[this->data.IdToIdx(violation[idx])].getInterId()<<'\n';
+				cout << "jen est marre3: " <<this->data.IdToIdx(violation[idx]) << " intervention id:  "<< this->data.getInterventions()[this->data.IdToIdx(violation[idx])].getInterId()<<'\n';
 				newTime[this->data.IdToIdx(violation[idx])] = rand() % interventions[this->data.IdToIdx(violation[idx])].getTmax() + 1;
 			}
 			
 		}
 		else if (timeBadWorkMin.size() > 0)
 		{
-			newTime[idx] = timeBadWorkMin[rand() % timeBadWorkMin.size()];
+			cout << "jen est marre4: \n";
+			randTimeBad = rand() % timeBadWorkMin.size();
+			newTime[idx] = timeBad[timeBadWorkMin[randTimeBad]][rand() % timeBad[timeBadWorkMin[randTimeBad]].size()];
 		}
-		else
+		else {
 			newTime[idx] = rand() % interventions[idx].getTmax() + 1;
-
+			cout << "jen est marre5: \n";
+		}
 		
 		cout << "Time \n";
 		for (int i = 0; i < Time.size(); i++) 
@@ -276,7 +307,14 @@ void Solver::move(double timeStart) {
 			cout << newViolation[i] << " ";
 		cout << '\n';
 		
-		
+		if (violation == newViolation)
+		{
+			sameViolation = 1;
+		}
+		else
+		{
+			sameViolation = 0;
+		}
 
 		Time = newTime;
 		violation = newViolation;

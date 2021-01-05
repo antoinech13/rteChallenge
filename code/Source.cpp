@@ -11,9 +11,9 @@
 #include "dataCollector.h"
 #include "Solver.h"
 
-void writeSoluce(vector<int> time, dataCollector D)
+void writeSoluce(vector<int> time, dataCollector D, string savePath)
 {
-    ofstream monFlux("Soluce.txt");
+    ofstream monFlux(savePath);
 
     if (monFlux)
     {
@@ -53,9 +53,41 @@ void print(vector<string> tab) {
 
 int main(int argc, char* argv[]) {
     double timeStart = clock();
-    const char* path = "A_01.JSON";
+    char* path;
+    string savePath, seed;
+    int team = 62;
+    int timeLimit = -1;
+
+    cout << argc;
+    for (int i = 0; i < argc; i++) {
+        if ((string)argv[i] == "-t") {
+            timeLimit = stoi(argv[i + 1]);
+            cout << "timeLimit: " << timeLimit << '\n';
+        }
+        else if ((string)argv[i] == "-p") {
+            path = argv[i + 1];
+            cout << "instance_name: " << path << '\n';
+        }
+        else if ((string)argv[i] == "-o") {
+            savePath = argv[i + 1];
+            cout << "new_solution_filename: " << savePath << '\n';
+        }
+        else if ((string)argv[i] == "-name") {
+            cout << "j" << team << '\n';
+            return team;
+        }
+        else if ((string)argv[i] == "-s") {
+            seed = argv[i + 1];
+            cout << "seed: " << seed << '\n';
+        }
+  
+    }
+            
+
+
     FILE* exemple;
-   
+    
+
     vector<int> c;
     exemple = fopen(path, "r");
 
@@ -67,10 +99,18 @@ int main(int argc, char* argv[]) {
         printf("open file\n");
     }
     
-   
 
+    srand(stoi(seed));
 
-    dataCollector D(exemple);
+    dataCollector D;
+    
+    if (timeLimit != -1)
+        D = dataCollector(exemple, timeLimit);
+        
+    else 
+        D = dataCollector (exemple);
+        
+    
    /*
     cout << "test of the dataCollector \n";
     cout << "alpha \n";
@@ -141,7 +181,7 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < time.size(); i++)
         cout << time[i] << " ";
    
-   writeSoluce(time, D);
+   writeSoluce(time, D, savePath);
 
     
 

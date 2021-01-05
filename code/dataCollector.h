@@ -28,6 +28,7 @@ public:
 
 	dataCollector();
 	dataCollector(FILE * I);
+	dataCollector(FILE* vFile, int timeC);
 
 
 private:
